@@ -3,8 +3,45 @@
    FLUID VERTICAL SCROLL LUXURY DESIGN SYSTEM
    ========================================================================== */
 
-:root {
-  /* Rich Imperial Colors */
+:root, [data-palette="navy"] {
+  /* THEME 1: ROYAL MIDNIGHT NAVY & 24K GOLD (Default) */
+  --c-forest-deep: #061224;
+  --c-forest-primary: #0c2340;
+  --c-forest-medium: #14355f;
+  --c-forest-light: #1e4a82;
+  --c-forest-glow: #38bdf8;
+
+  --c-gold-pure: #d4af37;
+  --c-gold-glow: #eec550;
+  --c-gold-light: #f9df88;
+  --c-gold-pale: rgba(212, 175, 55, 0.15);
+
+  --c-bg-alabaster: #f8fafc;
+  --c-bg-ivory: #f1f5f9;
+  --c-bg-card: #ffffff;
+  --c-bg-dark-emerald: #030a14;
+
+  --c-text-main: #0b1a2e;
+  --c-text-muted: #50657e;
+  --c-text-light: #ffffff;
+  --c-text-ivory: #f8fafc;
+
+  --c-border-light: rgba(12, 35, 64, 0.1);
+  --c-border-gold: rgba(212, 175, 55, 0.35);
+
+  --font-serif-royal: 'Playfair Display', Georgia, serif;
+  --font-roman: 'Cinzel', serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --ease-fluid: cubic-bezier(0.16, 1, 0.3, 1);
+  --shadow-subtle: 0 4px 20px rgba(12, 35, 64, 0.06);
+  --shadow-card: 0 12px 35px rgba(12, 35, 64, 0.08);
+  --shadow-hover: 0 20px 45px rgba(12, 35, 64, 0.14);
+}
+
+[data-palette="emerald"] {
+  /* THEME 2: IMPERIAL EMERALD & HARVEST GOLD (Agricultural Royalty) */
   --c-forest-deep: #0a2114;
   --c-forest-primary: #123c23;
   --c-forest-medium: #194e2e;
@@ -14,7 +51,7 @@
   --c-gold-pure: #c99a3e;
   --c-gold-glow: #dfb15b;
   --c-gold-light: #f3cf7a;
-  --c-gold-pale: rgba(201, 154, 62, 0.12);
+  --c-gold-pale: rgba(201, 154, 62, 0.14);
 
   --c-bg-alabaster: #fcfaf6;
   --c-bg-ivory: #f7f3ea;
@@ -29,15 +66,71 @@
   --c-border-light: rgba(18, 60, 35, 0.1);
   --c-border-gold: rgba(201, 154, 62, 0.35);
 
-  --font-serif-royal: 'Playfair Display', Georgia, serif;
-  --font-roman: 'Cinzel', serif;
-  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-
-  --ease-fluid: cubic-bezier(0.16, 1, 0.3, 1);
   --shadow-subtle: 0 4px 20px rgba(18, 60, 35, 0.06);
   --shadow-card: 0 12px 35px rgba(18, 60, 35, 0.08);
   --shadow-hover: 0 20px 45px rgba(18, 60, 35, 0.14);
+}
+
+[data-palette="terracotta"] {
+  /* THEME 3: TUSCAN TERRACOTTA & WARM BRONZE (Earthy Mediterranean Luxury) */
+  --c-forest-deep: #1e0e06;
+  --c-forest-primary: #7a3114;
+  --c-forest-medium: #9c421e;
+  --c-forest-light: #be582a;
+  --c-forest-glow: #f97316;
+
+  --c-gold-pure: #d9822b;
+  --c-gold-glow: #f09e46;
+  --c-gold-light: #fbc27b;
+  --c-gold-pale: rgba(217, 130, 43, 0.15);
+
+  --c-bg-alabaster: #faf7f2;
+  --c-bg-ivory: #f4ece1;
+  --c-bg-card: #ffffff;
+  --c-bg-dark-emerald: #140803;
+
+  --c-text-main: #2b1308;
+  --c-text-muted: #7d5947;
+  --c-text-light: #ffffff;
+  --c-text-ivory: #faf7f2;
+
+  --c-border-light: rgba(122, 49, 20, 0.1);
+  --c-border-gold: rgba(217, 130, 43, 0.35);
+
+  --shadow-subtle: 0 4px 20px rgba(122, 49, 20, 0.06);
+  --shadow-card: 0 12px 35px rgba(122, 49, 20, 0.08);
+  --shadow-hover: 0 20px 45px rgba(122, 49, 20, 0.14);
+}
+
+[data-palette="obsidian"] {
+  /* THEME 4: OBSIDIAN NOIR & PURE 24K GOLD (Black-Tie Haute Couture) */
+  --c-forest-deep: #050505;
+  --c-forest-primary: #141414;
+  --c-forest-medium: #222222;
+  --c-forest-light: #363636;
+  --c-forest-glow: #eab308;
+
+  --c-gold-pure: #d4af37;
+  --c-gold-glow: #f5cf53;
+  --c-gold-light: #fce48b;
+  --c-gold-pale: rgba(212, 175, 55, 0.18);
+
+  --c-bg-alabaster: #fcfcfc;
+  --c-bg-ivory: #f4f4f4;
+  --c-bg-card: #ffffff;
+  --c-bg-dark-emerald: #000000;
+
+  --c-text-main: #111111;
+  --c-text-muted: #555555;
+  --c-text-light: #ffffff;
+  --c-text-ivory: #fcfcfc;
+
+  --c-border-light: rgba(0, 0, 0, 0.1);
+  --c-border-gold: rgba(212, 175, 55, 0.4);
+
+  --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.06);
+  --shadow-card: 0 12px 35px rgba(0, 0, 0, 0.09);
+  --shadow-hover: 0 20px 45px rgba(0, 0, 0, 0.16);
 }
 
 *, *::before, *::after {
@@ -219,6 +312,63 @@ body.excellence-body {
   display: flex;
   align-items: center;
   gap: 14px;
+}
+
+/* Palette Switcher Pills in Navbar */
+.palette-switcher-bar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(12, 35, 64, 0.06);
+  border: 1px solid var(--c-border-light);
+  padding: 3px 6px;
+  border-radius: 999px;
+}
+
+.ps-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  color: var(--c-text-muted);
+  font-weight: 700;
+  margin-left: 4px;
+  margin-right: 2px;
+}
+
+.palette-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--c-text-main);
+  transition: all 0.2s ease;
+}
+
+.palette-dot {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 1.5px solid #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.palette-btn:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.palette-btn.active {
+  background: var(--c-forest-primary);
+  color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
 }
 
 .tool-btn {

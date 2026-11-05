@@ -57,6 +57,28 @@
 
       <!-- Right Action Tools -->
       <div class="nav-actions">
+        
+        <!-- Live Color Palette Switcher -->
+        <div class="palette-switcher-bar">
+          <span class="ps-label">PALETTE:</span>
+          <button type="button" class="palette-btn active" data-color="navy" onclick="switchColorPalette('navy')" title="Royal Midnight Navy & Gold">
+            <span class="palette-dot" style="background: linear-gradient(135deg, #0c2340 50%, #d4af37 50%);"></span>
+            <span>Navy</span>
+          </button>
+          <button type="button" class="palette-btn" data-color="emerald" onclick="switchColorPalette('emerald')" title="Imperial Emerald & Harvest Gold">
+            <span class="palette-dot" style="background: linear-gradient(135deg, #123c23 50%, #c99a3e 50%);"></span>
+            <span>Emerald</span>
+          </button>
+          <button type="button" class="palette-btn" data-color="terracotta" onclick="switchColorPalette('terracotta')" title="Tuscan Terracotta & Bronze">
+            <span class="palette-dot" style="background: linear-gradient(135deg, #7a3114 50%, #d9822b 50%);"></span>
+            <span>Terracotta</span>
+          </button>
+          <button type="button" class="palette-btn" data-color="obsidian" onclick="switchColorPalette('obsidian')" title="Obsidian Noir & 24K Gold">
+            <span class="palette-dot" style="background: linear-gradient(135deg, #141414 50%, #d4af37 50%);"></span>
+            <span>Obsidian</span>
+          </button>
+        </div>
+
         <!-- Sound Chime Toggle -->
         <button class="tool-btn" id="soundBtn" title="Toggle Acoustic Feedback" aria-label="Toggle Sound">
           <i class="fa-solid fa-volume-high" id="soundIcon"></i>

@@ -7,6 +7,32 @@ let soundActive = true;
 let audioContext = null;
 
 /* ==========================================================================
+   LIVE COLOR PALETTE SWITCHER
+   ========================================================================== */
+function switchColorPalette(paletteName) {
+  try { playUiChime(); } catch (e) {}
+  document.documentElement.setAttribute('data-palette', paletteName);
+  try { localStorage.setItem('nimireaux_palette', paletteName); } catch (e) {}
+
+  const btns = document.querySelectorAll('.palette-btn');
+  btns.forEach(btn => {
+    if (btn.getAttribute('data-color') === paletteName) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+}
+
+// Initial default to Royal Midnight Navy & 24K Gold
+try {
+  const savedPalette = localStorage.getItem('nimireaux_palette') || 'navy';
+  switchColorPalette(savedPalette);
+} catch (e) {
+  switchColorPalette('navy');
+}
+
+/* ==========================================================================
    SCROLL PROGRESS BAR & NAVBAR STATE
    ========================================================================== */
 const progressBar = document.getElementById('scrollProgressBar');
