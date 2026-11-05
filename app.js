@@ -625,7 +625,311 @@ if (soundToggleBtn) {
   });
 }
 
+/* ==========================================================================
+   MAISON AI CONCIERGE & SOVEREIGN INTELLIGENCE PROTOCOL
+   ========================================================================== */
+
+let isAiDrawerOpen = false;
+
+function toggleAiDrawer(forceOpen) {
+  const drawer = document.getElementById('aiConciergeDrawer');
+  const overlay = document.getElementById('aiDrawerOverlay');
+  if (!drawer || !overlay) return;
+
+  if (typeof forceOpen === 'boolean') {
+    isAiDrawerOpen = forceOpen;
+  } else {
+    isAiDrawerOpen = !isAiDrawerOpen;
+  }
+
+  if (isAiDrawerOpen) {
+    drawer.classList.add('open');
+    overlay.classList.add('open');
+    playAcousticChime('transition');
+    setTimeout(() => {
+      const input = document.getElementById('aiUserInput');
+      if (input) input.focus();
+    }, 300);
+  } else {
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+    playAcousticChime('click');
+  }
+}
+
+// Close drawer on Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && isAiDrawerOpen) {
+    toggleAiDrawer(false);
+  }
+});
+
+function askAiPreset(questionText) {
+  const input = document.getElementById('aiUserInput');
+  if (input) {
+    input.value = questionText;
+    handleAiSubmit(new Event('submit'));
+  }
+}
+
+function handleAiSubmit(e) {
+  if (e && e.preventDefault) e.preventDefault();
+
+  const input = document.getElementById('aiUserInput');
+  if (!input) return;
+
+  const rawQuery = input.value.trim();
+  if (!rawQuery) return;
+
+  playAcousticChime('click');
+
+  // Append User Bubble
+  appendChatMessage('user', rawQuery);
+  input.value = '';
+
+  // Show Typing Indicator
+  const indicator = document.getElementById('aiTypingIndicator');
+  if (indicator) indicator.style.display = 'flex';
+  scrollAiToBottom();
+
+  // Simulate Cognitive Processing Delay
+  setTimeout(() => {
+    if (indicator) indicator.style.display = 'none';
+    const responsePayload = generateAiIntelligenceResponse(rawQuery);
+    appendChatMessage('bot', responsePayload.text, responsePayload.actions);
+    playAcousticChime('click');
+    scrollAiToBottom();
+  }, 480);
+}
+
+function appendChatMessage(sender, htmlContent, actionButtons = []) {
+  const stage = document.getElementById('aiMessagesStage');
+  if (!stage) return;
+
+  const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  const msgDiv = document.createElement('div');
+  msgDiv.className = `ai-msg ai-msg-${sender}`;
+
+  if (sender === 'bot') {
+    let actionsHtml = '';
+    if (actionButtons && actionButtons.length > 0) {
+      actionsHtml = `
+        <div class="ai-actions-wrap">
+          ${actionButtons.map(btn => {
+            if (btn.href) {
+              return `<a href="${btn.href}" ${btn.target ? `target="${btn.target}"` : ''} class="ai-action-pill ${btn.className || ''}">${btn.label}</a>`;
+            } else if (btn.onClick) {
+              return `<button type="button" onclick="${btn.onClick}" class="ai-action-pill ${btn.className || ''}">${btn.label}</button>`;
+            }
+            return '';
+          }).join('')}
+        </div>
+      `;
+    }
+
+    msgDiv.innerHTML = `
+      <div class="ai-msg-avatar">
+        <img src="assets/logo.png" alt="Nimireaux" />
+      </div>
+      <div class="ai-msg-content">
+        <div class="ai-msg-sender">NIMIREAUX CONCIERGE &bull; MAISON ADVISOR</div>
+        <div class="ai-msg-bubble">
+          ${htmlContent}
+          ${actionsHtml}
+        </div>
+        <div class="ai-msg-time">${timeStr}</div>
+      </div>
+    `;
+  } else {
+    msgDiv.innerHTML = `
+      <div class="ai-msg-content">
+        <div class="ai-msg-sender">YOU</div>
+        <div class="ai-msg-bubble">
+          <p>${escapeHtml(htmlContent)}</p>
+        </div>
+        <div class="ai-msg-time">${timeStr}</div>
+      </div>
+    `;
+  }
+
+  stage.appendChild(msgDiv);
+}
+
+function scrollAiToBottom() {
+  const stage = document.getElementById('aiMessagesStage');
+  if (stage) {
+    stage.scrollTop = stage.scrollHeight;
+  }
+}
+
+function escapeHtml(text) {
+  const map = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  };
+  return text.replace(/[&<>"']/g, m => map[m]);
+}
+
+/* ==========================================================================
+   NIMIREAUX DOMAIN KNOWLEDGE GRAPH & REASONING ENGINE
+   ========================================================================== */
+function generateAiIntelligenceResponse(query) {
+  const q = query.toLowerCase();
+
+  // 1. PRODUCTS & FLOUR GRADES
+  if (q.includes('product') || q.includes('flour') || q.includes('grade') || q.includes('posho') || q.includes('super') || q.includes('bran') || q.includes('whole grain') || q.includes('pack')) {
+    return {
+      text: `
+        <p><strong>Nimireaux Uganda Limited</strong> produces four commercial flour classifications calibrated for institutional caterers, commercial bakeries, and retail markets:</p>
+        <ul>
+          <li><strong>Super Grade 1 Fortified Maize Flour:</strong> Ultra-fine white flour refined with hydro-conditioned endosperm, fortified with Vitamin A, Zinc, and bioavailable Iron. Available in <strong>5kg, 10kg, 25kg, and 50kg</strong> moisture-barrier bags.</li>
+          <li><strong>Whole Grain Stone-Style Flour:</strong> High-fiber formulation retaining full germ and aleurone layers for maximum dietary fiber and slow-release glycemic energy.</li>
+          <li><strong>Institutional Relief Blend:</strong> Optimized for humanitarian feeding programs and schools, fortified to exceed UNBS / WFP micronutrient guidelines.</li>
+          <li><strong>Commercial Maize Bran &amp; Hominy Feed:</strong> High-protein livestock and dairy feed by-product generated from pneumatic separation.</li>
+        </ul>
+      `,
+      actions: [
+        { label: 'Explore Reserve Collection →', onClick: 'goToAct(4); toggleAiDrawer(false);' },
+        { label: 'Request Flour Price List', href: 'https://wa.me/256744135549?text=Hello%20Nimireaux%2C%20please%20send%20me%20your%20current%20wholesale%20flour%20price%20list.', target: '_blank', className: 'ai-wa-pill' }
+      ]
+    };
+  }
+
+  // 2. TOLL MILLING & CONTRACT PROCESSING
+  if (q.includes('toll') || q.includes('milling') || q.includes('cleaning') || q.includes('process') || q.includes('contract') || q.includes('machine') || q.includes('capacity') || q.includes('yield') || q.includes('roller')) {
+    return {
+      text: `
+        <p>Our <strong>Commercial Toll Milling &amp; Grain Processing</strong> infrastructure delivers complete custom processing for grain aggregators, commercial farms, and food relief agencies:</p>
+        <ul>
+          <li><strong>Pre-Cleaning &amp; Aspiration:</strong> Multi-stage pneumatic destoning, rotary sieves, and magnetic separation removing 99.9% of foreign debris.</li>
+          <li><strong>Hydrothermal Conditioning:</strong> Precise automated misting to 14.2% kernel moisture for clean separation of the outer pericarp bran.</li>
+          <li><strong>Roller Reduction:</strong> Laser-calibrated roller passes with chilled cast-iron cylinders for uniform micron granulometry.</li>
+          <li><strong>Extraction Yield:</strong> Typical milling yield yields approximately <strong>78% to 82% pure white flour</strong> and <strong>18% to 22% high-protein bran</strong>, depending on incoming grain test weight.</li>
+        </ul>
+      `,
+      actions: [
+        { label: 'Open Yield Simulator →', onClick: 'goToAct(5); toggleAiDrawer(false);' },
+        { label: 'Discuss Toll Contract on WhatsApp', href: 'https://wa.me/256744135549?text=Hello%20Nimireaux%2C%20I%20would%20like%20to%20discuss%20a%20commercial%20toll%20milling%20contract.', target: '_blank', className: 'ai-wa-pill' }
+      ]
+    };
+  }
+
+  // 3. FORTIFICATION & QUALITY SCIENCE
+  if (q.includes('fortif') || q.includes('vitamin') || q.includes('zinc') || q.includes('iron') || q.includes('nutrition') || q.includes('health') || q.includes('mineral') || q.includes('unbs') || q.includes('standard')) {
+    return {
+      text: `
+        <p><strong>Science of Purity &amp; Fortification:</strong> Nimireaux flours are fortified under strict laboratory compliance exceeding East African Community (EAS 768) and UNBS standards:</p>
+        <ul>
+          <li><strong>Vitamin A (Retinyl Palmitate):</strong> Micro-encapsulated for thermal stability during cooking to combat visual impairment and maternal fatigue.</li>
+          <li><strong>Iron (Sodium Feredetate / NaFeEDTA):</strong> Highly bioavailable iron designed to reduce childhood anemia and enhance cognitive performance.</li>
+          <li><strong>Zinc Oxide:</strong> Bolsters immune function, cellular repair, and physical growth in children.</li>
+          <li><strong>Micro-Dosing Accuracy:</strong> Loss-in-weight gravimetric micro-feeders ensure even dispersion of 250 mg premix per kilogram with CV &lt; 3%.</li>
+        </ul>
+      `,
+      actions: [
+        { label: 'View Purity & Science Act →', onClick: 'goToAct(3); toggleAiDrawer(false);' }
+      ]
+    };
+  }
+
+  // 4. MINIMUM ORDER QUANTITIES (MOQ), DELIVERY & LOGISTICS
+  if (q.includes('moq') || q.includes('minimum') || q.includes('order') || q.includes('deliver') || q.includes('ship') || q.includes('transport') || q.includes('logistics') || q.includes('kenya') || q.includes('congo') || q.includes('sudan') || q.includes('export')) {
+    return {
+      text: `
+        <p><strong>Commercial Minimums &amp; Regional Logistics:</strong></p>
+        <ul>
+          <li><strong>Wholesale Retail Packs:</strong> Minimum order of <strong>500 kg</strong> (mixed 5kg, 10kg, 25kg, 50kg bags).</li>
+          <li><strong>Contract Toll Milling:</strong> Batches accepted from <strong>5 Metric Tons</strong> up to 500+ MT per production run.</li>
+          <li><strong>Institutional Bulk Supply:</strong> Direct depot delivery from 10 MT to multi-truck convoy dispatches.</li>
+          <li><strong>Regional Distribution:</strong> Direct fleet transport across Uganda (Kampala, Jinja, Masindi, Gulu, Mbale, Mbarara) and cross-border customs-cleared corridors to <strong>Kenya, South Sudan, Rwanda, and the DRC</strong>.</li>
+        </ul>
+      `,
+      actions: [
+        { label: 'Submit Quotation Request →', onClick: 'goToAct(6); toggleAiDrawer(false);' },
+        { label: 'Call Logistics Desk', href: 'tel:+256744135549' }
+      ]
+    };
+  }
+
+  // 5. CONTACTS, HOTLINES & DIRECTORY
+  if (q.includes('contact') || q.includes('phone') || q.includes('call') || q.includes('email') || q.includes('hotline') || q.includes('whatsapp') || q.includes('address') || q.includes('location') || q.includes('where') || q.includes('office')) {
+    return {
+      text: `
+        <p><strong>Official Nimireaux Uganda Executive Channels:</strong></p>
+        <ul>
+          <li><strong>Commercial Desk (Hotline &amp; WhatsApp):</strong> <a href="tel:+256744135549" class="p-link"><strong>+256 744 135 549</strong></a></li>
+          <li><strong>Executive Direct Line:</strong> <a href="tel:+256783688363" class="p-link"><strong>+256 783 688 363</strong></a></li>
+          <li><strong>General Information:</strong> <a href="mailto:info@nimireaux.com" class="p-link">info@nimireaux.com</a></li>
+          <li><strong>Institutional Sales &amp; RFQs:</strong> <a href="mailto:sales@nimireaux.com" class="p-link">sales@nimireaux.com</a></li>
+          <li><strong>Accounts &amp; Billing:</strong> <a href="mailto:accounts@nimireaux.com" class="p-link">accounts@nimireaux.com</a></li>
+          <li><strong>Location:</strong> Kampala, Uganda &bull; Sourcing from Masindi, Acholi, and Eastern Highlands.</li>
+        </ul>
+      `,
+      actions: [
+        { label: 'Chat on WhatsApp', href: 'https://wa.me/256744135549?text=Hello%20Nimireaux%20Uganda%2C%20I%20am%20inquiring%20about%20commercial%20grain%20services.', target: '_blank', className: 'ai-wa-pill' },
+        { label: 'Open Commercial Salon →', onClick: 'goToAct(6); toggleAiDrawer(false);' }
+      ]
+    };
+  }
+
+  // 6. PRICE / QUOTATION
+  if (q.includes('price') || q.includes('cost') || q.includes('quote') || q.includes('rate') || q.includes('quotation') || q.includes('rfq') || q.includes('buy')) {
+    return {
+      text: `
+        <p>Our pricing is tiered according to order volume, grain moisture, and contract terms. We issue formal, stamped commercial quotations within <strong>4 business hours</strong>.</p>
+        <p>You can simulate yield tonnages using our Yield Concierge or transmit your formal specifications directly through our Request for Quotation protocol.</p>
+      `,
+      actions: [
+        { label: 'Launch RFQ Form →', onClick: 'goToAct(6); toggleAiDrawer(false);' },
+        { label: 'Open Yield Calculator →', onClick: 'goToAct(5); toggleAiDrawer(false);' },
+        { label: 'Instant WhatsApp Quote', href: 'https://wa.me/256744135549?text=Hello%20Nimireaux%2C%20I%20would%20like%20an%20urgent%20price%20quote%20for%20grain%20milling.', target: '_blank', className: 'ai-wa-pill' }
+      ]
+    };
+  }
+
+  // 7. GREETINGS & INTRODUCTIONS
+  if (q.includes('hello') || q.includes('hi') || q.includes('hey') || q.includes('who are you') || q.includes('good morning') || q.includes('good afternoon') || q.includes('help')) {
+    return {
+      text: `
+        <p>Good day. I am the <strong>Nimireaux AI Concierge</strong>, the intelligent digital representative for <strong>Nimireaux Uganda Limited</strong> — East Africa's premier grain processing and commercial milling maison.</p>
+        <p>I can provide instant intelligence regarding:</p>
+        <ul>
+          <li>Our fortified flour formulations and packaging options</li>
+          <li>Commercial toll milling parameters, machinery, and yields</li>
+          <li>Nutritional compliance and fortification standards</li>
+          <li>Minimum order volumes and export shipping logistics</li>
+          <li>Direct connection with our executive directors</li>
+        </ul>
+        <p>What would you like to explore?</p>
+      `,
+      actions: [
+        { label: '🌾 Flour Products', onClick: 'askAiPreset("What are your primary flour products and packaging sizes?")' },
+        { label: '⚙️ Toll Milling', onClick: 'askAiPreset("How does your commercial toll milling service work?")' },
+        { label: '📞 Executive Contacts', onClick: 'askAiPreset("How do I contact the executive directors directly?")' }
+      ]
+    };
+  }
+
+  // 8. GENERAL INTELLIGENT FALLBACK
+  return {
+    text: `
+      <p>Thank you for your inquiry regarding <strong>Nimireaux Uganda Limited</strong>.</p>
+      <p>We are a dedicated commercial grain processing and industrial milling corporation based in Uganda, operating high-efficiency roller mills, computerized cleaning systems, and vitamin fortification lines for regional markets and humanitarian relief programs.</p>
+      <p>For custom institutional tenders, special flour blending, or immediate order processing, our commercial directors are available via hotline or WhatsApp.</p>
+    `,
+    actions: [
+      { label: 'Connect on WhatsApp', href: 'https://wa.me/256744135549?text=Hello%20Nimireaux%20Uganda%2C%20I%20have%20a%20special%20procurement%20inquiry.', target: '_blank', className: 'ai-wa-pill' },
+      { label: 'Send Formal Email', href: 'mailto:sales@nimireaux.com' },
+      { label: 'Open Commercial Salon →', onClick: 'goToAct(6); toggleAiDrawer(false);' }
+    ]
+  };
+}
+
 // Initial Boot
 calculateConciergeYield();
 updateCapsuleDock();
 goToAct(0);
+

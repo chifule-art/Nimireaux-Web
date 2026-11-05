@@ -104,6 +104,12 @@
       <!-- Right Controls: Audio & Theme Switcher & Private Inquiry -->
       <div class="nav-amenities">
         
+        <!-- AI Concierge Quick Trigger -->
+        <button class="amenity-btn amenity-ai-pill" id="navAiBtn" onclick="toggleAiDrawer(true)" title="Summon Maison AI Concierge" aria-label="Open AI Assistant">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <span class="ai-pill-text">AI Concierge</span>
+        </button>
+
         <!-- Palette Switcher: Noir Emerald <-> Champagne Ivory -->
         <button class="amenity-btn" id="themeToggleBtn" title="Switch Atmospheric Palette" aria-label="Toggle Theme">
           <i class="fa-solid fa-circle-half-stroke" id="themeIcon"></i>
@@ -799,6 +805,13 @@
                   <span>+256 744 135 549</span>
                 </div>
               </a>
+              <button type="button" class="vip-btn ai-vip" onclick="toggleAiDrawer(true)">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <div>
+                  <strong>Maison AI Concierge</strong>
+                  <span>Ask questions &amp; direct advisory</span>
+                </div>
+              </button>
             </div>
 
           </div>
@@ -907,6 +920,113 @@
         <i class="fa-solid fa-arrow-right"></i>
       </button>
 
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MAISON AI CONCIERGE DRAWER & INTELLIGENCE SUITE
+       ========================================================================= -->
+  <!-- Backdrop Blur Overlay -->
+  <div class="ai-drawer-overlay" id="aiDrawerOverlay" onclick="toggleAiDrawer(false)"></div>
+
+  <!-- Slide-In Luxury Intelligence Drawer -->
+  <aside class="ai-concierge-drawer" id="aiConciergeDrawer" aria-label="Nimireaux AI Concierge">
+    
+    <!-- Drawer Header -->
+    <div class="ai-drawer-header">
+      <div class="ai-header-left">
+        <div class="ai-crest-ring">
+          <img src="assets/logo.png" alt="Nimireaux Crest" class="ai-crest-img" />
+          <span class="ai-ring-sparkle"></span>
+        </div>
+        <div class="ai-header-text">
+          <div class="ai-status-tag">
+            <span class="ai-pulse-bead"></span>
+            <span>MAISON INTELLIGENCE &bull; ONLINE</span>
+          </div>
+          <h3 class="ai-header-title">Nimireaux AI Concierge</h3>
+          <p class="ai-header-sub">Direct Sovereign Milling &amp; Procurement Advisory</p>
+        </div>
+      </div>
+      <button class="ai-close-btn" onclick="toggleAiDrawer(false)" aria-label="Close Concierge">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- Suggested Quick Query Chips Deck -->
+    <div class="ai-chips-shelf">
+      <span class="ai-chips-label"><i class="fa-solid fa-sparkles"></i> FREQUENT INQUIRIES:</span>
+      <div class="ai-chips-list">
+        <button class="ai-chip" onclick="askAiPreset('What are your primary flour products and packaging sizes?')">🌾 Flour Grades &amp; Packaging</button>
+        <button class="ai-chip" onclick="askAiPreset('How does your commercial toll milling service work?')">⚙️ Toll Milling Process</button>
+        <button class="ai-chip" onclick="askAiPreset('What are your nutritional fortification standards?')">🔬 Vitamin &amp; Mineral Fortification</button>
+        <button class="ai-chip" onclick="askAiPreset('What are the minimum order quantities (MOQ) and delivery coverage?')">📦 MOQ &amp; East Africa Logistics</button>
+        <button class="ai-chip" onclick="askAiPreset('How do I contact the executive directors directly?')">📞 Executive Contacts</button>
+      </div>
+    </div>
+
+    <!-- Live Chat Transcript Stream -->
+    <div class="ai-messages-stage" id="aiMessagesStage">
+      
+      <!-- Welcome Message from Maison Concierge -->
+      <div class="ai-msg ai-msg-bot">
+        <div class="ai-msg-avatar">
+          <img src="assets/logo.png" alt="Nimireaux" />
+        </div>
+        <div class="ai-msg-content">
+          <div class="ai-msg-sender">NIMIREAUX CONCIERGE &bull; MAISON ADVISOR</div>
+          <div class="ai-msg-bubble">
+            <p>Welcome to <strong>Nimireaux Uganda Limited</strong>. I am your executive AI advisory assistant, equipped with complete technical knowledge of our commercial milling operations, fortified flour portfolio, and contract processing terms.</p>
+            <p>How may I assist your enterprise or procurement desk today?</p>
+          </div>
+          <div class="ai-msg-time">Just now</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Typing Indicator (Hidden by Default) -->
+    <div class="ai-typing-indicator" id="aiTypingIndicator" style="display: none;">
+      <div class="ai-typing-dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <span class="ai-typing-label">Consulting Maison Knowledge Graph...</span>
+    </div>
+
+    <!-- Input Footer Dock -->
+    <div class="ai-drawer-footer">
+      <form class="ai-input-form" id="aiInputForm" onsubmit="handleAiSubmit(event)">
+        <div class="ai-input-shell">
+          <input 
+            type="text" 
+            id="aiUserInput" 
+            class="ai-input-field" 
+            placeholder="Ask about flours, toll milling, moisture, contacts..." 
+            autocomplete="off"
+          />
+          <button type="submit" class="ai-send-btn" id="aiSendBtn" aria-label="Send Inquiry">
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </div>
+      </form>
+      <div class="ai-footer-note">
+        <span><i class="fa-solid fa-shield-halved"></i> Sovereign Intelligence Protocol &bull; Verified Ugandan Milling Knowledge</span>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- Floating Luxury AI Concierge Trigger (Bottom Right) -->
+  <div class="ai-floating-trigger" id="aiFloatingTrigger" onclick="toggleAiDrawer(true)" title="Summon Maison AI Assistant">
+    <div class="ai-trigger-halo"></div>
+    <div class="ai-trigger-disc">
+      <i class="fa-solid fa-wand-magic-sparkles"></i>
+    </div>
+    <div class="ai-trigger-badge">
+      <span class="ai-pulse-dot"></span>
+      <span class="ai-badge-text">AI Concierge</span>
     </div>
   </div>
 
