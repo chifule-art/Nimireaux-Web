@@ -6,31 +6,44 @@
 
 ---
 
-## 🌾 Interactive Scrollytelling Architecture (Video Reference Implementation)
+## 🌾 Interactive 7-Slide Presentation Deck Architecture
 
-The website is engineered with the exact interactive scrollytelling UX seen in the provided reference video:
+The website is engineered as a full-viewport, 7-slide luxury presentation deck with a live timeline scrubber dock, smooth trackpad/wheel navigation, keyboard arrow controls, and dedicated background imagery:
 
-1. **Pinned Hero Scrollytelling Section (`#heroTrack` & `#heroStickyStage`)**:
-   - As the user scrolls on their mouse wheel or trackpad, the hero viewport remains pinned while scrubbing smoothly through **6 distinct processing stages**:
-     - **01 Agronomic Harvest**: Golden cereal harvest fields under morning sun.
-     - **02 Intake & Assay**: Modern grain receiving hoppers & moisture testing.
-     - **03 Roller Milling**: Chilled cast-iron corrugation roller milling lines.
-     - **04 Micronutrient Fortification**: Clean laboratory & continuous micro-dosing.
-     - **05 Superfine Flour Products**: Pure white silky flour & wholesome cereal staples.
-     - **06 Bulk Logistics & Silos**: High-capacity storage elevators & bulk dispatch fleet.
-   - **Horizontal Progress Scrubber Bar**:
-     - Features `SCROLL TO EXPLORE THE GRAIN MILLING PROCESS` with real-time progress line.
-     - Interactive stage nodes (`01` through `06`) that can be clicked to jump instantly to any stage.
-   - **Each stage has its OWN full-bleed, vivid, edge-to-edge high-resolution photograph** with smooth cinematic transitions and Ken Burns zoom!
+### The 7 Slides
+1. **Slide 01 — Vision & Welcome**:
+   - Golden wheat harvest imagery under morning sun.
+   - Brand insignia, core operational metrics, direct quote CTA.
+2. **Slide 02 — Heritage & Mission**:
+   - Fertile Ugandan farmlands imagery.
+   - The 4 pillars: Sourcing Integrity, High-Extraction Starch Milling, UNBS & Fortification Standards, Circular Zero-Waste By-Products.
+3. **Slide 03 — Complete Milling Solutions**:
+   - Stainless steel industrial roller milling plant.
+   - 4 interactive tabbed machine specs: Commercial Maize, Wheat & Specialty Grains, Custom Toll Milling, Fortified Animal Feeds.
+4. **Slide 04 — Precision Process Pipeline**:
+   - Optical sorting & quality testing laboratory.
+   - 5-stage interactive workflow: Intake Assay, Destoning, Conditioning, Roller Milling, Bagging.
+5. **Slide 05 — Certified Products & Nutrition**:
+   - Superfine milled flour & cereal staples.
+   - Interactive product selection carousel with dynamic nutritional facts label generator.
+6. **Slide 06 — Industrial Batch Yield Estimator**:
+   - Towering grain silos and bulk logistics.
+   - Interactive tonnage slider (5 MT to 2,000 MT), commodity selector, extraction rate switcher, live turnaround hours, and instant transfer of estimates to the RFQ form.
+7. **Slide 07 — Commercial Desk, Digital Card & RFQ**:
+   - Executive agro corporate headquarters.
+   - **Authentic Digital Business Card**: 1:1 replica of the official business card with interactive clickable email and phone links, plus a toggle to view/download the original printed card image.
+   - **Quick Action Chips**: Instant 1-click WhatsApp chat link and direct phone dialers.
+   - **Request for Quotation (RFQ) Form**: Live form with instant feedback.
 
-2. **Continuous Downward Page Flow**:
-   - Scrolling past the 6 hero stages naturally releases into the rest of the website:
-     - **Stats Ribbon**: 4-column bold metric counters (99.8% Destoning Purity, 100% Non-GMO, 50,000+ MT Capacity, 24/7 Operations).
-     - **Heritage & Sourcing ("Built on Integrity. Driven by Nutrition")**: Dual-column layout featuring high-resolution photography of Ugandan farmlands and the 4 core pillars.
-     - **Complete Milling Solutions**: Numbered interactive tabs (`01 Commercial Maize`, `02 Wheat & Specialty`, `03 Custom Toll Milling`, `04 Animal Feed By-Products`) with live capacity specs and photos.
-     - **Certified Products Visual Grid**: Distinct photographic cards for Superfine Posho Flour, Whole Grain Flour, Baker's Wheat, Nutri-Composite Porridge, and Maize Bran with interactive nutrition fact sheets.
-     - **Industrial Batch Yield Estimator**: Real-time interactive calculation for grain tonnage, flour yield, bags count, and turnaround hours.
-     - **Contact Desk & Digital Business Card**: High-fidelity digital replica of the official Nimireaux business card, WhatsApp chat, direct phone hotlines, and instant RFQ form.
+---
+
+## 🎛️ Navigation Controls
+
+- **Bottom Horizontal Timeline Scrubber**: Displays real-time progress fill line, slide counter (`01 / 07`), and 7 clickable nodes.
+- **Mouse Wheel / Trackpad**: Smooth debounced scroll-snapping between slides.
+- **Keyboard Arrows**: <kbd>&larr;</kbd> / <kbd>&rarr;</kbd> or <kbd>&uarr;</kbd> / <kbd>&darr;</kbd> to switch slides.
+- **Top Sticky Navbar**: Direct links to all slides and instant quote trigger.
+- **Interactive Audio**: Optional subtle click audio synthesized via the Web Audio API with sound toggle button.
 
 ---
 
@@ -38,21 +51,22 @@ The website is engineered with the exact interactive scrollytelling UX seen in t
 
 ```
 Nimireaux web/
-├── index.html        # Scrollytelling hero + complete responsive content sections
-├── styles.css        # Luxury glassmorphism, scrollytelling track, and responsive breakpoints
-├── app.js            # Scrollytelling scrubber engine, audio feedback, and yield calculator
-├── README.md         # Full documentation
+├── index.html                  # 7-Slide presentation stage & bottom timeline dock
+├── styles.css                  # Luxury white & emerald styling, Ken Burns transitions, responsive dock
+├── app.js                      # Slide navigation engine, yield calculator, card switcher, audio
+├── README.md                   # Full documentation
 └── assets/
-    ├── logo.png             # Official circular high-res brand emblem
-    ├── business_card.jpg    # Reference business card asset
-    └── ...
+    ├── logo.png                # Official circular high-res brand emblem
+    ├── business_card.jpg       # High-resolution original business card graphic
+    ├── media_1793869934993_082ef473.jpg # Source card asset
+    └── media_1793869943875_44e9fb72.pdf # Source vector logo asset
 ```
 
 ---
 
 ## 💻 How to Run
 
-Open `index.html` in your web browser:
+Simply open `index.html` in any modern web browser:
 ```bash
 open index.html
 ```
@@ -60,6 +74,7 @@ open index.html
 ---
 
 ## 📞 Official Contacts
+
 - **General Inquiries:** `info@nimireaux.com`
 - **Sales & Wholesale:** `sales@nimireaux.com`
 - **Accounts:** `accounts@nimireaux.com`
