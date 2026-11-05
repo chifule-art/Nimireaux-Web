@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Nimireaux Uganda Limited | Pure Nutrition. Powering Possibilities.</title>
+  <meta name="description" content="Nimireaux Uganda Limited is East Africa's vanguard in precision grain milling, nutrient fortification, and agro-industrial processing." />
+  
+  <!-- Favicon using brand logo -->
+  <link rel="icon" type="image/png" href="assets/logo.png" />
+  
+  <!-- Google Fonts: Cormorant Garamond, Syne, and Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="deck-mode">
+
+  <!-- Interactive Ambient Grain Canvas -->
+  <canvas id="ambientCanvas"></canvas>
+
+  <!-- =========================================================================
+       DYNAMIC BACKGROUND SLIDER
+       Every single slide has its OWN full, vivid, high-resolution photograph
+       ========================================================================= -->
+  <div class="deck-bg-slider" id="deckBgSlider" aria-hidden="true">
+    
+    <!-- Slide 01: Golden Wheat Harvest (Vision) -->
+    <div class="deck-bg-slide active" data-index="0">
+      <div class="bg-img" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=2400&q=85');"></div>
+      <div class="bg-scrim-veil"></div>
+    </div>
+
+    <!-- Slide 02: Fertile Ugandan Farmlands (Heritage) -->
+    <div class="deck-bg-slide" data-index="1">
+      <div class="bg-img" style="background-image: url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=2400&q=85');"></div>
+      <div class="bg-scrim-veil"></div>
+    </div>
+
+    <!-- Slide 03: Modern Stainless Steel Industrial Milling Plant (Services) -->
+    <div class="deck-bg-slide" data-index="2">
+      <div class="bg-img" style="background-image: url('https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=2400&q=85');"></div>
+      <div class="bg-scrim-veil"></div>
+    </div>
+
+    <!-- Slide 04: Precision Testing Lab & Optical Sorting (Process) -->
+    <div class="deck-bg-slide" data-index="3">
+      <div class="bg-img" style="background-image: url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=2400&q=85');"></div>
+      <div class="bg-scrim-veil"></div>
+    </div>
+
+    <!-- Slide 05: Superfine Milled Flour & Wholesome Cereals (Products) -->
+    <div class="deck-bg-slide" data-index="4">
+      <div class="bg-img" style="background-image: url('https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=2400&q=85');"></div>
+      <div class="bg-scrim-veil"></div>
+    </div>
+
+    <!-- Slide 06: Towering Grain Silos & Storage Logistics (Calculator) -->
+    <div class="deck-bg-slide" data-index="5">
+      <div class="bg-img" style="background-image: url('https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&w=2400&q=85');"></div>
+      <div class="bg-scrim-veil"></div>
+    </div>
+
+    <!-- Slide 07: Executive Corporate Agro Headquarters (Contact) -->
+    <div class="deck-bg-slide" data-index="6">
+      <div class="bg-img" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2400&q=85');"></div>
+      <div class="bg-scrim-veil"></div>
+    </div>
+
+  </div>
+
+  <!-- =========================================================================
+       TOP STICKY NAVIGATION BAR
+       ========================================================================= -->
+  <header class="navbar" id="topNavbar">
+    <div class="nav-container">
+      <a href="javascript:void(0)" class="brand-link" onclick="goToSlide(0)">
+        <img src="assets/logo.png" alt="Nimireaux Logo" class="nav-logo" />
+        <div class="brand-text">
+          <span class="brand-name">NIMIREAUX</span>
+          <span class="brand-sub">UGANDA LIMITED &bull; GRAIN MILLING</span>
+        </div>
+      </a>
+
+      <!-- Quick Slide Links -->
+      <nav class="nav-links">
+        <button class="nav-link-btn active" data-slide="0" onclick="goToSlide(0)">Vision</button>
+        <button class="nav-link-btn" data-slide="1" onclick="goToSlide(1)">Heritage</button>
+        <button class="nav-link-btn" data-slide="2" onclick="goToSlide(2)">Services</button>
+        <button class="nav-link-btn" data-slide="3" onclick="goToSlide(3)">Process</button>
+        <button class="nav-link-btn" data-slide="4" onclick="goToSlide(4)">Products</button>
+        <button class="nav-link-btn" data-slide="5" onclick="goToSlide(5)">Calculator</button>
+        <button class="nav-link-btn" data-slide="6" onclick="goToSlide(6)">Contact</button>
+      </nav>
+
+      <!-- Nav Action Buttons -->
+      <div class="nav-actions">
+        <button id="soundToggleBtn" class="nav-btn icon-btn" title="Toggle audio feedback" aria-label="Toggle Sound">
+          <i class="fa-solid fa-volume-high" id="soundIcon"></i>
+        </button>
+
+        <button class="nav-btn cta-btn" onclick="goToSlide(6)">
+          <span>Get a Quote</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       MAIN SLIDE PRESENTATION STAGE (7 FULLSCREEN SLIDES)
+       Each slide is an immersive full-viewport experience with its own photograph
+       ========================================================================= -->
+  <main class="deck-viewport" id="deckViewport">
+
+    <!-- SLIDE 01: WELCOME & VISION (Hero) -->
+    <section class="deck-slide active" data-slide-index="0" id="slide0">
+      <div class="slide-inner">
+        <div class="hero-split-layout">
+          
+          <div class="hero-text-col">
+            <div class="badge-pill hero-pill">
+              <span class="badge-dot"></span>
+              <span>SLIDE 01 &bull; PURE NUTRITION &bull; GRAIN MILLING</span>
+            </div>
+
+            <h1 class="hero-headline">
+              Pure Nutrition.<br />
+              <span class="text-gold-gradient">Powering Possibilities.</span>
+            </h1>
+
+            <p class="hero-desc">
+              Transforming East Africa’s prime cereal harvests into superior fortified flours through precision milling science, advanced destoning, and farm-to-fork purity.
+            </p>
+
+            <div class="hero-actions-row">
+              <button class="btn-primary" onclick="goToSlide(2)">
+                <span>Explore Core Services</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+              <button class="btn-secondary" onclick="goToSlide(5)">
+                <i class="fa-solid fa-calculator"></i>
+                <span>Yield Estimator</span>
+              </button>
+            </div>
+
+            <!-- Stats Ribbon -->
+            <div class="hero-metrics-grid">
+              <div class="m-card">
+                <strong>99.8%</strong>
+                <span>Destoning Purity</span>
+              </div>
+              <div class="m-card">
+                <strong>100%</strong>
+                <span>Ugandan Non-GMO</span>
+              </div>
+              <div class="m-card">
+                <strong>50,000+</strong>
+                <span>Annual MT Capacity</span>
+              </div>
+              <div class="m-card">
+                <strong>24 / 7</strong>
+                <span>Continuous Operations</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Graphic Emblem -->
+          <div class="hero-graphic-col">
+            <div class="hero-emblem-halo"></div>
+            <div class="hero-emblem-box">
+              <img src="assets/logo.png" alt="Nimireaux Official Insignia" class="hero-logo-large" />
+            </div>
+            <div class="floating-badge badge-top">
+              <i class="fa-solid fa-award"></i>
+              <div>
+                <strong>UNBS &amp; WHO Fortified</strong>
+                <span>Iron, Zinc &amp; Vitamin A</span>
+              </div>
+            </div>
+            <div class="floating-badge badge-bottom">
+              <i class="fa-solid fa-shield-halved"></i>
+              <div>
+                <strong>Zero Aflatoxin Target</strong>
+                <span>Lab Screened Every Batch</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 02: HERITAGE & MISSION -->
+    <section class="deck-slide" data-slide-index="1" id="slide1">
+      <div class="slide-inner">
+        <div class="heritage-slide-grid">
+          
+          <!-- Text and Pillars -->
+          <div class="heritage-text-side">
+            <div class="badge-pill">
+              <i class="fa-solid fa-seedling"></i>
+              <span>SLIDE 02 &bull; HERITAGE &amp; SOURCING INTEGRITY</span>
+            </div>
+
+            <h2 class="slide-title">
+              Built on Integrity.<br />
+              <span class="text-gold-gradient">Driven by Nutrition.</span>
+            </h2>
+
+            <p class="slide-lead">
+              Nimireaux Uganda Limited was established to pioneer clean, high-extraction milling science. We bridge local cereal farmers with commercial bakeries, food processors, schools, and families seeking uncompromised vitality.
+            </p>
+
+            <div class="heritage-pillars-grid">
+              
+              <div class="h-pillar-card">
+                <div class="h-icon"><i class="fa-solid fa-wheat-awn"></i></div>
+                <div>
+                  <h4>Direct Sourcing Integrity</h4>
+                  <p>Partnering with grower cooperatives across Uganda with field-tested moisture (<13.5%) and non-GMO certification.</p>
+                </div>
+              </div>
+
+              <div class="h-pillar-card">
+                <div class="h-icon"><i class="fa-solid fa-gear"></i></div>
+                <div>
+                  <h4>Controlled Starch Milling</h4>
+                  <p>Multi-pass corrugated roller mills preserving wholesome germ nutrition, high dough rise, and water absorption.</p>
+                </div>
+              </div>
+
+              <div class="h-pillar-card">
+                <div class="h-icon"><i class="fa-solid fa-flask-vial"></i></div>
+                <div>
+                  <h4>Nutrient Fortification</h4>
+                  <p>Volumetric micro-premixing of Vitamin A, Iron, Zinc, and B-Complex combatting regional malnutrition.</p>
+                </div>
+              </div>
+
+              <div class="h-pillar-card">
+                <div class="h-icon"><i class="fa-solid fa-recycle"></i></div>
+                <div>
+                  <h4>Zero-Waste By-Products</h4>
+                  <p>Converting clean outer bran layers into high-energy, protein-rich animal nutrition feeds.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Right: Visual Highlight Card -->
+          <div class="heritage-visual-side">
+            <div class="heritage-card-box glass-card">
+              <div class="h-img-header" style="background-image: url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1000&q=85');">
+                <span class="h-tag">Ugandan Agro-Belts</span>
+              </div>
+              <div class="h-body">
+                <h3>Agronomic Sourcing &amp; Traceability</h3>
+                <p>Every grain kernel delivered to Nimireaux is farm-traceable, guaranteeing purity from field harvest to packaged flour.</p>
+                <div class="h-metrics-mini">
+                  <div>
+                    <strong>< 10 ppb</strong>
+                    <span>Aflatoxin Safe</span>
+                  </div>
+                  <div>
+                    <strong>100%</strong>
+                    <span>Natural Grain</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 03: CORE MILLING SERVICES -->
+    <section class="deck-slide" data-slide-index="2" id="slide2">
+      <div class="slide-inner">
+        <div class="services-slide-layout">
+          
+          <div class="slide-header-box">
+            <div class="badge-pill">
+              <i class="fa-solid fa-industry"></i>
+              <span>SLIDE 03 &bull; COMMERCIAL &amp; TOLL CAPABILITIES</span>
+            </div>
+            <h2 class="slide-title">Complete Milling Solutions</h2>
+            <p class="slide-subtitle">
+              High-extraction commercial processing, custom toll milling, and industrial animal feed solutions.
+            </p>
+
+            <!-- Numbered Tabs (Matching Video) -->
+            <div class="services-tabs-row" id="servicesTabs">
+              <button class="s-tab active" data-tab="0" onclick="switchServiceTab(0)">
+                <span class="st-num">01</span>
+                <span class="st-text">Commercial Maize</span>
+              </button>
+              <button class="s-tab" data-tab="1" onclick="switchServiceTab(1)">
+                <span class="st-num">02</span>
+                <span class="st-text">Wheat &amp; Bakery</span>
+              </button>
+              <button class="s-tab" data-tab="2" onclick="switchServiceTab(2)">
+                <span class="st-num">03</span>
+                <span class="st-text">Toll &amp; Contract</span>
+              </button>
+              <button class="s-tab" data-tab="3" onclick="switchServiceTab(3)">
+                <span class="st-num">04</span>
+                <span class="st-text">Animal Feed Bran</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Tab Content Display -->
+          <div class="service-display-panel glass-card" id="serviceDisplayPanel">
+            <div class="service-display-grid">
+              
+              <div class="s-display-text">
+                <span class="badge-pill" id="solBadge">Flagship Commercial Line</span>
+                <h3 id="solTitle">High-Extraction Commercial Maize Milling</h3>
+                <p id="solDesc">
+                  Continuous multi-break roller milling line degerminates, cleans, and mills Ugandan corn into ultra-soft Grade 1 superfine posho flour, standard Grade 2 meal, and hominy grits.
+                </p>
+
+                <ul class="s-checklist" id="solList">
+                  <li><i class="fa-solid fa-circle-check"></i> Superfine granulation passing 212-micron plansifter screens</li>
+                  <li><i class="fa-solid fa-circle-check"></i> Continuous micro-dosing with Vitamin A, Iron, and Zinc</li>
+                  <li><i class="fa-solid fa-circle-check"></i> Low fat residue guaranteeing 6+ months dry shelf stability</li>
+                  <li><i class="fa-solid fa-circle-check"></i> Packaging in 5kg, 10kg, 25kg, and 50kg poly-woven bags</li>
+                </ul>
+
+                <div class="s-kpi-bar">
+                  <div>
+                    <span>Processing Capacity:</span>
+                    <strong id="solCapacity">120 Metric Tons / Day</strong>
+                  </div>
+                  <div>
+                    <span>Dispatch Turnaround:</span>
+                    <strong id="solTurnaround">Same-Day to 48 Hours</strong>
+                  </div>
+                </div>
+
+                <button class="btn-primary" onclick="goToSlide(6)">
+                  <span>Request Service Quote</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </button>
+              </div>
+
+              <div class="s-display-visual">
+                <div class="s-visual-box" id="solImg" style="background-image: url('https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=1000&q=85');">
+                  <div class="s-visual-badge">
+                    <i class="fa-solid fa-microchip"></i>
+                    <div>
+                      <strong>Optical Sorters Active</strong>
+                      <span>99.8% Cleanness Guaranteed</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 04: THE MILLING PROCESS (Interactive Pipeline) -->
+    <section class="deck-slide" data-slide-index="3" id="slide3">
+      <div class="slide-inner">
+        <div class="process-slide-layout">
+          
+          <div class="slide-header-box">
+            <div class="badge-pill">
+              <i class="fa-solid fa-diagram-project"></i>
+              <span>SLIDE 04 &bull; PRECISION PROCESS PIPELINE</span>
+            </div>
+            <h2 class="slide-title">From Golden Harvest to Pure Nutrition</h2>
+            <p class="slide-subtitle">
+              Explore our continuous 5-stage closed-circuit milling cycle. Click any stage to inspect machinery parameters, tolerances, and retention metrics.
+            </p>
+
+            <!-- 5 Pipeline Checkpoints -->
+            <div class="pipeline-scrubber-track">
+              <div class="pipeline-bar-fill" id="pBarFill" style="width: 20%;"></div>
+              
+              <button class="p-scrub-btn active" data-step="0" onclick="setProcessStep(0)">
+                <span class="ps-num">01</span>
+                <span class="ps-title">Intake &amp; Lab Assay</span>
+              </button>
+              <button class="p-scrub-btn" data-step="1" onclick="setProcessStep(1)">
+                <span class="ps-num">02</span>
+                <span class="ps-title">Deep Cleaning &amp; Destoning</span>
+              </button>
+              <button class="p-scrub-btn" data-step="2" onclick="setProcessStep(2)">
+                <span class="ps-num">03</span>
+                <span class="ps-title">Tempering &amp; Conditioning</span>
+              </button>
+              <button class="p-scrub-btn" data-step="3" onclick="setProcessStep(3)">
+                <span class="ps-num">04</span>
+                <span class="ps-title">Roller Break &amp; Sifting</span>
+              </button>
+              <button class="p-scrub-btn" data-step="4" onclick="setProcessStep(4)">
+                <span class="ps-num">05</span>
+                <span class="ps-title">Fortification &amp; Bagging</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Process Details Display -->
+          <div class="process-detail-card glass-card">
+            <div class="process-detail-grid">
+              
+              <div class="pd-text-side">
+                <span class="badge-pill" id="pStepBadge">Stage 01 of 05</span>
+                <h3 id="pStepTitle">Raw Grain Intake &amp; Rapid Laboratory Assay</h3>
+                <p id="pStepDesc">
+                  Every grain consignment arriving at Nimireaux undergoes multi-point probe sampling. We analyze moisture percentage, kernel hardness, foreign dockage, and test for aflatoxin (ppb) before unloading into intake hoppers.
+                </p>
+
+                <div class="pd-kpi-grid">
+                  <div class="pd-kpi-item">
+                    <strong id="pKpi1">< 13.5%</strong>
+                    <span id="pKpiLbl1">Moisture Threshold</span>
+                  </div>
+                  <div class="pd-kpi-item">
+                    <strong id="pKpi2">< 10 ppb</strong>
+                    <span id="pKpiLbl2">Aflatoxin Limit</span>
+                  </div>
+                  <div class="pd-kpi-item">
+                    <strong id="pKpi3">100%</strong>
+                    <span id="pKpiLbl3">Sample Traceability</span>
+                  </div>
+                </div>
+
+                <div class="pd-nav-btns">
+                  <button class="btn-secondary" onclick="stepProcess(-1)">
+                    <i class="fa-solid fa-arrow-left"></i> Previous Stage
+                  </button>
+                  <button class="btn-primary" onclick="stepProcess(1)">
+                    Next Stage <i class="fa-solid fa-arrow-right"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="pd-visual-side">
+                <div class="pd-visual-card">
+                  <div class="pd-icon-ring" id="pStepIcon">
+                    <i class="fa-solid fa-microscope"></i>
+                  </div>
+                  <div class="sensor-scanner">
+                    <div class="scan-beam"></div>
+                  </div>
+                  <p class="pd-caption" id="pStepCaption">
+                    Fluorometric &amp; chemical verification active at intake terminal
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 05: PRODUCTS & NUTRITION FACTS -->
+    <section class="deck-slide" data-slide-index="4" id="slide4">
+      <div class="slide-inner">
+        <div class="products-slide-layout">
+          
+          <div class="slide-header-box">
+            <div class="badge-pill">
+              <i class="fa-solid fa-heart-pulse"></i>
+              <span>SLIDE 05 &bull; NUTRITIONAL EXCELLENCE</span>
+            </div>
+            <h2 class="slide-title">Certified Nutritional Products</h2>
+            <p class="slide-subtitle">
+              Pure, hygienic flours formulated for superior kitchen performance, high water absorption, and verified vitamin enrichment.
+            </p>
+          </div>
+
+          <div class="products-dual-panel">
+            
+            <!-- Products Carousel Selector -->
+            <div class="products-catalog-col">
+              
+              <div class="prod-tile glass-card active" data-prod="posho" onclick="selectProduct('posho')">
+                <div class="tile-icon"><i class="fa-solid fa-bowl-rice"></i></div>
+                <div class="tile-info">
+                  <h4>Nimireaux Superfine Fortified Maize Flour</h4>
+                  <p>Ultra-white, silky posho flour enriched with Vitamin A, Iron, and Zinc.</p>
+                </div>
+                <span class="tile-tag">Top Seller</span>
+              </div>
+
+              <div class="prod-tile glass-card" data-prod="whole-maize" onclick="selectProduct('whole-maize')">
+                <div class="tile-icon"><i class="fa-solid fa-leaf"></i></div>
+                <div class="tile-info">
+                  <h4>Nimireaux Harvest Whole Grain Flour</h4>
+                  <p>100% whole kernel milled with intact germ, dietary fiber, and natural oils.</p>
+                </div>
+                <span class="tile-tag">High Fiber</span>
+              </div>
+
+              <div class="prod-tile glass-card" data-prod="wheat-bakers" onclick="selectProduct('wheat-bakers')">
+                <div class="tile-icon"><i class="fa-solid fa-bread-slice"></i></div>
+                <div class="tile-info">
+                  <h4>Nimireaux Bakers Special Wheat Flour</h4>
+                  <p>High gluten elasticity, superior loaf rise, and optimal water retention.</p>
+                </div>
+                <span class="tile-tag">Bakery Grade</span>
+              </div>
+
+              <div class="prod-tile glass-card" data-prod="composite-porridge" onclick="selectProduct('composite-porridge')">
+                <div class="tile-icon"><i class="fa-solid fa-mug-hot"></i></div>
+                <div class="tile-info">
+                  <h4>Nimireaux Nutri-Porridge Composite Blend</h4>
+                  <p>Multigrain powerhouse blend of millet, red sorghum, yellow corn, and soy.</p>
+                </div>
+                <span class="tile-tag">Institutional</span>
+              </div>
+
+              <div class="prod-tile glass-card" data-prod="maize-bran" onclick="selectProduct('maize-bran')">
+                <div class="tile-icon"><i class="fa-solid fa-cow"></i></div>
+                <div class="tile-info">
+                  <h4>Nimireaux High-Energy Maize Bran &amp; Pollard</h4>
+                  <p>High-protein livestock and dairy feed constituent with 10–14% crude protein.</p>
+                </div>
+                <span class="tile-tag">Agro-Feed</span>
+              </div>
+
+            </div>
+
+            <!-- Certified Nutrition Facts Label -->
+            <div class="nutrition-display-col glass-card">
+              
+              <div class="nutri-header">
+                <span class="nh-eyebrow">NUTRITION FACTS &amp; LAB PROFILE</span>
+                <h3 id="nutriProductName">Nimireaux Superfine Fortified Maize Flour</h3>
+                <span class="nh-sub">Serving Size: 100g &bull; Pure Milling Extraction</span>
+              </div>
+
+              <div class="nutri-cal-box">
+                <div>
+                  <span class="nc-lbl">Energy per 100g:</span>
+                  <strong class="nc-num" id="nutriCalories">365 kcal</strong>
+                </div>
+                <div class="text-right">
+                  <span class="nc-kj" id="nutriKJ">1,530 kJ</span>
+                  <span class="nc-daily">Daily Value Reference</span>
+                </div>
+              </div>
+
+              <!-- Animated Meters -->
+              <div class="nutri-meters-list">
+                
+                <div class="nm-row">
+                  <div class="nm-labels">
+                    <strong>Total Carbohydrates</strong>
+                    <span id="nutriCarbs">74.2g</span>
+                  </div>
+                  <div class="nm-track">
+                    <div class="nm-bar" id="barCarbs" style="width: 74%;"></div>
+                  </div>
+                </div>
+
+                <div class="nm-row">
+                  <div class="nm-labels">
+                    <strong>Vegetal Protein</strong>
+                    <span id="nutriProtein">8.8g</span>
+                  </div>
+                  <div class="nm-track">
+                    <div class="nm-bar gold" id="barProtein" style="width: 44%;"></div>
+                  </div>
+                </div>
+
+                <div class="nm-row">
+                  <div class="nm-labels">
+                    <strong>Dietary Fiber</strong>
+                    <span id="nutriFiber">3.8g</span>
+                  </div>
+                  <div class="nm-track">
+                    <div class="nm-bar green" id="barFiber" style="width: 38%;"></div>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Fortification Badges -->
+              <div class="nutri-fort-row">
+                <span class="nfr-title"><i class="fa-solid fa-sparkles"></i> Added Micronutrient Fortification:</span>
+                <div class="nfr-badges">
+                  <div class="nf-badge">
+                    <span>Vitamin A</span>
+                    <strong id="nutriVitA">2.5 mg/kg</strong>
+                  </div>
+                  <div class="nf-badge">
+                    <span>Iron (Fe)</span>
+                    <strong id="nutriIron">40 mg/kg</strong>
+                  </div>
+                  <div class="nf-badge">
+                    <span>Zinc (Zn)</span>
+                    <strong id="nutriZinc">35 mg/kg</strong>
+                  </div>
+                  <div class="nf-badge">
+                    <span>Folic Acid</span>
+                    <strong id="nutriFolate">1.2 mg/kg</strong>
+                  </div>
+                </div>
+              </div>
+
+              <button class="btn-primary w-100 mt-3" onclick="requestProductQuote()">
+                <span>Order Samples / Wholesale Batch</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 06: INDUSTRIAL YIELD ESTIMATOR -->
+    <section class="deck-slide" data-slide-index="5" id="slide5">
+      <div class="slide-inner">
+        <div class="calc-slide-layout">
+          
+          <div class="slide-header-box">
+            <div class="badge-pill">
+              <i class="fa-solid fa-calculator"></i>
+              <span>SLIDE 06 &bull; COMMERCIAL BATCH SIMULATOR</span>
+            </div>
+            <h2 class="slide-title">Interactive Batch Yield Estimator</h2>
+            <p class="slide-subtitle">
+              Plan your harvest batch or wholesale flour order. Calculate pure flour yields, 25kg bag counts, and milling turnaround hours.
+            </p>
+          </div>
+
+          <div class="calc-box glass-card">
+            <div class="calc-grid">
+              
+              <!-- Input Controls -->
+              <div class="calc-inputs-side">
+                <h3 class="calc-heading"><i class="fa-solid fa-sliders"></i> Milling Batch Parameters</h3>
+
+                <div class="c-group">
+                  <div class="c-label-row">
+                    <label for="calcBatchInput">Raw Grain Batch Tonnage:</label>
+                    <span class="c-pill" id="calcBatchDisplay">15 Metric Tons (15,000 kg)</span>
+                  </div>
+                  <input type="range" id="calcBatchInput" min="1" max="100" value="15" step="1" class="custom-range" />
+                  <div class="range-labels">
+                    <span>1 MT</span>
+                    <span>25 MT</span>
+                    <span>50 MT</span>
+                    <span>100 MT</span>
+                  </div>
+                </div>
+
+                <div class="c-group">
+                  <label class="c-sublabel">Select Grain Commodity:</label>
+                  <div class="grain-choices-grid">
+                    <label class="g-choice active">
+                      <input type="radio" name="grainType" value="white-maize" checked />
+                      <span><i class="fa-solid fa-seedling"></i> White Maize</span>
+                    </label>
+                    <label class="g-choice">
+                      <input type="radio" name="grainType" value="yellow-maize" />
+                      <span><i class="fa-solid fa-sun"></i> Yellow Corn</span>
+                    </label>
+                    <label class="g-choice">
+                      <input type="radio" name="grainType" value="wheat" />
+                      <span><i class="fa-solid fa-wheat-awn"></i> Hard Wheat</span>
+                    </label>
+                    <label class="g-choice">
+                      <input type="radio" name="grainType" value="sorghum" />
+                      <span><i class="fa-solid fa-spa"></i> Red Sorghum</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="c-group">
+                  <label class="c-sublabel">Extraction Target:</label>
+                  <div class="grade-choices-grid">
+                    <label class="gr-choice active">
+                      <input type="radio" name="gradeType" value="grade1" checked />
+                      <div>
+                        <strong>Grade 1 Superfine</strong>
+                        <span>~68% Pure Flour Extraction</span>
+                      </div>
+                    </label>
+                    <label class="gr-choice">
+                      <input type="radio" name="gradeType" value="grade2" />
+                      <div>
+                        <strong>Grade 2 Commercial</strong>
+                        <span>~78% Balanced Extraction</span>
+                      </div>
+                    </label>
+                    <label class="gr-choice">
+                      <input type="radio" name="gradeType" value="wholegrain" />
+                      <div>
+                        <strong>Whole Meal (All Germ)</strong>
+                        <span>~94% High Fiber Retained</span>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Yield Output Card -->
+              <div class="calc-results-side">
+                <div class="yield-card">
+                  <span class="yc-lbl">Projected Pure Flour Output</span>
+                  <span class="yc-huge" id="resFlourKg">10,200 kg</span>
+                  <span class="yc-sub" id="resFlourBags">Equivalent to ~408 Bags (25kg each)</span>
+
+                  <div class="yc-split">
+                    <div class="yc-mini">
+                      <span><i class="fa-solid fa-cow"></i> Animal Feed Bran</span>
+                      <strong id="resBranKg">4,350 kg</strong>
+                    </div>
+                    <div class="yc-mini">
+                      <span><i class="fa-solid fa-broom"></i> Screenings Residue</span>
+                      <strong id="resScreeningsKg">450 kg</strong>
+                    </div>
+                  </div>
+
+                  <div class="yc-turnaround">
+                    <i class="fa-solid fa-stopwatch"></i>
+                    <div>
+                      <strong id="resTurnaround">Turnaround Time: ~14 Hours</strong>
+                      <span>Continuous roller milling line dispatch readiness</span>
+                    </div>
+                  </div>
+
+                  <button class="btn-primary w-100" onclick="applyCalcToQuote()">
+                    <span>Transfer Specs to RFQ Form</span>
+                    <i class="fa-solid fa-paper-plane"></i>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 07: CONTACT & DIGITAL BUSINESS CARD -->
+    <section class="deck-slide" data-slide-index="6" id="slide6">
+      <div class="slide-inner">
+        <div class="contact-slide-layout">
+          
+          <div class="slide-header-box">
+            <div class="badge-pill">
+              <i class="fa-solid fa-envelope-open-text"></i>
+              <span>SLIDE 07 &bull; COMMERCIAL DESK &amp; INQUIRIES</span>
+            </div>
+            <h2 class="slide-title">Connect with Nimireaux Uganda</h2>
+            <p class="slide-subtitle">
+              Whether booking contract toll milling, wholesale distribution, or lab samples, our direct hotlines are ready to assist.
+            </p>
+          </div>
+
+          <div class="contact-dual-grid">
+            
+            <!-- Column 1: Faithful Digital Replica of Business Card -->
+            <div class="card-column">
+              
+              <!-- Card Mode Toggle -->
+              <div class="card-view-tabs">
+                <button type="button" class="cv-tab active" id="btnInteractiveCard" onclick="switchCardView('digital')">
+                  <i class="fa-solid fa-id-card"></i> Interactive Card
+                </button>
+                <button type="button" class="cv-tab" id="btnOriginalCard" onclick="switchCardView('original')">
+                  <i class="fa-solid fa-image"></i> Official Card Graphic
+                </button>
+              </div>
+
+              <!-- View A: Pixel-Faithful Interactive Digital Card -->
+              <div class="digital-business-card" id="digitalCardView">
+                <div class="card-frame">
+                  
+                  <div class="card-top-row">
+                    <div class="card-emblem-wrap">
+                      <img src="assets/logo.png" alt="Nimireaux Logo" class="card-emblem-img" />
+                    </div>
+                    <div class="card-corp-text">
+                      <div class="card-brand-main">NIMIREAUX</div>
+                      <div class="card-brand-country">UGANDA LIMITED</div>
+                      <div class="card-core-label">CORE SERVICES</div>
+                      <div class="card-core-desc">Grain Processing and other Milling Services</div>
+                    </div>
+                  </div>
+
+                  <div class="card-gold-bar"></div>
+
+                  <div class="card-bottom-contacts">
+                    <div class="card-emails-row">
+                      <a href="mailto:info@nimireaux.com">info@nimireaux.com</a>
+                      <span class="bar">|</span>
+                      <a href="mailto:sales@nimireaux.com">sales@nimireaux.com</a>
+                      <span class="bar">|</span>
+                      <a href="mailto:accounts@nimireaux.com">accounts@nimireaux.com</a>
+                    </div>
+                    <div class="card-phones-row">
+                      <a href="tel:+256744135549">+256 744 135 549</a>
+                      <span class="bar">|</span>
+                      <a href="tel:+256783688363">+256 783 688 363</a>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- View B: Original High-Res Printed Graphic Card -->
+              <div class="original-business-card" id="originalCardView" style="display: none;">
+                <div class="original-card-frame">
+                  <img src="assets/business_card.jpg" alt="Nimireaux Uganda Limited Official Business Card" class="original-card-img" />
+                  <a href="assets/business_card.jpg" download="Nimireaux_Uganda_Business_Card.jpg" class="card-dl-btn">
+                    <i class="fa-solid fa-download"></i> Download Card Image
+                  </a>
+                </div>
+              </div>
+
+              <!-- Action Chips -->
+              <div class="quick-connect-cards">
+                <a href="https://wa.me/256744135549?text=Hello%20Nimireaux%20Uganda%2C%20I%20am%20inquiring%20about%20grain%20milling%20services." target="_blank" class="connect-chip whatsapp-chip">
+                  <i class="fa-brands fa-whatsapp"></i>
+                  <div>
+                    <strong>Chat on WhatsApp</strong>
+                    <span>Instant response desk</span>
+                  </div>
+                </a>
+                <a href="tel:+256744135549" class="connect-chip call-chip">
+                  <i class="fa-solid fa-phone-volume"></i>
+                  <div>
+                    <strong>Direct Call Hotline</strong>
+                    <span>+256 744 135 549</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <!-- Column 2: Official RFQ Form -->
+            <div class="rfq-column glass-card">
+              <h3 class="rfq-title">
+                <i class="fa-solid fa-file-invoice"></i> Request for Quotation (RFQ)
+              </h3>
+              <p class="rfq-subtitle">Submit your processing or wholesale requirements. Our commercial desk responds within 4 hours.</p>
+
+              <form id="rfqForm" onsubmit="handleFormSubmit(event)">
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="clientName">Full Name / Organization *</label>
+                    <input type="text" id="clientName" required placeholder="e.g. Samuel Kigozi / Victoria Mills" />
+                  </div>
+                  <div class="form-group">
+                    <label for="clientPhone">Phone Number *</label>
+                    <input type="tel" id="clientPhone" required placeholder="+256 7..." />
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="clientEmail">Email Address *</label>
+                    <input type="email" id="clientEmail" required placeholder="yourname@domain.com" />
+                  </div>
+                  <div class="form-group">
+                    <label for="inquiryType">Inquiry Type *</label>
+                    <select id="inquiryType" required>
+                      <option value="commercial-maize">Commercial Maize Flour Supply</option>
+                      <option value="toll-milling">Custom Contract / Toll Milling</option>
+                      <option value="wheat-processing">Wheat &amp; Bakery Flour Orders</option>
+                      <option value="composite-porridge">School &amp; Institutional Porridge</option>
+                      <option value="animal-feed">Bulk Maize Bran / Livestock Feed</option>
+                      <option value="other">General Commercial Inquiry</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="estimatedVolume">Estimated Volume (Tonnage or Bags)</label>
+                    <input type="text" id="estimatedVolume" placeholder="e.g. 15 Metric Tons / 500 Bags" />
+                  </div>
+                  <div class="form-group">
+                    <label for="deliveryLocation">Delivery Location / Destination</label>
+                    <input type="text" id="deliveryLocation" placeholder="e.g. Kampala, Jinja, Gulu, Export" />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="clientNotes">Specific Milling Instructions / Packaging</label>
+                  <textarea id="clientNotes" rows="3" placeholder="Provide mesh preferences, delivery date targets, or contract tolling specs..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary w-100" id="submitRfqBtn">
+                  <span>Submit Official Inquiry</span>
+                  <i class="fa-solid fa-paper-plane"></i>
+                </button>
+              </form>
+
+              <div id="formSuccessToast" class="form-success-toast">
+                <i class="fa-solid fa-circle-check"></i>
+                <div>
+                  <strong>Inquiry Dispatched Successfully!</strong>
+                  <p>Our sales desk at <em>sales@nimireaux.com</em> has received your specifications. A confirmation email has been logged.</p>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================================
+       BOTTOM HORIZONTAL SCRUBBER TIMELINE BAR (Matching the reference video)
+       Click or scroll to explore all 7 slides with distinct images
+       ========================================================================= -->
+  <div class="deck-timeline-dock" id="timelineDock">
+    <div class="timeline-container">
+      
+      <div class="timeline-meta-bar">
+        <span class="timeline-hint">
+          <i class="fa-solid fa-arrows-up-down"></i> SCROLL OR CLICK TO EXPLORE ALL 7 SLIDES
+        </span>
+        <span class="timeline-counter-pill" id="dockCounter">01 / 07</span>
+      </div>
+
+      <!-- Real-Time Progress Bar -->
+      <div class="dock-track">
+        <div class="dock-fill-line" id="dockFillLine" style="width: 14.28%;"></div>
+      </div>
+
+      <!-- 7 Slide Checkpoint Buttons -->
+      <div class="dock-nodes-grid" id="dockNodes">
+        
+        <button class="dock-node active" data-slide="0" onclick="goToSlide(0)">
+          <span class="dn-num">01</span>
+          <span class="dn-label">Vision</span>
+        </button>
+
+        <button class="dock-node" data-slide="1" onclick="goToSlide(1)">
+          <span class="dn-num">02</span>
+          <span class="dn-label">Heritage</span>
+        </button>
+
+        <button class="dock-node" data-slide="2" onclick="goToSlide(2)">
+          <span class="dn-num">03</span>
+          <span class="dn-label">Services</span>
+        </button>
+
+        <button class="dock-node" data-slide="3" onclick="goToSlide(3)">
+          <span class="dn-num">04</span>
+          <span class="dn-label">Process</span>
+        </button>
+
+        <button class="dock-node" data-slide="4" onclick="goToSlide(4)">
+          <span class="dn-num">05</span>
+          <span class="dn-label">Products</span>
+        </button>
+
+        <button class="dock-node" data-slide="5" onclick="goToSlide(5)">
+          <span class="dn-num">06</span>
+          <span class="dn-label">Calculator</span>
+        </button>
+
+        <button class="dock-node" data-slide="6" onclick="goToSlide(6)">
+          <span class="dn-num">07</span>
+          <span class="dn-label">Contact</span>
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
