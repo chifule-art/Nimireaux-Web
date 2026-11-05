@@ -1,82 +1,63 @@
-# 🌾 Nimireaux Uganda Limited — Luxury Web Platform & 7-Slide Deck
+# 🌾 Nimireaux Uganda Limited — The Prestige Edition ("Maison de Meunerie")
 
-Official corporate digital platform for **Nimireaux Uganda Limited**, specialists in precision grain milling, nutrient fortification, and commercial agro-processing.
+An haute couture luxury digital portal designed for **Nimireaux Uganda Limited**, marrying the sovereign agricultural heritage of Uganda with Swiss-calibrated precision industrial milling engineering.
 
 > **Tagline:** *"PURE NUTRITION. POWERING POSSIBILITIES."*  
 > **Core Services:** *Grain Processing and other Milling Services*
 
 ---
 
-## 🌾 Interactive 7-Slide Fullscreen Presentation Deck
+## 🏛️ The Haute Luxury Philosophy & Architecture
 
-The website is engineered as a full-viewport, 7-slide luxury presentation deck featuring a live horizontal timeline scrubber dock, smooth trackpad/wheel navigation, keyboard arrow controls, and dedicated high-resolution imagery for every slide:
+1. **Editorial Typography & Color Craft**:
+   - **Typefaces:** Italian editorial serif *Cormorant Garamond* paired with classic *Cinzel*, modern Swiss sans *Plus Jakarta Sans*, and *JetBrains Mono* for technical purity specs.
+   - **Palettes:** Deep Obsidian Noir & British Racing Green (`#050b07`, `#102317`) accented with Brushed Champagne Gold (`#c99a3e`, `#e6b85c`).
+   - **One-Click Atmospheric Switcher:** Toggle smoothly between **Noir Emerald** and **Champagne Ivory Marble** (`data-theme="light"`).
 
-### The 7 Slides
-1. **Slide 01 — Vision & Welcome**:
-   - Golden wheat harvest imagery under morning sun.
-   - Official brand insignia, core operational metrics, direct quote CTA.
-2. **Slide 02 — Heritage & Mission**:
-   - Fertile Ugandan farmlands imagery.
-   - The 4 pillars: Sourcing Integrity, High-Extraction Starch Milling, UNBS & Fortification Standards, Circular Zero-Waste By-Products.
-3. **Slide 03 — Complete Milling Solutions**:
-   - Stainless steel industrial roller milling plant imagery.
-   - 4 interactive tabbed machine specs: Commercial Maize, Wheat & Specialty Grains, Custom Toll Milling, Fortified Animal Feeds.
-4. **Slide 04 — Precision Process Pipeline**:
-   - Optical sorting & quality testing laboratory imagery.
-   - 5-stage interactive workflow: Intake Assay, Destoning, Conditioning, Roller Milling, Bagging.
-5. **Slide 05 — Certified Products & Nutrition**:
-   - Superfine milled flour & cereal staples imagery.
-   - Interactive product selection carousel with dynamic nutritional facts label generator.
-6. **Slide 06 — Industrial Batch Yield Estimator**:
-   - Towering grain silos and bulk logistics imagery.
-   - Interactive tonnage slider (5 MT to 2,000 MT), commodity selector, extraction rate switcher, live turnaround hours, and instant transfer of estimates to the RFQ form.
-7. **Slide 07 — Commercial Desk, Digital Card & RFQ**:
-   - Executive agro corporate headquarters imagery.
-   - **Authentic Digital Business Card**: 1:1 replica of the official business card with interactive clickable email and phone links, plus a toggle to view/download the original printed card image.
-   - **Quick Action Chips**: Instant 1-click WhatsApp chat link and direct phone dialers.
-   - **Request for Quotation (RFQ) Form**: Live form with instant feedback.
+2. **The 7 Curated Editorial Acts**:
+   - **Act I &bull; Prologue:** The sovereign art of precision grain milling with circular laurel insignia and gold-stamped metrics.
+   - **Act II &bull; Terroir:** Sourcing integrity from Masindi, Bunyoro, and Acholi grain basins with farm-gate traceability.
+   - **Act III &bull; Ateliers:** Surgical roller milling engineering, hydrothermal tempering, and real-time nip gap calibrations.
+   - **Act IV &bull; Purity:** Zero-tolerance aflatoxin assay (0.0 ppb) and 100% non-GMO heirloom seed integrity.
+   - **Act V &bull; Reserve:** The grand flour sommelier (Grade 1 Royal Posho, Artisanal Whole Grain, Baker's Hard Wheat, Nutri-Composite) with particle micrometry (120 &mu;m) and UNBS gold certificate.
+   - **Act VI &bull; Concierge:** Industrial batch yield calculator styled like an executive investment portfolio terminal.
+   - **Act VII &bull; Salon:** Direct VIP contact routing, haute RFQ dispatch, and the **3D Interactive Tilt Presidential Business Card**.
+
+3. **Signature Interactive Luxury Experiences**:
+   - **3D Holographic Tilt Card**: Interactive mouse physics tilt the card in 3D space with a dynamic light shimmer and embossed gold leaf.
+   - **Floating Glass Capsule Dock**: Minimalist floating dock at the bottom of the screen with a golden hairline progress bar and Roman numeral act counter.
+   - **Web Audio Crystal Chimes**: Subtle acoustic crystal glass taps and warm harp sweeps synthesized via the Web Audio API.
+   - **Ambient Dust Particles**: Gentle golden micro-shimmer floating serenely across the canvas.
 
 ---
 
-## 🎛️ Navigation Controls
-
-- **Bottom Horizontal Timeline Scrubber**: Real-time progress fill line, slide counter (`01 / 07`), and 7 clickable nodes.
-- **Mouse Wheel / Trackpad**: Smooth debounced scroll-snapping between slides.
-- **Keyboard Arrows**: <kbd>&larr;</kbd> / <kbd>&rarr;</kbd> or <kbd>&uarr;</kbd> / <kbd>&darr;</kbd> to switch slides.
-- **Top Sticky Navbar**: Direct links to all slides and instant quote trigger.
-- **Interactive Audio**: Optional subtle click audio synthesized via the Web Audio API with sound toggle button.
-
----
-
-## 📁 Project Structure
+## 📁 Directory Structure
 
 ```
-Nimireaux web/
-├── index.html                  # 7-Slide presentation stage & bottom timeline dock
-├── styles.css                  # Luxury white & emerald styling, Ken Burns transitions, responsive dock
-├── app.js                      # Slide navigation engine, yield calculator, card switcher, audio
-├── README.md                   # Full documentation
+prestige/
+├── index.html        # 7-Act editorial presentation stage & floating capsule dock
+├── styles.css        # Haute couture luxury stylesheet & dual theme system
+├── app.js            # 3D Tilt card, acoustic chime engine, yield concierge & sommelier
+├── README.md         # Full documentation
 └── assets/
-    ├── logo.png                # Official circular high-res brand emblem
-    ├── business_card.jpg       # High-resolution original business card graphic
-    ├── media_1793869934993_082ef473.jpg # Source card asset
-    └── media_1793869943875_44e9fb72.pdf # Source vector logo asset
+    ├── logo.png          # High-resolution circular royal crest
+    └── business_card.jpg # Official reference business card
 ```
 
 ---
 
 ## 💻 How to Run
 
-Simply open `index.html` in any modern web browser:
+To open this edition directly in your browser:
 ```bash
-open index.html
+open prestige/index.html
 ```
 
 ---
 
-## 📞 Official Contacts
-- **General Inquiries:** `info@nimireaux.com`
-- **Sales & Wholesale:** `sales@nimireaux.com`
+## 📞 Official Executive Directory
+- **Commercial Inquiries:** `info@nimireaux.com`
+- **Wholesale Supply:** `sales@nimireaux.com`
 - **Accounts:** `accounts@nimireaux.com`
-- **Hotline 1:** `+256 744 135 549`
-- **Hotline 2:** `+256 783 688 363`
+- **Executive Hotline 1:** `+256 744 135 549`
+- **Executive Hotline 2:** `+256 783 688 363`

@@ -1,997 +1,918 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Nimireaux Uganda Limited | Pure Nutrition. Powering Possibilities.</title>
-  <meta name="description" content="Nimireaux Uganda Limited is East Africa's vanguard in precision grain milling, nutrient fortification, and agro-industrial processing." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NIMIREAUX UGANDA LIMITED &bull; Haute Grain Milling &amp; Pure Nutrition</title>
   
-  <!-- Favicon using brand logo -->
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/logo.png" />
   
-  <!-- Google Fonts: Cormorant Garamond, Syne, and Plus Jakarta Sans -->
+  <!-- Premium Luxury Typography: Cormorant Garamond, Cinzel, Plus Jakarta Sans, JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-
+  <!-- Font Awesome 6 Pro Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  
+  <!-- Prestige Stylesheet -->
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body class="deck-mode">
-
-  <!-- Interactive Ambient Grain Canvas -->
-  <canvas id="ambientCanvas"></canvas>
+<body class="prestige-body">
 
   <!-- =========================================================================
-       DYNAMIC BACKGROUND SLIDER
-       Every single slide has its OWN full, vivid, high-resolution photograph
+       PHOTOGRAPHIC SCENIC CANVAS (7 Curated High-Resolution Visual Atmospheres)
        ========================================================================= -->
-  <div class="deck-bg-slider" id="deckBgSlider" aria-hidden="true">
+  <div class="prestige-stage-bg" id="prestigeStageBg" aria-hidden="true">
     
-    <!-- Slide 01: Golden Wheat Harvest (Vision) -->
-    <div class="deck-bg-slide active" data-index="0">
-      <div class="bg-img" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=2400&q=85');"></div>
-      <div class="bg-scrim-veil"></div>
+    <!-- Scene 01: The Golden Terroir & Dawn Harvest (Hero) -->
+    <div class="scenic-slide active" data-scene="0">
+      <div class="scenic-img" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=2560&q=90');"></div>
+      <div class="scenic-curtain"></div>
     </div>
 
-    <!-- Slide 02: Fertile Ugandan Farmlands (Heritage) -->
-    <div class="deck-bg-slide" data-index="1">
-      <div class="bg-img" style="background-image: url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=2400&q=85');"></div>
-      <div class="bg-scrim-veil"></div>
+    <!-- Scene 02: Uganda's Volcanic Fertile Basins (Heritage) -->
+    <div class="scenic-slide" data-scene="1">
+      <div class="scenic-img" style="background-image: url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=2560&q=90');"></div>
+      <div class="scenic-curtain"></div>
     </div>
 
-    <!-- Slide 03: Modern Stainless Steel Industrial Milling Plant (Services) -->
-    <div class="deck-bg-slide" data-index="2">
-      <div class="bg-img" style="background-image: url('https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=2400&q=85');"></div>
-      <div class="bg-scrim-veil"></div>
+    <!-- Scene 03: The Precision Milling Ateliers (Services) -->
+    <div class="scenic-slide" data-scene="2">
+      <div class="scenic-img" style="background-image: url('https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=2560&q=90');"></div>
+      <div class="scenic-curtain"></div>
     </div>
 
-    <!-- Slide 04: Precision Testing Lab & Optical Sorting (Process) -->
-    <div class="deck-bg-slide" data-index="3">
-      <div class="bg-img" style="background-image: url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=2400&q=85');"></div>
-      <div class="bg-scrim-veil"></div>
+    <!-- Scene 04: The Purity Laboratory & Optical Assay (Quality) -->
+    <div class="scenic-slide" data-scene="3">
+      <div class="scenic-img" style="background-image: url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=2560&q=90');"></div>
+      <div class="scenic-curtain"></div>
     </div>
 
-    <!-- Slide 05: Superfine Milled Flour & Wholesome Cereals (Products) -->
-    <div class="deck-bg-slide" data-index="4">
-      <div class="bg-img" style="background-image: url('https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=2400&q=85');"></div>
-      <div class="bg-scrim-veil"></div>
+    <!-- Scene 05: The Private Flour Reserve (Products) -->
+    <div class="scenic-slide" data-scene="4">
+      <div class="scenic-img" style="background-image: url('https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=2560&q=90');"></div>
+      <div class="scenic-curtain"></div>
     </div>
 
-    <!-- Slide 06: Towering Grain Silos & Storage Logistics (Calculator) -->
-    <div class="deck-bg-slide" data-index="5">
-      <div class="bg-img" style="background-image: url('https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&w=2400&q=85');"></div>
-      <div class="bg-scrim-veil"></div>
+    <!-- Scene 06: Towering Silos & Grain Architecture (Concierge Calculator) -->
+    <div class="scenic-slide" data-scene="5">
+      <div class="scenic-img" style="background-image: url('https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&w=2560&q=90');"></div>
+      <div class="scenic-curtain"></div>
     </div>
 
-    <!-- Slide 07: Executive Corporate Agro Headquarters (Contact) -->
-    <div class="deck-bg-slide" data-index="6">
-      <div class="bg-img" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2400&q=85');"></div>
-      <div class="bg-scrim-veil"></div>
+    <!-- Scene 07: The Executive Commercial Salon (Contact & Card) -->
+    <div class="scenic-slide" data-scene="6">
+      <div class="scenic-img" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2560&q=90');"></div>
+      <div class="scenic-curtain"></div>
     </div>
 
   </div>
 
+  <!-- Ambient Golden Dust / Micro-Shimmer Particles Canvas -->
+  <canvas id="ambientDustCanvas"></canvas>
+
   <!-- =========================================================================
-       TOP STICKY NAVIGATION BAR
+       HAUTE LUXURY TOP NAVIGATION BAR
        ========================================================================= -->
-  <header class="navbar" id="topNavbar">
-    <div class="nav-container">
-      <a href="javascript:void(0)" class="brand-link" onclick="goToSlide(0)">
-        <img src="assets/logo.png" alt="Nimireaux Logo" class="nav-logo" />
-        <div class="brand-text">
-          <span class="brand-name">NIMIREAUX</span>
-          <span class="brand-sub">UGANDA LIMITED &bull; GRAIN MILLING</span>
+  <header class="prestige-nav">
+    <div class="nav-shell">
+      
+      <!-- Brand Crest & Monogram -->
+      <a href="javascript:void(0)" class="nav-crest-link" onclick="goToAct(0)">
+        <div class="crest-gold-frame">
+          <img src="assets/logo.png" alt="Nimireaux Crest" class="nav-crest-img" />
+        </div>
+        <div class="crest-titles">
+          <span class="crest-brand">NIMIREAUX</span>
+          <span class="crest-provenance">UGANDA LIMITED &bull; MAISON DE MEUNERIE</span>
         </div>
       </a>
 
-      <!-- Quick Slide Links -->
-      <nav class="nav-links">
-        <button class="nav-link-btn active" data-slide="0" onclick="goToSlide(0)">Vision</button>
-        <button class="nav-link-btn" data-slide="1" onclick="goToSlide(1)">Heritage</button>
-        <button class="nav-link-btn" data-slide="2" onclick="goToSlide(2)">Services</button>
-        <button class="nav-link-btn" data-slide="3" onclick="goToSlide(3)">Process</button>
-        <button class="nav-link-btn" data-slide="4" onclick="goToSlide(4)">Products</button>
-        <button class="nav-link-btn" data-slide="5" onclick="goToSlide(5)">Calculator</button>
-        <button class="nav-link-btn" data-slide="6" onclick="goToSlide(6)">Contact</button>
+      <!-- Center Editorial Acts Nav -->
+      <nav class="nav-acts">
+        <button class="act-tab active" data-act="0" onclick="goToAct(0)">Prologue</button>
+        <button class="act-tab" data-act="1" onclick="goToAct(1)">Terroir</button>
+        <button class="act-tab" data-act="2" onclick="goToAct(2)">Ateliers</button>
+        <button class="act-tab" data-act="3" onclick="goToAct(3)">Purity</button>
+        <button class="act-tab" data-act="4" onclick="goToAct(4)">Reserve</button>
+        <button class="act-tab" data-act="5" onclick="goToAct(5)">Concierge</button>
+        <button class="act-tab" data-act="6" onclick="goToAct(6)">Salon</button>
       </nav>
 
-      <!-- Nav Action Buttons -->
-      <div class="nav-actions">
-        <button id="soundToggleBtn" class="nav-btn icon-btn" title="Toggle audio feedback" aria-label="Toggle Sound">
+      <!-- Right Controls: Audio & Theme Switcher & Private Inquiry -->
+      <div class="nav-amenities">
+        
+        <!-- Palette Switcher: Noir Emerald <-> Champagne Ivory -->
+        <button class="amenity-btn" id="themeToggleBtn" title="Switch Atmospheric Palette" aria-label="Toggle Theme">
+          <i class="fa-solid fa-circle-half-stroke" id="themeIcon"></i>
+        </button>
+
+        <!-- Sound Chime Toggle -->
+        <button class="amenity-btn" id="soundToggleBtn" title="Toggle Crystal Acoustic Feedback" aria-label="Toggle Acoustic Feedback">
           <i class="fa-solid fa-volume-high" id="soundIcon"></i>
         </button>
 
-        <button class="nav-btn cta-btn" onclick="goToSlide(6)">
-          <span>Get a Quote</span>
-          <i class="fa-solid fa-arrow-right"></i>
+        <!-- Private Inquiry Button -->
+        <button class="btn-royal" onclick="goToAct(6)">
+          <span class="btn-royal-text">COMMERCIAL SALON</span>
+          <span class="btn-royal-sheen"></span>
         </button>
+
       </div>
+
     </div>
   </header>
 
   <!-- =========================================================================
-       MAIN SLIDE PRESENTATION STAGE (7 FULLSCREEN SLIDES)
-       Each slide is an immersive full-viewport experience with its own photograph
+       MAIN PRESENTATION STAGE (7 CURATED EDITORIAL ACTS)
        ========================================================================= -->
-  <main class="deck-viewport" id="deckViewport">
+  <main class="prestige-viewport" id="prestigeViewport">
 
-    <!-- SLIDE 01: WELCOME & VISION (Hero) -->
-    <section class="deck-slide active" data-slide-index="0" id="slide0">
-      <div class="slide-inner">
-        <div class="hero-split-layout">
+    <!-- =======================================================================
+         ACT I: PROLOGUE & THE OATH OF PURE NUTRITION (Hero)
+         ======================================================================= -->
+    <section class="editorial-act active" data-act-index="0" id="act0">
+      <div class="act-container">
+        
+        <div class="hero-editorial-grid">
           
-          <div class="hero-text-col">
-            <div class="badge-pill hero-pill">
-              <span class="badge-dot"></span>
-              <span>SLIDE 01 &bull; PURE NUTRITION &bull; GRAIN MILLING</span>
+          <div class="hero-left-column">
+            
+            <div class="haute-curation-tag">
+              <span class="gold-diamond">&diams;</span>
+              <span class="tag-label">PURE NUTRITION. POWERING POSSIBILITIES.</span>
+              <span class="gold-diamond">&diams;</span>
             </div>
 
-            <h1 class="hero-headline">
-              Pure Nutrition.<br />
-              <span class="text-gold-gradient">Powering Possibilities.</span>
+            <h1 class="hero-editorial-title">
+              The Sovereign Art of <span class="title-italic-accent">Precision Grain Milling.</span>
             </h1>
 
-            <p class="hero-desc">
-              Transforming East Africa’s prime cereal harvests into superior fortified flours through precision milling science, advanced destoning, and farm-to-fork purity.
+            <p class="hero-editorial-epigraph">
+              Born from Uganda's volcanic fertile soils and calibrated with surgical industrial engineering. We elevate staple cereal grains into silk-refined, bio-fortified flours that nourish nations and power limitless industrial enterprise.
             </p>
 
-            <div class="hero-actions-row">
-              <button class="btn-primary" onclick="goToSlide(2)">
-                <span>Explore Core Services</span>
-                <i class="fa-solid fa-arrow-right"></i>
+            <div class="hero-actions-suite">
+              <button class="btn-royal-large" onclick="goToAct(1)">
+                <span>ENTER THE MAISON</span>
+                <i class="fa-solid fa-arrow-right-long"></i>
               </button>
-              <button class="btn-secondary" onclick="goToSlide(5)">
-                <i class="fa-solid fa-calculator"></i>
-                <span>Yield Estimator</span>
+              <button class="btn-linen-outline" onclick="goToAct(5)">
+                <i class="fa-solid fa-compass-drafting"></i>
+                <span>YIELD CONCIERGE</span>
               </button>
             </div>
 
-            <!-- Stats Ribbon -->
-            <div class="hero-metrics-grid">
-              <div class="m-card">
-                <strong>99.8%</strong>
-                <span>Destoning Purity</span>
+            <!-- Certified Royal Metrics Ribbon -->
+            <div class="hero-heritage-metrics">
+              <div class="metric-cell">
+                <span class="mc-value">99.95<small>%</small></span>
+                <span class="mc-label">Opto-Purity Standard</span>
               </div>
-              <div class="m-card">
-                <strong>100%</strong>
-                <span>Ugandan Non-GMO</span>
+              <div class="metric-divider"></div>
+              <div class="metric-cell">
+                <span class="mc-value">50,000<small>MT</small></span>
+                <span class="mc-label">Annual Milling Capacity</span>
               </div>
-              <div class="m-card">
-                <strong>50,000+</strong>
-                <span>Annual MT Capacity</span>
-              </div>
-              <div class="m-card">
-                <strong>24 / 7</strong>
-                <span>Continuous Operations</span>
+              <div class="metric-divider"></div>
+              <div class="metric-cell">
+                <span class="mc-value">UNBS<small>&bull;Q</small></span>
+                <span class="mc-label">Fortified Certification</span>
               </div>
             </div>
+
           </div>
 
-          <!-- Hero Graphic Emblem -->
-          <div class="hero-graphic-col">
-            <div class="hero-emblem-halo"></div>
-            <div class="hero-emblem-box">
-              <img src="assets/logo.png" alt="Nimireaux Official Insignia" class="hero-logo-large" />
-            </div>
-            <div class="floating-badge badge-top">
-              <i class="fa-solid fa-award"></i>
-              <div>
-                <strong>UNBS &amp; WHO Fortified</strong>
-                <span>Iron, Zinc &amp; Vitamin A</span>
+          <!-- Hero Right: The Royal Circular Medallion Insignia -->
+          <div class="hero-right-column">
+            <div class="royal-insignia-stage">
+              <div class="insignia-aura-ring"></div>
+              <div class="insignia-laurel-frame">
+                <div class="insignia-disc-border">
+                  <img src="assets/logo.png" alt="Nimireaux Official Circular Emblem" class="royal-emblem-disc" />
+                </div>
               </div>
-            </div>
-            <div class="floating-badge badge-bottom">
-              <i class="fa-solid fa-shield-halved"></i>
-              <div>
-                <strong>Zero Aflatoxin Target</strong>
-                <span>Lab Screened Every Batch</span>
+
+              <!-- Floating Prestige Badges -->
+              <div class="prestige-floating-badge badge-nw">
+                <i class="fa-solid fa-award"></i>
+                <div>
+                  <strong>GRADE 1 CERTIFIED</strong>
+                  <span>Zero-Tolerance Aflatoxin Assayed</span>
+                </div>
+              </div>
+
+              <div class="prestige-floating-badge badge-se">
+                <i class="fa-solid fa-hand-holding-droplet"></i>
+                <div>
+                  <strong>MICRO-FORTIFIED</strong>
+                  <span>Vitamin A &bull; Zinc &bull; Iron &bull; Folate</span>
+                </div>
               </div>
             </div>
           </div>
 
         </div>
+
       </div>
     </section>
 
-    <!-- SLIDE 02: HERITAGE & MISSION -->
-    <section class="deck-slide" data-slide-index="1" id="slide1">
-      <div class="slide-inner">
-        <div class="heritage-slide-grid">
+    <!-- =======================================================================
+         ACT II: TERROIR & THE SOURCING INTEGRITY
+         ======================================================================= -->
+    <section class="editorial-act" data-act-index="1" id="act1">
+      <div class="act-container">
+        
+        <div class="act-split-grid">
           
-          <!-- Text and Pillars -->
-          <div class="heritage-text-side">
-            <div class="badge-pill">
-              <i class="fa-solid fa-seedling"></i>
-              <span>SLIDE 02 &bull; HERITAGE &amp; SOURCING INTEGRITY</span>
-            </div>
-
-            <h2 class="slide-title">
-              Built on Integrity.<br />
-              <span class="text-gold-gradient">Driven by Nutrition.</span>
+          <div class="act-text-side">
+            <div class="act-number-monogram">II &bull; THE TERROIR</div>
+            <h2 class="act-headline">
+              Sourced from Uganda's <span class="title-italic-accent">Richest Basins.</span>
             </h2>
-
-            <p class="slide-lead">
-              Nimireaux Uganda Limited was established to pioneer clean, high-extraction milling science. We bridge local cereal farmers with commercial bakeries, food processors, schools, and families seeking uncompromised vitality.
+            <p class="act-summary">
+              Great flour is not born in the mill; it begins in the earth. Nimireaux maintains direct, ethical origin partnerships across Uganda's most fertile agricultural corridors, ensuring every grain kernel meets uncompromising parameters of density, vitrification, and moisture equilibrium.
             </p>
 
-            <div class="heritage-pillars-grid">
-              
-              <div class="h-pillar-card">
-                <div class="h-icon"><i class="fa-solid fa-wheat-awn"></i></div>
-                <div>
-                  <h4>Direct Sourcing Integrity</h4>
-                  <p>Partnering with grower cooperatives across Uganda with field-tested moisture (<13.5%) and non-GMO certification.</p>
+            <div class="terroir-regions-deck">
+              <div class="terroir-tile active" onclick="inspectTerroir(0)">
+                <div class="tt-num">01</div>
+                <div class="tt-content">
+                  <h4>Masindi &amp; Bunyoro Maize Corridors</h4>
+                  <p>Sun-cured white dent maize celebrated for pristine starch endosperm and naturally low ash content.</p>
                 </div>
               </div>
 
-              <div class="h-pillar-card">
-                <div class="h-icon"><i class="fa-solid fa-gear"></i></div>
-                <div>
-                  <h4>Controlled Starch Milling</h4>
-                  <p>Multi-pass corrugated roller mills preserving wholesome germ nutrition, high dough rise, and water absorption.</p>
+              <div class="terroir-tile" onclick="inspectTerroir(1)">
+                <div class="tt-num">02</div>
+                <div class="tt-content">
+                  <h4>Acholi &amp; Northern Grain Basins</h4>
+                  <p>Heritage sorghum, pearl millet, and golden sesame cultivated on untouched organic soil.</p>
                 </div>
               </div>
 
-              <div class="h-pillar-card">
-                <div class="h-icon"><i class="fa-solid fa-flask-vial"></i></div>
-                <div>
-                  <h4>Nutrient Fortification</h4>
-                  <p>Volumetric micro-premixing of Vitamin A, Iron, Zinc, and B-Complex combatting regional malnutrition.</p>
+              <div class="terroir-tile" onclick="inspectTerroir(2)">
+                <div class="tt-num">03</div>
+                <div class="tt-content">
+                  <h4>Eastern Highlands Wheat Belts</h4>
+                  <p>High-altitude hard wheat cultivars with exceptional gluten indexes tailored for artisanal baking.</p>
                 </div>
               </div>
-
-              <div class="h-pillar-card">
-                <div class="h-icon"><i class="fa-solid fa-recycle"></i></div>
-                <div>
-                  <h4>Zero-Waste By-Products</h4>
-                  <p>Converting clean outer bran layers into high-energy, protein-rich animal nutrition feeds.</p>
-                </div>
-              </div>
-
             </div>
           </div>
 
-          <!-- Right: Visual Highlight Card -->
-          <div class="heritage-visual-side">
-            <div class="heritage-card-box glass-card">
-              <div class="h-img-header" style="background-image: url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1000&q=85');">
-                <span class="h-tag">Ugandan Agro-Belts</span>
+          <div class="act-visual-side">
+            <div class="terroir-specimen-card">
+              <div class="tsc-glass-header">
+                <span class="tsc-origin" id="terroirOrigin">ORIGIN REGION: MASINDI CORRIDOR</span>
+                <span class="tsc-status">TRACEABILITY: 100% FARM-GATE</span>
               </div>
-              <div class="h-body">
-                <h3>Agronomic Sourcing &amp; Traceability</h3>
-                <p>Every grain kernel delivered to Nimireaux is farm-traceable, guaranteeing purity from field harvest to packaged flour.</p>
-                <div class="h-metrics-mini">
-                  <div>
-                    <strong>< 10 ppb</strong>
-                    <span>Aflatoxin Safe</span>
-                  </div>
-                  <div>
-                    <strong>100%</strong>
-                    <span>Natural Grain</span>
-                  </div>
+              <div class="tsc-image-frame">
+                <img id="terroirImg" src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1400&q=85" alt="Ugandan Agricultural Valley" class="terroir-photo" />
+                <div class="tsc-telemetry-pill">
+                  <i class="fa-solid fa-wheat-awn"></i>
+                  <span>Equilibrium Moisture: <strong>&le; 12.8%</strong></span>
+                </div>
+              </div>
+              <div class="tsc-spec-footer">
+                <div class="tsf-item">
+                  <span>VARIETAL</span>
+                  <strong id="terroirVarietal">White Dent Elite</strong>
+                </div>
+                <div class="tsf-item">
+                  <span>PURITY INDEX</span>
+                  <strong id="terroirPurity">99.9% Clean</strong>
+                </div>
+                <div class="tsf-item">
+                  <span>SMALLHOLDERS</span>
+                  <strong id="terroirFarmers">8,500+ Stewards</strong>
                 </div>
               </div>
             </div>
           </div>
 
         </div>
+
       </div>
     </section>
 
-    <!-- SLIDE 03: CORE MILLING SERVICES -->
-    <section class="deck-slide" data-slide-index="2" id="slide2">
-      <div class="slide-inner">
-        <div class="services-slide-layout">
+    <!-- =======================================================================
+         ACT III: THE PRECISION MILLING ATELIERS
+         ======================================================================= -->
+    <section class="editorial-act" data-act-index="2" id="act2">
+      <div class="act-container">
+        
+        <div class="act-split-grid">
           
-          <div class="slide-header-box">
-            <div class="badge-pill">
-              <i class="fa-solid fa-industry"></i>
-              <span>SLIDE 03 &bull; COMMERCIAL &amp; TOLL CAPABILITIES</span>
-            </div>
-            <h2 class="slide-title">Complete Milling Solutions</h2>
-            <p class="slide-subtitle">
-              High-extraction commercial processing, custom toll milling, and industrial animal feed solutions.
+          <div class="act-text-side">
+            <div class="act-number-monogram">III &bull; THE ATELIERS</div>
+            <h2 class="act-headline">
+              Chilled Rollers. <span class="title-italic-accent">Surgical Extraction.</span>
+            </h2>
+            <p class="act-summary">
+              Inside our climate-controlled processing halls, grain passes through graduated stages of pneumatic destoning, precision tempering, and multi-break chilled cast-iron rollers. We gently shave the endosperm while preserving its vital starches and separating the fibrous bran with zero thermal stress.
             </p>
 
-            <!-- Numbered Tabs (Matching Video) -->
-            <div class="services-tabs-row" id="servicesTabs">
-              <button class="s-tab active" data-tab="0" onclick="switchServiceTab(0)">
-                <span class="st-num">01</span>
-                <span class="st-text">Commercial Maize</span>
+            <div class="atelier-phases-tabs">
+              <button class="atelier-phase-btn active" data-phase="0" onclick="switchAtelierPhase(0)">
+                <span class="ap-badge">PHASE I</span>
+                <span class="ap-name">Hydrothermal Conditioning</span>
               </button>
-              <button class="s-tab" data-tab="1" onclick="switchServiceTab(1)">
-                <span class="st-num">02</span>
-                <span class="st-text">Wheat &amp; Bakery</span>
+              <button class="atelier-phase-btn" data-phase="1" onclick="switchAtelierPhase(1)">
+                <span class="ap-badge">PHASE II</span>
+                <span class="ap-name">Multi-Break Corrugation</span>
               </button>
-              <button class="s-tab" data-tab="2" onclick="switchServiceTab(2)">
-                <span class="st-num">03</span>
-                <span class="st-text">Toll &amp; Contract</span>
+              <button class="atelier-phase-btn" data-phase="2" onclick="switchAtelierPhase(2)">
+                <span class="ap-badge">PHASE III</span>
+                <span class="ap-name">High-Speed Plansifting</span>
               </button>
-              <button class="s-tab" data-tab="3" onclick="switchServiceTab(3)">
-                <span class="st-num">04</span>
-                <span class="st-text">Animal Feed Bran</span>
+              <button class="atelier-phase-btn" data-phase="3" onclick="switchAtelierPhase(3)">
+                <span class="ap-badge">PHASE IV</span>
+                <span class="ap-name">UNBS Micro-Fortification</span>
+              </button>
+            </div>
+
+            <div class="atelier-spec-card" id="atelierSpecCard">
+              <h4 id="phaseTitle">Phase I: Hydrothermal Moisture Conditioning</h4>
+              <p id="phaseDesc">
+                Computer-calibrated water misting elevates kernel moisture to exactly 14.2%, mellowing the inner endosperm starch while imparting elastic resilience to the outer bran shell for clean separation.
+              </p>
+              <div class="phase-metrics-row">
+                <div class="pm-box">
+                  <span>Target Equilibrium</span>
+                  <strong id="pmTarget">14.2% H₂O</strong>
+                </div>
+                <div class="pm-box">
+                  <span>Tempering Rest</span>
+                  <strong id="pmRest">12 - 16 Hours</strong>
+                </div>
+                <div class="pm-box">
+                  <span>Endosperm Integrity</span>
+                  <strong id="pmYield">100% Intact</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="act-visual-side">
+            <div class="atelier-engineering-card">
+              <div class="aec-header">
+                <span><i class="fa-solid fa-gears"></i> BÜHLER-CALIBRATED INDUSTRIAL ROLLER SUITE</span>
+                <span class="aec-live"><i class="fa-solid fa-circle"></i> CONTINUOUS LINE</span>
+              </div>
+              <div class="aec-image-wrap">
+                <img id="phaseImg" src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=1400&q=85" alt="Industrial Milling Machinery" class="atelier-photo" />
+                <div class="aec-telemetry-hud">
+                  <div class="ath-gauge">
+                    <span class="ath-label">ROLLER RPM</span>
+                    <span class="ath-val" id="athRpm">1,450 RPM</span>
+                  </div>
+                  <div class="ath-gauge">
+                    <span class="ath-label">NIP CALIBRATION</span>
+                    <span class="ath-val" id="athGap">0.18 mm</span>
+                  </div>
+                  <div class="ath-gauge">
+                    <span class="ath-label">BEARING TEMP</span>
+                    <span class="ath-val" id="athTemp">36.2 &deg;C</span>
+                  </div>
+                </div>
+              </div>
+              <div class="aec-footer">
+                <span>HOURLY THROUGHPUT: <strong>15.0 METRIC TONS / HOUR</strong></span>
+                <span>CLEAN IN-PLACE (CIP) HYGIENE: <strong>PASSED</strong></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         ACT IV: THE PURITY PROTOCOL & SCIENTIFIC ASSAY
+         ======================================================================= -->
+    <section class="editorial-act" data-act-index="3" id="act3">
+      <div class="act-container">
+        
+        <div class="act-split-grid">
+          
+          <div class="act-text-side">
+            <div class="act-number-monogram">IV &bull; THE PURITY PROTOCOL</div>
+            <h2 class="act-headline">
+              Zero Tolerance. <span class="title-italic-accent">Certified Purity.</span>
+            </h2>
+            <p class="act-summary">
+              Health is the highest luxury. Nimireaux operates on an uncompromising double-testing protocol. Every batch of grain entering our intake gates and every bag of flour departing our dock is subjected to optical NIR spectrometry and enzymatic immunoassays.
+            </p>
+
+            <div class="purity-standards-grid">
+              <div class="purity-pillar">
+                <div class="pp-badge"><i class="fa-solid fa-shield-virus"></i> 0.0 PPB AFLATOXIN</div>
+                <h4>Zero-Tolerance Toxin Filter</h4>
+                <p>Advanced optical sorters discard any grain kernel showing microbial compromise well below Uganda's UNBS 10 ppb statutory ceiling.</p>
+              </div>
+
+              <div class="purity-pillar">
+                <div class="pp-badge"><i class="fa-solid fa-dna"></i> 100% NON-GMO SEED</div>
+                <h4>Pure Heritage Genetics</h4>
+                <p>Complete genetic testing certifies that all grain lots are natural, heirloom, non-genetically modified East African cultivars.</p>
+              </div>
+            </div>
+
+            <button class="btn-royal" onclick="goToAct(4)">
+              <span>DISCOVER THE PRIVATE RESERVE</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+
+          <div class="act-visual-side">
+            <div class="lab-spectrometer-card">
+              <div class="lsc-header">
+                <span><i class="fa-solid fa-microscope"></i> NIR OPTICAL ASSAY &bull; REAL-TIME BATCH LOG</span>
+                <span class="lsc-badge">UNBS CERTIFIED Q-MARK</span>
+              </div>
+              <div class="lsc-spectrum-display">
+                <div class="lsc-radar-bg"></div>
+                <div class="lsc-data-points">
+                  <div class="datapoint dp-1">
+                    <span class="dp-glow"></span>
+                    <span class="dp-text">Moisture: 12.4%</span>
+                  </div>
+                  <div class="datapoint dp-2">
+                    <span class="dp-glow"></span>
+                    <span class="dp-text">Crude Ash: &lt;0.55%</span>
+                  </div>
+                  <div class="datapoint dp-3">
+                    <span class="dp-glow"></span>
+                    <span class="dp-text">Protein: 9.2%</span>
+                  </div>
+                  <div class="datapoint dp-4">
+                    <span class="dp-glow"></span>
+                    <span class="dp-text">Aflatoxin: 0.0 ppb</span>
+                  </div>
+                </div>
+              </div>
+              <div class="lsc-batch-row">
+                <div class="lbr-cell">
+                  <span>CURRENT BATCH</span>
+                  <strong>#NMR-2026-UG88</strong>
+                </div>
+                <div class="lbr-cell">
+                  <span>DISPOSITION</span>
+                  <strong class="text-gold">APPROVED FOR HUMAN CONSUMPTION</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         ACT V: THE PRIVATE RESERVE COLLECTION (Products & Sommelier)
+         ======================================================================= -->
+    <section class="editorial-act" data-act-index="4" id="act4">
+      <div class="act-container">
+        
+        <div class="act-split-grid">
+          
+          <div class="act-text-side">
+            <div class="act-number-monogram">V &bull; THE PRIVATE RESERVE</div>
+            <h2 class="act-headline">
+              The Grand Flours of <span class="title-italic-accent">Nimireaux.</span>
+            </h2>
+            <p class="act-summary">
+              Engineered for superlative culinary texture, radiant white endosperm purity, and optimal micronutrient bioavailability. Select a reserve grade to explore tactile granulometry, extraction rates, and certified nutrition profiles.
+            </p>
+
+            <div class="reserve-sommelier-deck">
+              <button class="sommelier-item active" data-prod="0" onclick="selectReserveFlour(0)">
+                <div class="si-index">01</div>
+                <div class="si-info">
+                  <strong>Superfine Posho Flour (Grade 1 Royal)</strong>
+                  <span>Silky patent white flour with mandatory UNBS vitamin micro-dosing.</span>
+                </div>
+              </button>
+
+              <button class="sommelier-item" data-prod="1" onclick="selectReserveFlour(1)">
+                <div class="si-index">02</div>
+                <div class="si-info">
+                  <strong>Whole Grain Maize Flour (Artisanal Brown)</strong>
+                  <span>Nutrient-dense, bran-retained wholesome flour rich in complex dietary fiber.</span>
+                </div>
+              </button>
+
+              <button class="sommelier-item" data-prod="2" onclick="selectReserveFlour(2)">
+                <div class="si-index">03</div>
+                <div class="si-info">
+                  <strong>Baker\'s Special Hard Wheat Flour</strong>
+                  <span>High-gluten formulation with exceptional dough elasticity and oven spring.</span>
+                </div>
+              </button>
+
+              <button class="sommelier-item" data-prod="3" onclick="selectReserveFlour(3)">
+                <div class="si-index">04</div>
+                <div class="si-info">
+                  <strong>Nutri-Composite Multi-Grain Porridge Flour</strong>
+                  <span>Synergistic blend of maize, finger millet, red sorghum, and toasted soya.</span>
+                </div>
               </button>
             </div>
           </div>
 
-          <!-- Tab Content Display -->
-          <div class="service-display-panel glass-card" id="serviceDisplayPanel">
-            <div class="service-display-grid">
-              
-              <div class="s-display-text">
-                <span class="badge-pill" id="solBadge">Flagship Commercial Line</span>
-                <h3 id="solTitle">High-Extraction Commercial Maize Milling</h3>
-                <p id="solDesc">
-                  Continuous multi-break roller milling line degerminates, cleans, and mills Ugandan corn into ultra-soft Grade 1 superfine posho flour, standard Grade 2 meal, and hominy grits.
-                </p>
+          <div class="act-visual-side">
+            <div class="reserve-fact-sheet-card">
+              <div class="rfsc-header">
+                <span class="rfsc-crest-tag" id="rfscBadge">MAISON SELECTION &bull; GRADE 1</span>
+                <h3 class="rfsc-title" id="rfscTitle">Superfine Posho Flour (Grade 1 Royal)</h3>
+                <p class="rfsc-desc" id="rfscDesc">Refined from pure vitreous endosperm with zero bran specks, micro-fortified with Vitamin A, Zinc, Iron, and Folic Acid.</p>
+              </div>
 
-                <ul class="s-checklist" id="solList">
-                  <li><i class="fa-solid fa-circle-check"></i> Superfine granulation passing 212-micron plansifter screens</li>
-                  <li><i class="fa-solid fa-circle-check"></i> Continuous micro-dosing with Vitamin A, Iron, and Zinc</li>
-                  <li><i class="fa-solid fa-circle-check"></i> Low fat residue guaranteeing 6+ months dry shelf stability</li>
-                  <li><i class="fa-solid fa-circle-check"></i> Packaging in 5kg, 10kg, 25kg, and 50kg poly-woven bags</li>
-                </ul>
-
-                <div class="s-kpi-bar">
-                  <div>
-                    <span>Processing Capacity:</span>
-                    <strong id="solCapacity">120 Metric Tons / Day</strong>
-                  </div>
-                  <div>
-                    <span>Dispatch Turnaround:</span>
-                    <strong id="solTurnaround">Same-Day to 48 Hours</strong>
-                  </div>
+              <div class="rfsc-specs-table">
+                <div class="rst-row head">
+                  <span>CERTIFIED METRIC</span>
+                  <span>PER 100g SPECIFICATION</span>
                 </div>
+                <div class="rst-row">
+                  <span>Granulometry (Particle Fineness)</span>
+                  <strong id="specGranulo">120 &mu;m (Silk Patent)</strong>
+                </div>
+                <div class="rst-row">
+                  <span>Total Energy Density</span>
+                  <strong id="specEnergy">362 kcal / 1,514 kJ</strong>
+                </div>
+                <div class="rst-row">
+                  <span>Complex Carbohydrates</span>
+                  <strong id="specCarbs">78.4 g</strong>
+                </div>
+                <div class="rst-row">
+                  <span>Crude Dietary Protein</span>
+                  <strong id="specProtein">8.9 g</strong>
+                </div>
+                <div class="rst-row gold-highlight">
+                  <span><i class="fa-solid fa-certificate"></i> Mandatory Vitamin A Fortification</span>
+                  <strong id="specVitA">1.8 mg / kg</strong>
+                </div>
+                <div class="rst-row gold-highlight">
+                  <span><i class="fa-solid fa-certificate"></i> Bioavailable Zinc &amp; Iron</span>
+                  <strong id="specZinc">32.0 mg / kg</strong>
+                </div>
+              </div>
 
-                <button class="btn-primary" onclick="goToSlide(6)">
-                  <span>Request Service Quote</span>
+              <div class="rfsc-action-bar">
+                <div class="rfsc-sizes">
+                  <span>Packaging:</span>
+                  <strong>5kg &bull; 10kg &bull; 25kg &bull; 50kg Royal Hermetic Bags</strong>
+                </div>
+                <button class="btn-royal" onclick="inquireProductReserve()">
+                  <span>ACQUIRE WHOLESALE</span>
                   <i class="fa-solid fa-arrow-right"></i>
                 </button>
               </div>
-
-              <div class="s-display-visual">
-                <div class="s-visual-box" id="solImg" style="background-image: url('https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=1000&q=85');">
-                  <div class="s-visual-badge">
-                    <i class="fa-solid fa-microchip"></i>
-                    <div>
-                      <strong>Optical Sorters Active</strong>
-                      <span>99.8% Cleanness Guaranteed</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
             </div>
           </div>
 
         </div>
+
       </div>
     </section>
 
-    <!-- SLIDE 04: THE MILLING PROCESS (Interactive Pipeline) -->
-    <section class="deck-slide" data-slide-index="3" id="slide3">
-      <div class="slide-inner">
-        <div class="process-slide-layout">
+    <!-- =======================================================================
+         ACT VI: THE INDUSTRIAL BATCH YIELD CONCIERGE (Calculator)
+         ======================================================================= -->
+    <section class="editorial-act" data-act-index="5" id="act5">
+      <div class="act-container">
+        
+        <div class="act-split-grid">
           
-          <div class="slide-header-box">
-            <div class="badge-pill">
-              <i class="fa-solid fa-diagram-project"></i>
-              <span>SLIDE 04 &bull; PRECISION PROCESS PIPELINE</span>
-            </div>
-            <h2 class="slide-title">From Golden Harvest to Pure Nutrition</h2>
-            <p class="slide-subtitle">
-              Explore our continuous 5-stage closed-circuit milling cycle. Click any stage to inspect machinery parameters, tolerances, and retention metrics.
+          <div class="act-text-side">
+            <div class="act-number-monogram">VI &bull; THE CONCIERGE</div>
+            <h2 class="act-headline">
+              Industrial Batch <span class="title-italic-accent">Yield Concierge.</span>
+            </h2>
+            <p class="act-summary">
+              Whether booking large-scale commercial toll milling or contracting high-volume institutional flour distribution, simulate production yields, standard 50kg bag counts, byproduct bran generation, and factory turnaround in real-time.
             </p>
 
-            <!-- 5 Pipeline Checkpoints -->
-            <div class="pipeline-scrubber-track">
-              <div class="pipeline-bar-fill" id="pBarFill" style="width: 20%;"></div>
+            <div class="concierge-controls-box">
               
-              <button class="p-scrub-btn active" data-step="0" onclick="setProcessStep(0)">
-                <span class="ps-num">01</span>
-                <span class="ps-title">Intake &amp; Lab Assay</span>
-              </button>
-              <button class="p-scrub-btn" data-step="1" onclick="setProcessStep(1)">
-                <span class="ps-num">02</span>
-                <span class="ps-title">Deep Cleaning &amp; Destoning</span>
-              </button>
-              <button class="p-scrub-btn" data-step="2" onclick="setProcessStep(2)">
-                <span class="ps-num">03</span>
-                <span class="ps-title">Tempering &amp; Conditioning</span>
-              </button>
-              <button class="p-scrub-btn" data-step="3" onclick="setProcessStep(3)">
-                <span class="ps-num">04</span>
-                <span class="ps-title">Roller Break &amp; Sifting</span>
-              </button>
-              <button class="p-scrub-btn" data-step="4" onclick="setProcessStep(4)">
-                <span class="ps-num">05</span>
-                <span class="ps-title">Fortification &amp; Bagging</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Process Details Display -->
-          <div class="process-detail-card glass-card">
-            <div class="process-detail-grid">
-              
-              <div class="pd-text-side">
-                <span class="badge-pill" id="pStepBadge">Stage 01 of 05</span>
-                <h3 id="pStepTitle">Raw Grain Intake &amp; Rapid Laboratory Assay</h3>
-                <p id="pStepDesc">
-                  Every grain consignment arriving at Nimireaux undergoes multi-point probe sampling. We analyze moisture percentage, kernel hardness, foreign dockage, and test for aflatoxin (ppb) before unloading into intake hoppers.
-                </p>
-
-                <div class="pd-kpi-grid">
-                  <div class="pd-kpi-item">
-                    <strong id="pKpi1">< 13.5%</strong>
-                    <span id="pKpiLbl1">Moisture Threshold</span>
-                  </div>
-                  <div class="pd-kpi-item">
-                    <strong id="pKpi2">< 10 ppb</strong>
-                    <span id="pKpiLbl2">Aflatoxin Limit</span>
-                  </div>
-                  <div class="pd-kpi-item">
-                    <strong id="pKpi3">100%</strong>
-                    <span id="pKpiLbl3">Sample Traceability</span>
-                  </div>
-                </div>
-
-                <div class="pd-nav-btns">
-                  <button class="btn-secondary" onclick="stepProcess(-1)">
-                    <i class="fa-solid fa-arrow-left"></i> Previous Stage
-                  </button>
-                  <button class="btn-primary" onclick="stepProcess(1)">
-                    Next Stage <i class="fa-solid fa-arrow-right"></i>
-                  </button>
+              <!-- Commodity Picker -->
+              <div class="cc-group">
+                <label class="cc-label">SELECT RAW COMMODITY</label>
+                <div class="cc-radios-row">
+                  <label class="cc-pill active">
+                    <input type="radio" name="conciergeCommodity" value="white_maize" checked onchange="calculateConciergeYield()" />
+                    <span>White Dent Maize</span>
+                  </label>
+                  <label class="cc-pill">
+                    <input type="radio" name="conciergeCommodity" value="yellow_maize" onchange="calculateConciergeYield()" />
+                    <span>Yellow Maize</span>
+                  </label>
+                  <label class="cc-pill">
+                    <input type="radio" name="conciergeCommodity" value="hard_wheat" onchange="calculateConciergeYield()" />
+                    <span>Hard Wheat</span>
+                  </label>
+                  <label class="cc-pill">
+                    <input type="radio" name="conciergeCommodity" value="composite" onchange="calculateConciergeYield()" />
+                    <span>Composite Grain</span>
+                  </label>
                 </div>
               </div>
 
-              <div class="pd-visual-side">
-                <div class="pd-visual-card">
-                  <div class="pd-icon-ring" id="pStepIcon">
-                    <i class="fa-solid fa-microscope"></i>
-                  </div>
-                  <div class="sensor-scanner">
-                    <div class="scan-beam"></div>
-                  </div>
-                  <p class="pd-caption" id="pStepCaption">
-                    Fluorometric &amp; chemical verification active at intake terminal
-                  </p>
+              <!-- Tonnage Metallic Range Slider -->
+              <div class="cc-group">
+                <div class="cc-slider-meta">
+                  <label class="cc-label">INTAKE BATCH TONNAGE</label>
+                  <span class="cc-live-val" id="conciergeTonnageVal">100 METRIC TONS</span>
+                </div>
+                <input type="range" min="10" max="2000" step="10" value="100" class="gold-track-slider" id="conciergeSlider" oninput="updateConciergeSlider(this.value)" />
+                <div class="slider-ticks">
+                  <span>10 MT</span>
+                  <span>500 MT</span>
+                  <span>1,000 MT</span>
+                  <span>1,500 MT</span>
+                  <span>2,000 MT</span>
+                </div>
+              </div>
+
+              <!-- Extraction Grade Profile -->
+              <div class="cc-group">
+                <label class="cc-label">EXTRACTION REFINEMENT PROFILE</label>
+                <div class="cc-radios-row">
+                  <label class="cc-pill active">
+                    <input type="radio" name="conciergeGrade" value="grade1" checked onchange="calculateConciergeYield()" />
+                    <span>Grade 1 Superfine (72% Flour &bull; 28% Feed Bran)</span>
+                  </label>
+                  <label class="cc-pill">
+                    <input type="radio" name="conciergeGrade" value="whole" onchange="calculateConciergeYield()" />
+                    <span>Whole Extraction (88% Flour &bull; 12% Byproduct)</span>
+                  </label>
                 </div>
               </div>
 
             </div>
           </div>
 
-        </div>
-      </div>
-    </section>
-
-    <!-- SLIDE 05: PRODUCTS & NUTRITION FACTS -->
-    <section class="deck-slide" data-slide-index="4" id="slide4">
-      <div class="slide-inner">
-        <div class="products-slide-layout">
-          
-          <div class="slide-header-box">
-            <div class="badge-pill">
-              <i class="fa-solid fa-heart-pulse"></i>
-              <span>SLIDE 05 &bull; NUTRITIONAL EXCELLENCE</span>
-            </div>
-            <h2 class="slide-title">Certified Nutritional Products</h2>
-            <p class="slide-subtitle">
-              Pure, hygienic flours formulated for superior kitchen performance, high water absorption, and verified vitamin enrichment.
-            </p>
-          </div>
-
-          <div class="products-dual-panel">
-            
-            <!-- Products Carousel Selector -->
-            <div class="products-catalog-col">
-              
-              <div class="prod-tile glass-card active" data-prod="posho" onclick="selectProduct('posho')">
-                <div class="tile-icon"><i class="fa-solid fa-bowl-rice"></i></div>
-                <div class="tile-info">
-                  <h4>Nimireaux Superfine Fortified Maize Flour</h4>
-                  <p>Ultra-white, silky posho flour enriched with Vitamin A, Iron, and Zinc.</p>
-                </div>
-                <span class="tile-tag">Top Seller</span>
+          <div class="act-visual-side">
+            <div class="concierge-telemetry-portfolio">
+              <div class="ctp-head">
+                <span class="ctp-title"><i class="fa-solid fa-chart-column"></i> PRODUCTION FORECAST TELEMETRY</span>
+                <span class="ctp-badge">ATELIER CAPACITY: 15 MT/HR</span>
               </div>
 
-              <div class="prod-tile glass-card" data-prod="whole-maize" onclick="selectProduct('whole-maize')">
-                <div class="tile-icon"><i class="fa-solid fa-leaf"></i></div>
-                <div class="tile-info">
-                  <h4>Nimireaux Harvest Whole Grain Flour</h4>
-                  <p>100% whole kernel milled with intact germ, dietary fiber, and natural oils.</p>
-                </div>
-                <span class="tile-tag">High Fiber</span>
-              </div>
-
-              <div class="prod-tile glass-card" data-prod="wheat-bakers" onclick="selectProduct('wheat-bakers')">
-                <div class="tile-icon"><i class="fa-solid fa-bread-slice"></i></div>
-                <div class="tile-info">
-                  <h4>Nimireaux Bakers Special Wheat Flour</h4>
-                  <p>High gluten elasticity, superior loaf rise, and optimal water retention.</p>
-                </div>
-                <span class="tile-tag">Bakery Grade</span>
-              </div>
-
-              <div class="prod-tile glass-card" data-prod="composite-porridge" onclick="selectProduct('composite-porridge')">
-                <div class="tile-icon"><i class="fa-solid fa-mug-hot"></i></div>
-                <div class="tile-info">
-                  <h4>Nimireaux Nutri-Porridge Composite Blend</h4>
-                  <p>Multigrain powerhouse blend of millet, red sorghum, yellow corn, and soy.</p>
-                </div>
-                <span class="tile-tag">Institutional</span>
-              </div>
-
-              <div class="prod-tile glass-card" data-prod="maize-bran" onclick="selectProduct('maize-bran')">
-                <div class="tile-icon"><i class="fa-solid fa-cow"></i></div>
-                <div class="tile-info">
-                  <h4>Nimireaux High-Energy Maize Bran &amp; Pollard</h4>
-                  <p>High-protein livestock and dairy feed constituent with 10–14% crude protein.</p>
-                </div>
-                <span class="tile-tag">Agro-Feed</span>
-              </div>
-
-            </div>
-
-            <!-- Certified Nutrition Facts Label -->
-            <div class="nutrition-display-col glass-card">
-              
-              <div class="nutri-header">
-                <span class="nh-eyebrow">NUTRITION FACTS &amp; LAB PROFILE</span>
-                <h3 id="nutriProductName">Nimireaux Superfine Fortified Maize Flour</h3>
-                <span class="nh-sub">Serving Size: 100g &bull; Pure Milling Extraction</span>
-              </div>
-
-              <div class="nutri-cal-box">
-                <div>
-                  <span class="nc-lbl">Energy per 100g:</span>
-                  <strong class="nc-num" id="nutriCalories">365 kcal</strong>
-                </div>
-                <div class="text-right">
-                  <span class="nc-kj" id="nutriKJ">1,530 kJ</span>
-                  <span class="nc-daily">Daily Value Reference</span>
-                </div>
-              </div>
-
-              <!-- Animated Meters -->
-              <div class="nutri-meters-list">
+              <div class="ctp-meters-deck">
                 
-                <div class="nm-row">
-                  <div class="nm-labels">
-                    <strong>Total Carbohydrates</strong>
-                    <span id="nutriCarbs">74.2g</span>
+                <!-- Meter 1: Finished Flour -->
+                <div class="ctp-meter premier">
+                  <span class="cm-label">NET FINISHED FLOUR OUTPUT</span>
+                  <div class="cm-numeric">
+                    <span class="cm-value" id="flourYieldNum">72.0</span>
+                    <span class="cm-unit">Metric Tons</span>
                   </div>
-                  <div class="nm-track">
-                    <div class="nm-bar" id="barCarbs" style="width: 74%;"></div>
-                  </div>
+                  <div class="cm-bar"><div class="cm-fill" id="flourYieldFill" style="width: 72%;"></div></div>
                 </div>
 
-                <div class="nm-row">
-                  <div class="nm-labels">
-                    <strong>Vegetal Protein</strong>
-                    <span id="nutriProtein">8.8g</span>
+                <!-- Meter 2: Packaged 50kg Bags -->
+                <div class="ctp-meter">
+                  <span class="cm-label">STANDARD 50KG PACKAGED BAGS</span>
+                  <div class="cm-numeric">
+                    <span class="cm-value" id="bagsYieldNum">1,440</span>
+                    <span class="cm-unit">Hermetic Bags</span>
                   </div>
-                  <div class="nm-track">
-                    <div class="nm-bar gold" id="barProtein" style="width: 44%;"></div>
-                  </div>
+                  <div class="cm-bar"><div class="cm-fill" id="bagsYieldFill" style="width: 72%;"></div></div>
                 </div>
 
-                <div class="nm-row">
-                  <div class="nm-labels">
-                    <strong>Dietary Fiber</strong>
-                    <span id="nutriFiber">3.8g</span>
+                <!-- Meter 3: Feed Bran Byproduct -->
+                <div class="ctp-meter">
+                  <span class="cm-label">NUTRITIOUS ANIMAL FEED BRAN</span>
+                  <div class="cm-numeric">
+                    <span class="cm-value" id="branYieldNum">28.0</span>
+                    <span class="cm-unit">Metric Tons</span>
                   </div>
-                  <div class="nm-track">
-                    <div class="nm-bar green" id="barFiber" style="width: 38%;"></div>
+                  <div class="cm-bar"><div class="cm-fill" id="branYieldFill" style="width: 28%;"></div></div>
+                </div>
+
+                <!-- Meter 4: Turnaround Hours -->
+                <div class="ctp-meter">
+                  <span class="cm-label">MILLING RUN SCHEDULE</span>
+                  <div class="cm-numeric">
+                    <span class="cm-value" id="turnaroundNum">6.7</span>
+                    <span class="cm-unit">Production Hours</span>
                   </div>
+                  <span class="cm-sub">Continuous 24/7 industrial scheduling</span>
                 </div>
 
               </div>
 
-              <!-- Fortification Badges -->
-              <div class="nutri-fort-row">
-                <span class="nfr-title"><i class="fa-solid fa-sparkles"></i> Added Micronutrient Fortification:</span>
-                <div class="nfr-badges">
-                  <div class="nf-badge">
-                    <span>Vitamin A</span>
-                    <strong id="nutriVitA">2.5 mg/kg</strong>
-                  </div>
-                  <div class="nf-badge">
-                    <span>Iron (Fe)</span>
-                    <strong id="nutriIron">40 mg/kg</strong>
-                  </div>
-                  <div class="nf-badge">
-                    <span>Zinc (Zn)</span>
-                    <strong id="nutriZinc">35 mg/kg</strong>
-                  </div>
-                  <div class="nf-badge">
-                    <span>Folic Acid</span>
-                    <strong id="nutriFolate">1.2 mg/kg</strong>
-                  </div>
-                </div>
-              </div>
-
-              <button class="btn-primary w-100 mt-3" onclick="requestProductQuote()">
-                <span>Order Samples / Wholesale Batch</span>
+              <button class="btn-royal w-100" onclick="applyConciergeToInquiry()">
+                <span>TRANSFER ESTIMATE TO OFFICIAL SALON</span>
                 <i class="fa-solid fa-arrow-right"></i>
               </button>
-
-            </div>
-
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- SLIDE 06: INDUSTRIAL YIELD ESTIMATOR -->
-    <section class="deck-slide" data-slide-index="5" id="slide5">
-      <div class="slide-inner">
-        <div class="calc-slide-layout">
-          
-          <div class="slide-header-box">
-            <div class="badge-pill">
-              <i class="fa-solid fa-calculator"></i>
-              <span>SLIDE 06 &bull; COMMERCIAL BATCH SIMULATOR</span>
-            </div>
-            <h2 class="slide-title">Interactive Batch Yield Estimator</h2>
-            <p class="slide-subtitle">
-              Plan your harvest batch or wholesale flour order. Calculate pure flour yields, 25kg bag counts, and milling turnaround hours.
-            </p>
-          </div>
-
-          <div class="calc-box glass-card">
-            <div class="calc-grid">
-              
-              <!-- Input Controls -->
-              <div class="calc-inputs-side">
-                <h3 class="calc-heading"><i class="fa-solid fa-sliders"></i> Milling Batch Parameters</h3>
-
-                <div class="c-group">
-                  <div class="c-label-row">
-                    <label for="calcBatchInput">Raw Grain Batch Tonnage:</label>
-                    <span class="c-pill" id="calcBatchDisplay">15 Metric Tons (15,000 kg)</span>
-                  </div>
-                  <input type="range" id="calcBatchInput" min="1" max="100" value="15" step="1" class="custom-range" />
-                  <div class="range-labels">
-                    <span>1 MT</span>
-                    <span>25 MT</span>
-                    <span>50 MT</span>
-                    <span>100 MT</span>
-                  </div>
-                </div>
-
-                <div class="c-group">
-                  <label class="c-sublabel">Select Grain Commodity:</label>
-                  <div class="grain-choices-grid">
-                    <label class="g-choice active">
-                      <input type="radio" name="grainType" value="white-maize" checked />
-                      <span><i class="fa-solid fa-seedling"></i> White Maize</span>
-                    </label>
-                    <label class="g-choice">
-                      <input type="radio" name="grainType" value="yellow-maize" />
-                      <span><i class="fa-solid fa-sun"></i> Yellow Corn</span>
-                    </label>
-                    <label class="g-choice">
-                      <input type="radio" name="grainType" value="wheat" />
-                      <span><i class="fa-solid fa-wheat-awn"></i> Hard Wheat</span>
-                    </label>
-                    <label class="g-choice">
-                      <input type="radio" name="grainType" value="sorghum" />
-                      <span><i class="fa-solid fa-spa"></i> Red Sorghum</span>
-                    </label>
-                  </div>
-                </div>
-
-                <div class="c-group">
-                  <label class="c-sublabel">Extraction Target:</label>
-                  <div class="grade-choices-grid">
-                    <label class="gr-choice active">
-                      <input type="radio" name="gradeType" value="grade1" checked />
-                      <div>
-                        <strong>Grade 1 Superfine</strong>
-                        <span>~68% Pure Flour Extraction</span>
-                      </div>
-                    </label>
-                    <label class="gr-choice">
-                      <input type="radio" name="gradeType" value="grade2" />
-                      <div>
-                        <strong>Grade 2 Commercial</strong>
-                        <span>~78% Balanced Extraction</span>
-                      </div>
-                    </label>
-                    <label class="gr-choice">
-                      <input type="radio" name="gradeType" value="wholegrain" />
-                      <div>
-                        <strong>Whole Meal (All Germ)</strong>
-                        <span>~94% High Fiber Retained</span>
-                      </div>
-                    </label>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Yield Output Card -->
-              <div class="calc-results-side">
-                <div class="yield-card">
-                  <span class="yc-lbl">Projected Pure Flour Output</span>
-                  <span class="yc-huge" id="resFlourKg">10,200 kg</span>
-                  <span class="yc-sub" id="resFlourBags">Equivalent to ~408 Bags (25kg each)</span>
-
-                  <div class="yc-split">
-                    <div class="yc-mini">
-                      <span><i class="fa-solid fa-cow"></i> Animal Feed Bran</span>
-                      <strong id="resBranKg">4,350 kg</strong>
-                    </div>
-                    <div class="yc-mini">
-                      <span><i class="fa-solid fa-broom"></i> Screenings Residue</span>
-                      <strong id="resScreeningsKg">450 kg</strong>
-                    </div>
-                  </div>
-
-                  <div class="yc-turnaround">
-                    <i class="fa-solid fa-stopwatch"></i>
-                    <div>
-                      <strong id="resTurnaround">Turnaround Time: ~14 Hours</strong>
-                      <span>Continuous roller milling line dispatch readiness</span>
-                    </div>
-                  </div>
-
-                  <button class="btn-primary w-100" onclick="applyCalcToQuote()">
-                    <span>Transfer Specs to RFQ Form</span>
-                    <i class="fa-solid fa-paper-plane"></i>
-                  </button>
-                </div>
-              </div>
-
             </div>
           </div>
 
         </div>
+
       </div>
     </section>
 
-    <!-- SLIDE 07: CONTACT & DIGITAL BUSINESS CARD -->
-    <section class="deck-slide" data-slide-index="6" id="slide6">
-      <div class="slide-inner">
-        <div class="contact-slide-layout">
+    <!-- =======================================================================
+         ACT VII: THE COMMERCIAL SALON & PRESIDENTIAL CARD
+         ======================================================================= -->
+    <section class="editorial-act" data-act-index="6" id="act6">
+      <div class="act-container">
+        
+        <div class="act-split-grid outro-grid">
           
-          <div class="slide-header-box">
-            <div class="badge-pill">
-              <i class="fa-solid fa-envelope-open-text"></i>
-              <span>SLIDE 07 &bull; COMMERCIAL DESK &amp; INQUIRIES</span>
-            </div>
-            <h2 class="slide-title">Connect with Nimireaux Uganda</h2>
-            <p class="slide-subtitle">
-              Whether booking contract toll milling, wholesale distribution, or lab samples, our direct hotlines are ready to assist.
+          <!-- Column 1: The 3D-Tilt Presidential Digital Business Card -->
+          <div class="act-text-side">
+            <div class="act-number-monogram">VII &bull; THE COMMERCIAL SALON</div>
+            <h2 class="act-headline">
+              Direct Access to the <span class="title-italic-accent">Maison.</span>
+            </h2>
+            <p class="act-summary">
+              We welcome partnership with regional wholesalers, food relief agencies, industrial bakeries, and contract toll grain producers. Reach our executive directors and commercial desk via our official hotlines or digital inquiry protocol.
             </p>
-          </div>
 
-          <div class="contact-dual-grid">
-            
-            <!-- Column 1: Faithful Digital Replica of Business Card -->
-            <div class="card-column">
-              
-              <!-- Card Mode Toggle -->
-              <div class="card-view-tabs">
-                <button type="button" class="cv-tab active" id="btnInteractiveCard" onclick="switchCardView('digital')">
-                  <i class="fa-solid fa-id-card"></i> Interactive Card
-                </button>
-                <button type="button" class="cv-tab" id="btnOriginalCard" onclick="switchCardView('original')">
-                  <i class="fa-solid fa-image"></i> Official Card Graphic
-                </button>
-              </div>
-
-              <!-- View A: Pixel-Faithful Interactive Digital Card -->
-              <div class="digital-business-card" id="digitalCardView">
-                <div class="card-frame">
-                  
-                  <div class="card-top-row">
-                    <div class="card-emblem-wrap">
-                      <img src="assets/logo.png" alt="Nimireaux Logo" class="card-emblem-img" />
-                    </div>
-                    <div class="card-corp-text">
-                      <div class="card-brand-main">NIMIREAUX</div>
-                      <div class="card-brand-country">UGANDA LIMITED</div>
-                      <div class="card-core-label">CORE SERVICES</div>
-                      <div class="card-core-desc">Grain Processing and other Milling Services</div>
-                    </div>
-                  </div>
-
-                  <div class="card-gold-bar"></div>
-
-                  <div class="card-bottom-contacts">
-                    <div class="card-emails-row">
-                      <a href="mailto:info@nimireaux.com">info@nimireaux.com</a>
-                      <span class="bar">|</span>
-                      <a href="mailto:sales@nimireaux.com">sales@nimireaux.com</a>
-                      <span class="bar">|</span>
-                      <a href="mailto:accounts@nimireaux.com">accounts@nimireaux.com</a>
-                    </div>
-                    <div class="card-phones-row">
-                      <a href="tel:+256744135549">+256 744 135 549</a>
-                      <span class="bar">|</span>
-                      <a href="tel:+256783688363">+256 783 688 363</a>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-              <!-- View B: Original High-Res Printed Graphic Card -->
-              <div class="original-business-card" id="originalCardView" style="display: none;">
-                <div class="original-card-frame">
-                  <img src="assets/business_card.jpg" alt="Nimireaux Uganda Limited Official Business Card" class="original-card-img" />
-                  <a href="assets/business_card.jpg" download="Nimireaux_Uganda_Business_Card.jpg" class="card-dl-btn">
-                    <i class="fa-solid fa-download"></i> Download Card Image
-                  </a>
-                </div>
-              </div>
-
-              <!-- Action Chips -->
-              <div class="quick-connect-cards">
-                <a href="https://wa.me/256744135549?text=Hello%20Nimireaux%20Uganda%2C%20I%20am%20inquiring%20about%20grain%20milling%20services." target="_blank" class="connect-chip whatsapp-chip">
-                  <i class="fa-brands fa-whatsapp"></i>
-                  <div>
-                    <strong>Chat on WhatsApp</strong>
-                    <span>Instant response desk</span>
-                  </div>
-                </a>
-                <a href="tel:+256744135549" class="connect-chip call-chip">
-                  <i class="fa-solid fa-phone-volume"></i>
-                  <div>
-                    <strong>Direct Call Hotline</strong>
-                    <span>+256 744 135 549</span>
-                  </div>
-                </a>
-              </div>
-            </div>
-
-            <!-- Column 2: Official RFQ Form -->
-            <div class="rfq-column glass-card">
-              <h3 class="rfq-title">
-                <i class="fa-solid fa-file-invoice"></i> Request for Quotation (RFQ)
-              </h3>
-              <p class="rfq-subtitle">Submit your processing or wholesale requirements. Our commercial desk responds within 4 hours.</p>
-
-              <form id="rfqForm" onsubmit="handleFormSubmit(event)">
+            <!-- 3D Holographic Tilt Card -->
+            <div class="presidential-card-wrapper" id="cardWrapper" onmousemove="handleCardTilt(event)" onmouseleave="resetCardTilt()">
+              <div class="presidential-card" id="presidentialCard">
                 
-                <div class="form-row">
-                  <div class="form-group">
-                    <label for="clientName">Full Name / Organization *</label>
-                    <input type="text" id="clientName" required placeholder="e.g. Samuel Kigozi / Victoria Mills" />
+                <div class="card-shimmer-foil"></div>
+                
+                <div class="pcard-body">
+                  
+                  <div class="pcard-top">
+                    <div class="pcard-logo-frame">
+                      <img src="assets/logo.png" alt="Nimireaux Official Crest" class="pcard-logo-img" />
+                    </div>
+                    <div class="pcard-corp-text">
+                      <h3 class="pcard-name">NIMIREAUX</h3>
+                      <h4 class="pcard-country">UGANDA LIMITED</h4>
+                      <div class="pcard-core-tag">CORE SERVICES</div>
+                      <p class="pcard-core-desc">Grain Processing and other Milling Services</p>
+                    </div>
                   </div>
-                  <div class="form-group">
-                    <label for="clientPhone">Phone Number *</label>
-                    <input type="tel" id="clientPhone" required placeholder="+256 7..." />
+
+                  <div class="pcard-brass-divider"></div>
+
+                  <div class="pcard-contacts-deck">
+                    <div class="pcard-emails-row">
+                      <a href="mailto:info@nimireaux.com" class="p-link">info@nimireaux.com</a>
+                      <span class="p-bar">|</span>
+                      <a href="mailto:sales@nimireaux.com" class="p-link">sales@nimireaux.com</a>
+                      <span class="p-bar">|</span>
+                      <a href="mailto:accounts@nimireaux.com" class="p-link">accounts@nimireaux.com</a>
+                    </div>
+
+                    <div class="pcard-phones-row">
+                      <a href="tel:+256744135549" class="p-phone">+256 744 135 549</a>
+                      <span class="p-phone-sep">&bull;</span>
+                      <a href="tel:+256783688363" class="p-phone">+256 783 688 363</a>
+                    </div>
+                  </div>
+
+                  <div class="pcard-motto">
+                    <span>PURE NUTRITION. POWERING POSSIBILITIES.</span>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <!-- Instant VIP Hotline Triggers -->
+            <div class="vip-actions-deck">
+              <a href="https://wa.me/256744135549?text=Hello%20Nimireaux%20Uganda%2C%20I%20am%20inquiring%20about%20commercial%20grain%20milling%20services." target="_blank" class="vip-btn wa-vip">
+                <i class="fa-brands fa-whatsapp"></i>
+                <div>
+                  <strong>WhatsApp Commercial Desk</strong>
+                  <span>Instant executive response</span>
+                </div>
+              </a>
+              <a href="tel:+256744135549" class="vip-btn call-vip">
+                <i class="fa-solid fa-phone-volume"></i>
+                <div>
+                  <strong>Direct Telephone Hotline</strong>
+                  <span>+256 744 135 549</span>
+                </div>
+              </a>
+            </div>
+
+          </div>
+
+          <!-- Column 2: The Haute Couture Request for Quotation (RFQ) Protocol -->
+          <div class="act-visual-side">
+            <div class="haute-rfq-salon">
+              <div class="hrs-header">
+                <span class="hrs-badge"><i class="fa-solid fa-feather-pointed"></i> OFFICIAL DISPATCH PROTOCOL</span>
+                <h3 class="hrs-title">Request for Official Quotation</h3>
+                <p class="hrs-subtitle">Specify your contract processing requirements, target tonnages, or wholesale purchase orders. You will receive a stamped commercial offer within 4 business hours.</p>
+              </div>
+
+              <form id="prestigeRfqForm" onsubmit="handlePrestigeSubmit(event)">
+                <div class="form-dual-row">
+                  <div class="f-group">
+                    <label>Principal Representative</label>
+                    <input type="text" id="pName" placeholder="e.g. Christine Nakato" required />
+                  </div>
+                  <div class="f-group">
+                    <label>Enterprise / Organization</label>
+                    <input type="text" id="pOrg" placeholder="e.g. Nile Agro Exporters / WFP" required />
                   </div>
                 </div>
 
-                <div class="form-row">
-                  <div class="form-group">
-                    <label for="clientEmail">Email Address *</label>
-                    <input type="email" id="clientEmail" required placeholder="yourname@domain.com" />
+                <div class="form-dual-row">
+                  <div class="f-group">
+                    <label>Official Commercial Email</label>
+                    <input type="email" id="pEmail" placeholder="e.g. corporate@domain.com" required />
                   </div>
-                  <div class="form-group">
-                    <label for="inquiryType">Inquiry Type *</label>
-                    <select id="inquiryType" required>
-                      <option value="commercial-maize">Commercial Maize Flour Supply</option>
-                      <option value="toll-milling">Custom Contract / Toll Milling</option>
-                      <option value="wheat-processing">Wheat &amp; Bakery Flour Orders</option>
-                      <option value="composite-porridge">School &amp; Institutional Porridge</option>
-                      <option value="animal-feed">Bulk Maize Bran / Livestock Feed</option>
-                      <option value="other">General Commercial Inquiry</option>
+                  <div class="f-group">
+                    <label>Direct Phone / WhatsApp</label>
+                    <input type="tel" id="pPhone" placeholder="e.g. +256 7XX XXX XXX" required />
+                  </div>
+                </div>
+
+                <div class="form-dual-row">
+                  <div class="f-group">
+                    <label>Service or Product Requirement</label>
+                    <select id="pService">
+                      <option value="toll_maize">Contract Toll Maize Milling (Grade 1)</option>
+                      <option value="wholesale_posho">Wholesale Superfine Posho Flour (Bags)</option>
+                      <option value="wheat_milling">Specialty Hard Wheat Flour Processing</option>
+                      <option value="animal_bran">Livestock Feed Bran Bulk Supply</option>
+                      <option value="unbs_fortification">UNBS Fortification Micro-Dosing Contract</option>
                     </select>
                   </div>
-                </div>
-
-                <div class="form-row">
-                  <div class="form-group">
-                    <label for="estimatedVolume">Estimated Volume (Tonnage or Bags)</label>
-                    <input type="text" id="estimatedVolume" placeholder="e.g. 15 Metric Tons / 500 Bags" />
-                  </div>
-                  <div class="form-group">
-                    <label for="deliveryLocation">Delivery Location / Destination</label>
-                    <input type="text" id="deliveryLocation" placeholder="e.g. Kampala, Jinja, Gulu, Export" />
+                  <div class="f-group">
+                    <label>Estimated Batch Volume</label>
+                    <input type="text" id="pVolume" placeholder="e.g. 100 Metric Tons" />
                   </div>
                 </div>
 
-                <div class="form-group">
-                  <label for="clientNotes">Specific Milling Instructions / Packaging</label>
-                  <textarea id="clientNotes" rows="3" placeholder="Provide mesh preferences, delivery date targets, or contract tolling specs..."></textarea>
+                <div class="f-group">
+                  <label>Project Logistics &amp; Packaging Notes</label>
+                  <textarea id="pNotes" rows="3" placeholder="Specify packaging denominations (25kg/50kg), delivery destination in Uganda, or special quality criteria..."></textarea>
                 </div>
 
-                <button type="submit" class="btn-primary w-100" id="submitRfqBtn">
-                  <span>Submit Official Inquiry</span>
+                <button type="submit" class="btn-royal-large w-100" id="prestigeSubmitBtn">
+                  <span>TRANSMIT EXECUTIVE INQUIRY</span>
                   <i class="fa-solid fa-paper-plane"></i>
                 </button>
               </form>
 
-              <div id="formSuccessToast" class="form-success-toast">
+              <div class="prestige-toast" id="prestigeToast" style="display: none;">
                 <i class="fa-solid fa-circle-check"></i>
                 <div>
-                  <strong>Inquiry Dispatched Successfully!</strong>
-                  <p>Our sales desk at <em>sales@nimireaux.com</em> has received your specifications. A confirmation email has been logged.</p>
+                  <strong>Official Inquiry Received &amp; Logged</strong>
+                  <span>Our commercial desk has dispatched your brief to sales@nimireaux.com. An executive will respond within 4 hours.</span>
                 </div>
               </div>
-
             </div>
-
           </div>
 
         </div>
+
       </div>
     </section>
 
   </main>
 
   <!-- =========================================================================
-       BOTTOM HORIZONTAL SCRUBBER TIMELINE BAR (Matching the reference video)
-       Click or scroll to explore all 7 slides with distinct images
+       FLOATING PRESTIGE CAPSULE SCRUBBER DOCK
        ========================================================================= -->
-  <div class="deck-timeline-dock" id="timelineDock">
-    <div class="timeline-container">
+  <div class="prestige-capsule-dock" id="capsuleDock">
+    <div class="capsule-shell">
       
-      <div class="timeline-meta-bar">
-        <span class="timeline-hint">
-          <i class="fa-solid fa-arrows-up-down"></i> SCROLL OR CLICK TO EXPLORE ALL 7 SLIDES
-        </span>
-        <span class="timeline-counter-pill" id="dockCounter">01 / 07</span>
+      <!-- Stepper Arrows -->
+      <button class="capsule-arrow" onclick="prevAct()" aria-label="Previous Act">
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+
+      <!-- Center Progress Track -->
+      <div class="capsule-track-wrap">
+        <div class="capsule-meta">
+          <span class="cm-act-name" id="dockActName">I &bull; PROLOGUE</span>
+          <span class="cm-counter" id="dockCounter">01 / 07</span>
+        </div>
+        <div class="capsule-hairline">
+          <div class="capsule-fill" id="dockProgressFill" style="width: 14.28%;"></div>
+        </div>
       </div>
 
-      <!-- Real-Time Progress Bar -->
-      <div class="dock-track">
-        <div class="dock-fill-line" id="dockFillLine" style="width: 14.28%;"></div>
-      </div>
-
-      <!-- 7 Slide Checkpoint Buttons -->
-      <div class="dock-nodes-grid" id="dockNodes">
-        
-        <button class="dock-node active" data-slide="0" onclick="goToSlide(0)">
-          <span class="dn-num">01</span>
-          <span class="dn-label">Vision</span>
-        </button>
-
-        <button class="dock-node" data-slide="1" onclick="goToSlide(1)">
-          <span class="dn-num">02</span>
-          <span class="dn-label">Heritage</span>
-        </button>
-
-        <button class="dock-node" data-slide="2" onclick="goToSlide(2)">
-          <span class="dn-num">03</span>
-          <span class="dn-label">Services</span>
-        </button>
-
-        <button class="dock-node" data-slide="3" onclick="goToSlide(3)">
-          <span class="dn-num">04</span>
-          <span class="dn-label">Process</span>
-        </button>
-
-        <button class="dock-node" data-slide="4" onclick="goToSlide(4)">
-          <span class="dn-num">05</span>
-          <span class="dn-label">Products</span>
-        </button>
-
-        <button class="dock-node" data-slide="5" onclick="goToSlide(5)">
-          <span class="dn-num">06</span>
-          <span class="dn-label">Calculator</span>
-        </button>
-
-        <button class="dock-node" data-slide="6" onclick="goToSlide(6)">
-          <span class="dn-num">07</span>
-          <span class="dn-label">Contact</span>
-        </button>
-
-      </div>
+      <!-- Stepper Next Arrow -->
+      <button class="capsule-arrow" onclick="nextAct()" aria-label="Next Act">
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
 
     </div>
   </div>
 
+  <!-- JavaScript -->
   <script src="app.js"></script>
 </body>
 </html>
