@@ -422,10 +422,16 @@
               </div>
             </div>
 
-            <button class="btn-royal" onclick="goToAct(4)">
-              <span>DISCOVER THE PRIVATE RESERVE</span>
-              <i class="fa-solid fa-arrow-right"></i>
-            </button>
+            <div class="act-actions-row">
+              <button class="btn-royal" onclick="goToAct(4)">
+                <span>DISCOVER THE PRIVATE RESERVE</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+              <button type="button" class="btn-royal-outline" onclick="openCoaModal()">
+                <i class="fa-solid fa-file-shield"></i>
+                <span>SPECIFICATIONS &amp; COA</span>
+              </button>
+            </div>
           </div>
 
           <div class="act-visual-side">
@@ -817,6 +823,13 @@
                   <span>Ask questions &amp; direct advisory</span>
                 </div>
               </button>
+              <button type="button" class="vip-btn pdf-vip" onclick="openCoaModal()">
+                <i class="fa-solid fa-file-pdf"></i>
+                <div>
+                  <strong>Corporate Dossier &amp; COA</strong>
+                  <span>Download Spec Sheet &amp; Assay (PDF)</span>
+                </div>
+              </button>
             </div>
 
           </div>
@@ -929,6 +942,145 @@
   </div>
 
   <!-- =========================================================================
+       HAUTE COUTURE CERTIFICATE OF ANALYSIS & CORPORATE DOSSIER MODAL
+       ========================================================================= -->
+  <div class="coa-modal-overlay" id="coaModalOverlay" onclick="closeCoaModal()"></div>
+  
+  <div class="coa-modal-dialog" id="coaModalDialog" role="dialog" aria-modal="true" aria-labelledby="coaModalTitle">
+    <div class="coa-modal-shell">
+      
+      <!-- Modal Top Bar -->
+      <div class="coa-modal-header">
+        <div class="coa-header-brand">
+          <div class="coa-crest-badge">
+            <img src="assets/logo.png" alt="Nimireaux Crest" />
+          </div>
+          <div>
+            <div class="coa-protocol-tag">
+              <span class="coa-gold-dot"></span>
+              <span>OFFICIAL TECHNICAL DOSSIER &bull; SPEC SHEET &amp; COA</span>
+            </div>
+            <h3 class="coa-modal-title" id="coaModalTitle">Certificate of Analysis &amp; Product Specification</h3>
+            <p class="coa-modal-subtitle">Nimireaux Uganda Limited &bull; Quality Assurance Laboratories, Kampala</p>
+          </div>
+        </div>
+        <button class="coa-close-btn" onclick="closeCoaModal()" aria-label="Close Preview">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Verified Standards & Badges Ribbon -->
+      <div class="coa-badges-ribbon">
+        <span class="coa-ribbon-item"><i class="fa-solid fa-stamp"></i> UNBS Q-MARK CERTIFIED</span>
+        <span class="coa-ribbon-item"><i class="fa-solid fa-shield-halved"></i> EAS 768 FORTIFIED</span>
+        <span class="coa-ribbon-item"><i class="fa-solid fa-dna"></i> 100% NON-GMO CULTIVARS</span>
+        <span class="coa-ribbon-item"><i class="fa-solid fa-check-double"></i> BATCH #NMR-2026-UG88</span>
+      </div>
+
+      <!-- Laboratory Analytics Spec Table -->
+      <div class="coa-modal-body">
+        <div class="coa-table-wrapper">
+          <table class="coa-spec-table">
+            <thead>
+              <tr>
+                <th>ANALYTICAL PARAMETER</th>
+                <th>CERTIFIED SPECIFICATION</th>
+                <th>STATUTORY LIMIT (UNBS)</th>
+                <th>TEST METHODOLOGY</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Moisture Content</strong></td>
+                <td><span class="coa-val-good">12.4% &plusmn; 0.3%</span></td>
+                <td>Max 13.5%</td>
+                <td>ISO 712 / NIR Spectrometry</td>
+              </tr>
+              <tr>
+                <td><strong>Total Aflatoxins (B1+B2+G1+G2)</strong></td>
+                <td><span class="coa-val-good">0.0 ppb (Undetectable)</span></td>
+                <td>Max 10.0 ppb</td>
+                <td>HPLC Immunoaffinity / Fluorometry</td>
+              </tr>
+              <tr>
+                <td><strong>Aflatoxin B1</strong></td>
+                <td><span class="coa-val-good">&lt; 0.5 ppb</span></td>
+                <td>Max 5.0 ppb</td>
+                <td>Enzyme-Linked Immunoassay (ELISA)</td>
+              </tr>
+              <tr>
+                <td><strong>Crude Protein (N &times; 6.25)</strong></td>
+                <td><span class="coa-val-good">9.20% (Dry Basis)</span></td>
+                <td>Min 8.0%</td>
+                <td>Kjeldahl Combustion Method</td>
+              </tr>
+              <tr>
+                <td><strong>Crude Fat</strong></td>
+                <td><span class="coa-val-good">1.35%</span></td>
+                <td>Max 2.0%</td>
+                <td>Soxhlet Solvent Extraction</td>
+              </tr>
+              <tr>
+                <td><strong>Total Ash</strong></td>
+                <td><span class="coa-val-good">0.48%</span></td>
+                <td>Max 0.70%</td>
+                <td>550 &deg;C Muffle Furnace</td>
+              </tr>
+              <tr>
+                <td><strong>Vitamin A (Retinyl Palmitate)</strong></td>
+                <td><span class="coa-val-gold">2.2 &plusmn; 0.3 mg/kg</span></td>
+                <td>Min 1.5 mg/kg</td>
+                <td>High-Performance Liquid Chromatography</td>
+              </tr>
+              <tr>
+                <td><strong>Iron (Sodium Feredetate / NaFeEDTA)</strong></td>
+                <td><span class="coa-val-gold">48.0 &plusmn; 5.0 mg/kg</span></td>
+                <td>Min 40.0 mg/kg</td>
+                <td>Atomic Absorption Spectrophotometry</td>
+              </tr>
+              <tr>
+                <td><strong>Zinc (Zinc Oxide)</strong></td>
+                <td><span class="coa-val-gold">42.5 &plusmn; 4.0 mg/kg</span></td>
+                <td>Min 35.0 mg/kg</td>
+                <td>Flame Photometry (AOAC 999.11)</td>
+              </tr>
+              <tr>
+                <td><strong>Granulometry (&lt; 250 &micro;m)</strong></td>
+                <td><span class="coa-val-good">98.6% Passes Screen</span></td>
+                <td>Min 95.0%</td>
+                <td>Rotap Mechanical Sieve Analysis</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="coa-packaging-summary">
+          <div class="cps-box">
+            <span class="cps-title"><i class="fa-solid fa-box-archive"></i> Food-Grade Packaging:</span>
+            <span>5 kg, 10 kg, 25 kg, and 50 kg multi-ply woven polypropylene bags with food-grade UV-barrier liners. Private toll labelling available for institutional partners.</span>
+          </div>
+          <div class="cps-box">
+            <span class="cps-title"><i class="fa-solid fa-certificate"></i> Official Issuer:</span>
+            <span>Nimireaux Uganda Limited &bull; Quality Assurance Directorate &bull; Kampala, Uganda &bull; sales@nimireaux.com</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Footer with Download Trigger -->
+      <div class="coa-modal-footer">
+        <a href="assets/Nimireaux_Corporate_Dossier_Specifications.pdf" download="Nimireaux_Corporate_Dossier_Specifications.pdf" class="btn-royal-large">
+          <i class="fa-solid fa-file-pdf"></i>
+          <span>DOWNLOAD COMPLETE OFFICIAL DOSSIER (PDF - 1.4 MB)</span>
+        </a>
+        <button type="button" class="btn-royal-outline" onclick="closeCoaModal()">
+          <span>RETURN TO PRESENTATION</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =========================================================================
        MAISON AI CONCIERGE DRAWER & INTELLIGENCE SUITE
        ========================================================================= -->
   <!-- Backdrop Blur Overlay -->
@@ -966,6 +1118,7 @@
         <button class="ai-chip" onclick="askAiPreset('How does your commercial toll milling service work?')">⚙️ Toll Milling Process</button>
         <button class="ai-chip" onclick="askAiPreset('What are your nutritional fortification standards?')">🔬 Vitamin &amp; Mineral Fortification</button>
         <button class="ai-chip" onclick="askAiPreset('What are the minimum order quantities (MOQ) and delivery coverage?')">📦 MOQ &amp; East Africa Logistics</button>
+        <button class="ai-chip" onclick="askAiPreset('How do I download the official corporate dossier and flour specifications PDF?')">📄 Corporate Dossier (PDF)</button>
         <button class="ai-chip" onclick="askAiPreset('How do I contact the executive directors directly?')">📞 Executive Contacts</button>
       </div>
     </div>

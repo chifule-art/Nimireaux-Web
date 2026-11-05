@@ -645,6 +645,29 @@ if (soundToggleBtn) {
    ========================================================================== */
 
 let isAiDrawerOpen = false;
+let isCoaModalOpen = false;
+
+function openCoaModal() {
+  const modal = document.getElementById('coaModalDialog');
+  const overlay = document.getElementById('coaModalOverlay');
+  if (!modal || !overlay) return;
+
+  isCoaModalOpen = true;
+  modal.classList.add('open');
+  overlay.classList.add('open');
+  playAcousticChime('transition');
+}
+
+function closeCoaModal() {
+  const modal = document.getElementById('coaModalDialog');
+  const overlay = document.getElementById('coaModalOverlay');
+  if (!modal || !overlay) return;
+
+  isCoaModalOpen = false;
+  modal.classList.remove('open');
+  overlay.classList.remove('open');
+  playAcousticChime('click');
+}
 
 function toggleAiDrawer(forceOpen) {
   const drawer = document.getElementById('aiConciergeDrawer');
@@ -672,10 +695,11 @@ function toggleAiDrawer(forceOpen) {
   }
 }
 
-// Close drawer on Escape key
+// Close drawer or COA modal on Escape key
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && isAiDrawerOpen) {
-    toggleAiDrawer(false);
+  if (e.key === 'Escape') {
+    if (isCoaModalOpen) closeCoaModal();
+    if (isAiDrawerOpen) toggleAiDrawer(false);
   }
 });
 
@@ -793,6 +817,25 @@ function escapeHtml(text) {
    ========================================================================== */
 function generateAiIntelligenceResponse(query) {
   const q = query.toLowerCase();
+
+  // 0. CORPORATE DOSSIER, SPEC SHEETS & CERTIFICATE OF ANALYSIS (PDF)
+  if (q.includes('dossier') || q.includes('spec') || q.includes('pdf') || q.includes('brochure') || q.includes('coa') || q.includes('certificate') || q.includes('profile') || q.includes('download') || q.includes('document') || q.includes('catalog')) {
+    return {
+      text: `
+        <p><strong>Official Corporate Profile &amp; Quality Specifications (2026 Dossier):</strong></p>
+        <p>You can download our stamped corporate specifications and laboratory Certificate of Analysis (COA) containing verified UNBS Q-Mark and EAS 768 laboratory metrics:</p>
+        <ul>
+          <li><strong>Document:</strong> Nimireaux Corporate Dossier &amp; Specifications</li>
+          <li><strong>Format:</strong> High-Resolution Official PDF (1.4 MB)</li>
+          <li><strong>Includes:</strong> Physical/chemical metrics, micronutrient fortification targets, packaging dimensions, and commercial toll milling terms.</li>
+        </ul>
+      `,
+      actions: [
+        { label: 'Download Official PDF (1.4 MB)', href: 'assets/Nimireaux_Corporate_Dossier_Specifications.pdf', target: '_blank', className: 'ai-action-pill' },
+        { label: 'Preview COA Spec Sheet', onClick: 'openCoaModal(); toggleAiDrawer(false);' }
+      ]
+    };
+  }
 
   // 1. PRODUCTS & FLOUR GRADES
   if (q.includes('product') || q.includes('flour') || q.includes('grade') || q.includes('posho') || q.includes('super') || q.includes('bran') || q.includes('whole grain') || q.includes('pack')) {
