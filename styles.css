@@ -1958,58 +1958,98 @@ html, body {
   box-shadow: 0 8px 24px rgba(201, 154, 62, 0.25);
 }
 
-/* Floating AI Concierge Trigger (Bottom Right) */
+/* Floating AI Concierge Trigger (Free-Floating & Draggable on all pages) */
 .ai-floating-trigger {
   position: fixed;
-  bottom: 26px;
+  bottom: 28px;
   right: 28px;
-  z-index: 150;
+  z-index: 280;
   display: flex;
   align-items: center;
   gap: 12px;
-  cursor: pointer;
-  transition: transform 0.3s var(--p-ease-couture);
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  animation: luxuryFloatMotion 5s ease-in-out infinite;
+  transition: transform 0.3s var(--p-ease-couture), box-shadow 0.3s ease;
+}
+
+@keyframes luxuryFloatMotion {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-6px) rotate(1deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-6px) rotate(-1deg);
+  }
 }
 
 .ai-floating-trigger:hover {
-  transform: translateY(-3px) scale(1.03);
+  transform: translateY(-3px) scale(1.04);
+}
+
+.ai-floating-trigger.dragging {
+  cursor: grabbing !important;
+  animation: none !important;
+  transition: none !important;
+  transform: scale(1.08) !important;
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 25px rgba(201, 154, 62, 0.5));
 }
 
 .ai-trigger-halo {
   position: absolute;
-  inset: -6px;
+  inset: -8px;
   border-radius: 999px;
-  background: radial-gradient(circle, rgba(201, 154, 62, 0.4) 0%, transparent 70%);
-  animation: aiHaloPulse 3s infinite ease-in-out;
+  background: radial-gradient(circle, rgba(201, 154, 62, 0.45) 0%, rgba(20, 56, 35, 0.2) 50%, transparent 75%);
+  animation: aiHaloPulse 3.2s infinite ease-in-out;
   pointer-events: none;
 }
 
 @keyframes aiHaloPulse {
   0%, 100% { transform: scale(1); opacity: 0.6; }
-  50% { transform: scale(1.2); opacity: 0.9; }
+  50% { transform: scale(1.22); opacity: 0.95; }
 }
 
 .ai-trigger-disc {
   position: relative;
-  width: 52px;
-  height: 52px;
+  width: 54px;
+  height: 54px;
   border-radius: 50%;
   background: linear-gradient(135deg, #143823, #08140c);
   border: 1.5px solid var(--p-gold-pure);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(201, 154, 62, 0.35);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55), 0 0 25px rgba(201, 154, 62, 0.4);
   transition: all 0.3s ease;
 }
 
 .ai-floating-trigger:hover .ai-trigger-disc {
   border-color: var(--p-gold-glow);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 30px rgba(201, 154, 62, 0.55);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.65), 0 0 35px rgba(201, 154, 62, 0.6);
+}
+
+.ai-pulse-dot-float {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #22c55e;
+  border: 1.5px solid #08140c;
+  box-shadow: 0 0 10px #22c55e;
+  animation: aiDotBlink 2s infinite ease-in-out;
 }
 
 .ai-trigger-disc i {
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   color: var(--p-gold-pure);
   animation: aiSparkleRotate 3.5s ease-in-out infinite;
 }
@@ -2017,13 +2057,20 @@ html, body {
 .ai-trigger-badge {
   background: var(--p-bg-glass);
   border: 1px solid var(--p-border-glass);
-  backdrop-filter: blur(12px);
-  padding: 8px 14px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 8px 14px 8px 12px;
   border-radius: 999px;
   display: flex;
   align-items: center;
   gap: 8px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transition: all 0.25s ease;
+}
+
+.ai-floating-trigger:hover .ai-trigger-badge {
+  border-color: var(--p-gold-pure);
+  background: rgba(16, 35, 23, 0.88);
 }
 
 .ai-pulse-dot {
@@ -2033,6 +2080,19 @@ html, body {
   background: #22c55e;
   box-shadow: 0 0 10px #22c55e;
   animation: aiDotBlink 2s infinite ease-in-out;
+}
+
+.ai-drag-handle {
+  color: var(--p-text-muted);
+  font-size: 0.68rem;
+  margin-left: 2px;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.ai-floating-trigger:hover .ai-drag-handle {
+  opacity: 1;
+  color: var(--p-gold-pure);
 }
 
 @keyframes aiDotBlink {

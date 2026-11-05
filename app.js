@@ -93,6 +93,21 @@ function updateCapsuleDock() {
     const pct = ((currentAct + 1) / totalActs) * 100;
     fillEl.style.width = `${pct}%`;
   }
+
+  // Update floating AI context badge based on current page/act
+  const aiBadge = document.getElementById('aiBadgeText');
+  const actAiHints = [
+    'AI Concierge',
+    'Ask: Sourcing',
+    'Ask: Milling',
+    'Ask: Purity',
+    'Ask: Flours',
+    'Ask: Yields',
+    'Ask: Executive'
+  ];
+  if (aiBadge) {
+    aiBadge.textContent = actAiHints[currentAct] || 'AI Concierge';
+  }
 }
 
 /* ==========================================================================
@@ -928,8 +943,131 @@ function generateAiIntelligenceResponse(query) {
   };
 }
 
+/* ==========================================================================
+   FREE-FLOATING & DRAGGABLE PHYSICS ENGINE FOR AI BUTTON
+   ========================================================================== */
+function initDraggableAiTrigger() {
+  const trigger = document.getElementById('aiFloatingTrigger');
+  if (!trigger) return;
+
+  let isDragging = false;
+  let hasMoved = false;
+  let startX = 0;
+  let startY = 0;
+  let origLeft = 0;
+  let origTop = 0;
+
+  function onPointerDown(clientX, clientY) {
+    const rect = trigger.getBoundingClientRect();
+    startX = clientX;
+    startY = clientY;
+    origLeft = rect.left;
+    origTop = rect.top;
+    hasMoved = false;
+    isDragging = true;
+  }
+
+  function onPointerMove(clientX, clientY) {
+    if (!isDragging) return;
+    const dx = clientX - startX;
+    const dy = clientY - startY;
+
+    if (!hasMoved && (Math.abs(dx) > 5 || Math.abs(dy) > 5)) {
+      hasMoved = true;
+      trigger.classList.add('dragging');
+    }
+
+    if (hasMoved) {
+      const rect = trigger.getBoundingClientRect();
+      const w = rect.width;
+      const h = rect.height;
+
+      let newLeft = origLeft + dx;
+      let newTop = origTop + dy;
+
+      // Clamp within viewport
+      const pad = 12;
+      newLeft = Math.max(pad, Math.min(window.innerWidth - w - pad, newLeft));
+      newTop = Math.max(pad, Math.min(window.innerHeight - h - pad, newTop));
+
+      trigger.style.left = `${newLeft}px`;
+      trigger.style.top = `${newTop}px`;
+      trigger.style.bottom = 'auto';
+      trigger.style.right = 'auto';
+    }
+  }
+
+  function onPointerUp() {
+    if (!isDragging) return;
+    isDragging = false;
+    trigger.classList.remove('dragging');
+
+    if (!hasMoved) {
+      // Pure click without drag -> Toggle AI Drawer
+      toggleAiDrawer(true);
+    }
+  }
+
+  // Mouse Listeners
+  trigger.addEventListener('mousedown', (e) => {
+    // Only drag with primary mouse button
+    if (e.button !== 0) return;
+    e.preventDefault();
+    onPointerDown(e.clientX, e.clientY);
+
+    function onMouseMove(moveEvt) {
+      onPointerMove(moveEvt.clientX, moveEvt.clientY);
+    }
+
+    function onMouseUp() {
+      onPointerUp();
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseup', onMouseUp);
+    }
+
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseup', onMouseUp);
+  });
+
+  // Touch Listeners
+  trigger.addEventListener('touchstart', (e) => {
+    if (e.touches.length > 0) {
+      const t = e.touches[0];
+      onPointerDown(t.clientX, t.clientY);
+    }
+  }, { passive: true });
+
+  trigger.addEventListener('touchmove', (e) => {
+    if (isDragging && e.touches.length > 0) {
+      const t = e.touches[0];
+      onPointerMove(t.clientX, t.clientY);
+      if (hasMoved && e.cancelable) {
+        e.preventDefault(); // Prevent unwanted page scroll during drag
+      }
+    }
+  }, { passive: false });
+
+  trigger.addEventListener('touchend', () => {
+    onPointerUp();
+  });
+
+  // Keep inside viewport on window resize
+  window.addEventListener('resize', () => {
+    if (!trigger.style.left || trigger.style.left === 'auto') return;
+    const rect = trigger.getBoundingClientRect();
+    const pad = 12;
+    const maxLeft = window.innerWidth - rect.width - pad;
+    const maxTop = window.innerHeight - rect.height - pad;
+    let curLeft = parseFloat(trigger.style.left);
+    let curTop = parseFloat(trigger.style.top);
+    if (curLeft > maxLeft) trigger.style.left = `${Math.max(pad, maxLeft)}px`;
+    if (curTop > maxTop) trigger.style.top = `${Math.max(pad, maxTop)}px`;
+  });
+}
+
 // Initial Boot
 calculateConciergeYield();
 updateCapsuleDock();
+initDraggableAiTrigger();
 goToAct(0);
 

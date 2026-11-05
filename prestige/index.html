@@ -104,12 +104,6 @@
       <!-- Right Controls: Audio & Theme Switcher & Private Inquiry -->
       <div class="nav-amenities">
         
-        <!-- AI Concierge Quick Trigger -->
-        <button class="amenity-btn amenity-ai-pill" id="navAiBtn" onclick="toggleAiDrawer(true)" title="Summon Maison AI Concierge" aria-label="Open AI Assistant">
-          <i class="fa-solid fa-wand-magic-sparkles"></i>
-          <span class="ai-pill-text">AI Concierge</span>
-        </button>
-
         <!-- Palette Switcher: Noir Emerald <-> Champagne Ivory -->
         <button class="amenity-btn" id="themeToggleBtn" title="Switch Atmospheric Palette" aria-label="Toggle Theme">
           <i class="fa-solid fa-circle-half-stroke" id="themeIcon"></i>
@@ -1018,15 +1012,17 @@
 
   </aside>
 
-  <!-- Floating Luxury AI Concierge Trigger (Bottom Right) -->
-  <div class="ai-floating-trigger" id="aiFloatingTrigger" onclick="toggleAiDrawer(true)" title="Summon Maison AI Assistant">
+  <!-- Floating Luxury AI Concierge Trigger (Free-Floating & Draggable on all pages) -->
+  <div class="ai-floating-trigger" id="aiFloatingTrigger" title="Summon Maison AI Assistant (Click to open, Drag to move)">
     <div class="ai-trigger-halo"></div>
     <div class="ai-trigger-disc">
       <i class="fa-solid fa-wand-magic-sparkles"></i>
+      <span class="ai-pulse-dot-float"></span>
     </div>
-    <div class="ai-trigger-badge">
+    <div class="ai-trigger-badge" id="aiFloatingBadge">
       <span class="ai-pulse-dot"></span>
-      <span class="ai-badge-text">AI Concierge</span>
+      <span class="ai-badge-text" id="aiBadgeText">AI Concierge</span>
+      <span class="ai-drag-handle" title="Drag anywhere"><i class="fa-solid fa-grip-vertical"></i></span>
     </div>
   </div>
 
