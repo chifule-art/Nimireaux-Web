@@ -36,6 +36,17 @@ function goToChapter(index) {
     targetPanel.classList.add('active');
   }
 
+  // Synchronize Photographic Background Layer
+  const bgSlides = document.querySelectorAll('.chapter-bg-slide');
+  bgSlides.forEach(bg => {
+    const bgIdx = parseInt(bg.getAttribute('data-bg'));
+    if (bgIdx === index) {
+      bg.classList.add('active');
+    } else {
+      bg.classList.remove('active');
+    }
+  });
+
   currentChapter = index;
   updateDialProgress();
   updateMenuLinks();
