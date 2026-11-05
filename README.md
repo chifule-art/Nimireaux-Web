@@ -1,36 +1,37 @@
-# Nimireaux Uganda Limited — Official Web Presentation & Portal
+# 🌾 Nimireaux Uganda Limited — Luxury Web Platform & 7-Slide Deck
 
-**Tagline:** *Pure Nutrition. Powering Possibilities.*  
-**Industry:** Agro-Industrial Grain Milling, Micronutrient Fortification & Processing Services  
-**Location:** Uganda, East Africa  
+Official corporate digital platform for **Nimireaux Uganda Limited**, specialists in precision grain milling, nutrient fortification, and commercial agro-processing.
+
+> **Tagline:** *"PURE NUTRITION. POWERING POSSIBILITIES."*  
+> **Core Services:** *Grain Processing and other Milling Services*
 
 ---
 
-## 🌾 Interactive 7-Slide Presentation Deck Architecture
+## 🌾 Interactive 7-Slide Fullscreen Presentation Deck
 
-The website is engineered as a full-viewport, 7-slide luxury presentation deck with a live timeline scrubber dock, smooth trackpad/wheel navigation, keyboard arrow controls, and dedicated background imagery:
+The website is engineered as a full-viewport, 7-slide luxury presentation deck featuring a live horizontal timeline scrubber dock, smooth trackpad/wheel navigation, keyboard arrow controls, and dedicated high-resolution imagery for every slide:
 
 ### The 7 Slides
 1. **Slide 01 — Vision & Welcome**:
    - Golden wheat harvest imagery under morning sun.
-   - Brand insignia, core operational metrics, direct quote CTA.
+   - Official brand insignia, core operational metrics, direct quote CTA.
 2. **Slide 02 — Heritage & Mission**:
    - Fertile Ugandan farmlands imagery.
    - The 4 pillars: Sourcing Integrity, High-Extraction Starch Milling, UNBS & Fortification Standards, Circular Zero-Waste By-Products.
 3. **Slide 03 — Complete Milling Solutions**:
-   - Stainless steel industrial roller milling plant.
+   - Stainless steel industrial roller milling plant imagery.
    - 4 interactive tabbed machine specs: Commercial Maize, Wheat & Specialty Grains, Custom Toll Milling, Fortified Animal Feeds.
 4. **Slide 04 — Precision Process Pipeline**:
-   - Optical sorting & quality testing laboratory.
+   - Optical sorting & quality testing laboratory imagery.
    - 5-stage interactive workflow: Intake Assay, Destoning, Conditioning, Roller Milling, Bagging.
 5. **Slide 05 — Certified Products & Nutrition**:
-   - Superfine milled flour & cereal staples.
+   - Superfine milled flour & cereal staples imagery.
    - Interactive product selection carousel with dynamic nutritional facts label generator.
 6. **Slide 06 — Industrial Batch Yield Estimator**:
-   - Towering grain silos and bulk logistics.
+   - Towering grain silos and bulk logistics imagery.
    - Interactive tonnage slider (5 MT to 2,000 MT), commodity selector, extraction rate switcher, live turnaround hours, and instant transfer of estimates to the RFQ form.
 7. **Slide 07 — Commercial Desk, Digital Card & RFQ**:
-   - Executive agro corporate headquarters.
+   - Executive agro corporate headquarters imagery.
    - **Authentic Digital Business Card**: 1:1 replica of the official business card with interactive clickable email and phone links, plus a toggle to view/download the original printed card image.
    - **Quick Action Chips**: Instant 1-click WhatsApp chat link and direct phone dialers.
    - **Request for Quotation (RFQ) Form**: Live form with instant feedback.
@@ -39,7 +40,7 @@ The website is engineered as a full-viewport, 7-slide luxury presentation deck w
 
 ## 🎛️ Navigation Controls
 
-- **Bottom Horizontal Timeline Scrubber**: Displays real-time progress fill line, slide counter (`01 / 07`), and 7 clickable nodes.
+- **Bottom Horizontal Timeline Scrubber**: Real-time progress fill line, slide counter (`01 / 07`), and 7 clickable nodes.
 - **Mouse Wheel / Trackpad**: Smooth debounced scroll-snapping between slides.
 - **Keyboard Arrows**: <kbd>&larr;</kbd> / <kbd>&rarr;</kbd> or <kbd>&uarr;</kbd> / <kbd>&darr;</kbd> to switch slides.
 - **Top Sticky Navbar**: Direct links to all slides and instant quote trigger.
@@ -47,7 +48,7 @@ The website is engineered as a full-viewport, 7-slide luxury presentation deck w
 
 ---
 
-## 📁 File Structure
+## 📁 Project Structure
 
 ```
 Nimireaux web/
@@ -74,7 +75,6 @@ open index.html
 ---
 
 ## 📞 Official Contacts
-
 - **General Inquiries:** `info@nimireaux.com`
 - **Sales & Wholesale:** `sales@nimireaux.com`
 - **Accounts:** `accounts@nimireaux.com`
