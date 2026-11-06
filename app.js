@@ -397,8 +397,116 @@ function inquireProductReserve() {
 }
 
 /* ==========================================================================
-   ACT VI: INDUSTRIAL BATCH YIELD CONCIERGE
+   ACT VI: INDUSTRIAL BATCH YIELD CONCIERGE & COMMODITY MATRIX
    ========================================================================== */
+const CONCIERGE_COMMODITY_PROFILES = {
+  white_maize: {
+    name: 'White Dent Maize',
+    icon: 'fa-solid fa-seedling',
+    spec: 'Refined endosperm • UNBS US 2:2017 • 13.0% max moisture',
+    tag: 'EXTRACTION: 72%',
+    rateGrade1: 0.72,
+    rateWhole: 0.88,
+    millingSpeedMTPerHour: 15.0,
+    grade1Label: 'Grade 1 Superfine (72% Flour • 28% Feed Bran)',
+    wholeLabel: 'Whole Extraction (88% Flour • 12% Byproduct)',
+    flourDescription: 'Superfine Posho Flour (Pure White, high starch, low oil)',
+    branDescription: 'Nutritious White Maize Bran (UNBS compliant animal feed)',
+    insight: 'Uganda & Great Lakes benchmark grain. High endosperm purity delivers pristine white posho with maximum cooking swelling index and smooth texture.'
+  },
+  yellow_maize: {
+    name: 'Yellow Maize',
+    icon: 'fa-solid fa-sun',
+    spec: 'Beta-Carotene Rich • UNBS US 2:2017 • 12.8% max moisture',
+    tag: 'EXTRACTION: 69%',
+    rateGrade1: 0.69,
+    rateWhole: 0.86,
+    millingSpeedMTPerHour: 14.5,
+    grade1Label: 'Grade 1 Golden Flour (69% Flour • 31% Golden Bran)',
+    wholeLabel: 'Whole Golden Meal (86% Flour • 14% Byproduct)',
+    flourDescription: 'Fortified Golden Maize Flour (Carotenoid-dense, high protein)',
+    branDescription: 'High-Energy Golden Bran & Grits (High fat/protein for livestock)',
+    insight: 'Carotenoid-rich grain prized for high-energy poultry & livestock feed formulations, institutional catering, and fortified golden porridge.'
+  },
+  hard_wheat: {
+    name: 'Hard Wheat',
+    icon: 'fa-solid fa-wheat-awn',
+    spec: 'High-Gluten Milling Grade • Wet Gluten 28–32% • 12.0% moisture',
+    tag: 'EXTRACTION: 75%',
+    rateGrade1: 0.75,
+    rateWhole: 0.92,
+    millingSpeedMTPerHour: 12.5,
+    grade1Label: 'Refined Baker’s Atta (75% Flour • 25% Wheat Pollard/Bran)',
+    wholeLabel: '100% Whole Wheat Atta (92% Flour • 8% Coarse Bran)',
+    flourDescription: 'Premium Baker’s Flour (High gluten elasticity for commercial baking)',
+    branDescription: 'Wheat Pollard & Fine Bran (High fiber ruminant feed)',
+    insight: 'High-protein grain milled through precision roller mills for bakery elasticity, chapati softness, and industrial bread production.'
+  },
+  composite: {
+    name: 'Composite Grain',
+    icon: 'fa-solid fa-layer-group',
+    spec: 'Precision Blend (Millet, Sorghum, Soya & Maize) • 11.5% moisture',
+    tag: 'EXTRACTION: 78%',
+    rateGrade1: 0.78,
+    rateWhole: 0.90,
+    millingSpeedMTPerHour: 11.0,
+    grade1Label: 'Fortified Blend Flour (78% Flour • 22% Super Bran)',
+    wholeLabel: 'Whole Grain Porridge Meal (90% Flour • 10% Husk)',
+    flourDescription: 'Multi-Nutrient Porridge Flour (High calcium, iron, protein & zinc)',
+    branDescription: 'Multi-Grain Mineral Bran (Concentrated mineral dairy boost)',
+    insight: 'Multi-cereal formulation engineered for hospital clinical nutrition, early-childhood porridge, humanitarian relief, and high-energy wellness.'
+  }
+};
+
+function selectConciergeCommodity(key) {
+  playAcousticChime('click');
+  const targetInput = document.querySelector(`input[name="conciergeCommodity"][value="${key}"]`);
+  if (targetInput) targetInput.checked = true;
+
+  const commodityInputs = document.querySelectorAll('input[name="conciergeCommodity"]');
+  commodityInputs.forEach(input => {
+    const isTarget = input.value === key;
+    const parentPill = input.closest('.cc-pill');
+    if (parentPill) {
+      parentPill.classList.toggle('active', isTarget);
+      const icon = parentPill.querySelector('.pill-icon');
+      if (icon) {
+        icon.className = isTarget ? 'fa-solid fa-circle-dot pill-icon' : 'fa-regular fa-circle pill-icon';
+      }
+    }
+  });
+
+  // Adapt Extraction Labels to the selected grain
+  const profile = CONCIERGE_COMMODITY_PROFILES[key] || CONCIERGE_COMMODITY_PROFILES.white_maize;
+  const grade1Label = document.getElementById('labelGrade1');
+  const wholeLabel = document.getElementById('labelGradeWhole');
+  if (grade1Label) grade1Label.textContent = profile.grade1Label;
+  if (wholeLabel) wholeLabel.textContent = profile.wholeLabel;
+
+  calculateConciergeYield();
+}
+
+function selectConciergeGrade(key) {
+  playAcousticChime('click');
+  const targetInput = document.querySelector(`input[name="conciergeGrade"][value="${key}"]`);
+  if (targetInput) targetInput.checked = true;
+
+  const gradeInputs = document.querySelectorAll('input[name="conciergeGrade"]');
+  gradeInputs.forEach(input => {
+    const isTarget = input.value === key;
+    const parentPill = input.closest('.cc-pill');
+    if (parentPill) {
+      parentPill.classList.toggle('active', isTarget);
+      const icon = parentPill.querySelector('.pill-icon');
+      if (icon) {
+        icon.className = isTarget ? 'fa-solid fa-circle-dot pill-icon' : 'fa-regular fa-circle pill-icon';
+      }
+    }
+  });
+
+  calculateConciergeYield();
+}
+
 function updateConciergeSlider(val) {
   const label = document.getElementById('conciergeTonnageVal');
   if (label) label.textContent = `${val} METRIC TONS`;
@@ -410,14 +518,18 @@ function calculateConciergeYield() {
   if (!slider) return;
 
   const mt = parseFloat(slider.value) || 100;
+  const commodityRadio = document.querySelector('input[name="conciergeCommodity"]:checked');
+  const commKey = commodityRadio ? commodityRadio.value : 'white_maize';
+  const profile = CONCIERGE_COMMODITY_PROFILES[commKey] || CONCIERGE_COMMODITY_PROFILES.white_maize;
+
   const gradeRadio = document.querySelector('input[name="conciergeGrade"]:checked');
   const isWhole = gradeRadio && gradeRadio.value === 'whole';
 
-  const extractionRate = isWhole ? 0.88 : 0.72;
+  const extractionRate = isWhole ? profile.rateWhole : profile.rateGrade1;
   const flourMT = mt * extractionRate;
   const branMT = mt * (1 - extractionRate);
   const bags = Math.round((flourMT * 1000) / 50);
-  const hours = (mt / 15).toFixed(1);
+  const hours = (mt / profile.millingSpeedMTPerHour).toFixed(1);
 
   const fEl = document.getElementById('flourYieldNum');
   const bEl = document.getElementById('bagsYieldNum');
@@ -433,25 +545,57 @@ function calculateConciergeYield() {
   if (brEl) brEl.textContent = branMT.toFixed(1);
   if (tEl) tEl.textContent = hours;
 
-  if (fFill) fFill.style.width = `${Math.round(extractionRate * 100)}%`;
-  if (bFill) bFill.style.width = `${Math.round(extractionRate * 100)}%`;
-  if (brFill) brFill.style.width = `${Math.round((1 - extractionRate) * 100)}%`;
+  const flourPct = Math.round(extractionRate * 100);
+  const branPct = Math.round((1 - extractionRate) * 100);
+
+  if (fFill) fFill.style.width = `${flourPct}%`;
+  if (bFill) bFill.style.width = `${flourPct}%`;
+  if (brFill) brFill.style.width = `${branPct}%`;
+
+  // Update Telemetry Commodity Banner
+  const nameEl = document.getElementById('conciergeCommodityName');
+  const specEl = document.getElementById('conciergeCommoditySpec');
+  const tagEl = document.getElementById('conciergeCommodityTag');
+  const iconEl = document.getElementById('conciergeCommodityIcon');
+  const badgeEl = document.getElementById('conciergeMillingRateBadge');
+  const insightEl = document.getElementById('conciergeInsightText');
+
+  if (nameEl) nameEl.textContent = profile.name;
+  if (specEl) specEl.textContent = profile.spec;
+  if (tagEl) tagEl.textContent = `EXTRACTION: ${flourPct}%`;
+  if (iconEl) iconEl.className = profile.icon;
+  if (badgeEl) badgeEl.textContent = `ATELIER CAPACITY: ${profile.millingSpeedMTPerHour.toFixed(1)} MT/HR`;
+  if (insightEl) insightEl.textContent = profile.insight;
+
+  // Visual pulse feedback on recalculation
+  const portfolio = document.querySelector('.concierge-telemetry-portfolio');
+  if (portfolio) {
+    portfolio.classList.remove('telemetry-calc-pulse');
+    void portfolio.offsetWidth;
+    portfolio.classList.add('telemetry-calc-pulse');
+  }
 }
 
 function applyConciergeToInquiry() {
   playAcousticChime('click');
   const slider = document.getElementById('conciergeSlider');
   const mt = slider ? slider.value : '100';
-  const commodity = document.querySelector('input[name="conciergeCommodity"]:checked')?.value || 'white_maize';
+  const commodityRadio = document.querySelector('input[name="conciergeCommodity"]:checked');
+  const commKey = commodityRadio ? commodityRadio.value : 'white_maize';
+  const profile = CONCIERGE_COMMODITY_PROFILES[commKey] || CONCIERGE_COMMODITY_PROFILES.white_maize;
+  const gradeRadio = document.querySelector('input[name="conciergeGrade"]:checked');
+  const isWhole = gradeRadio && gradeRadio.value === 'whole';
+  const gradeText = isWhole ? profile.wholeLabel : profile.grade1Label;
+  const flourVal = document.getElementById('flourYieldNum')?.textContent || '72.0';
 
   goToAct(6);
 
   const volField = document.getElementById('pVolume');
   const notesField = document.getElementById('pNotes');
 
-  if (volField) volField.value = `${mt} Metric Tons (${commodity.replace('_', ' ').toUpperCase()})`;
+  if (volField) volField.value = `${mt} Metric Tons (${profile.name.toUpperCase()})`;
   if (notesField) {
-    notesField.value = `Industrial milling batch simulation: ${mt} MT of ${commodity.replace('_', ' ')}. Requesting official toll milling contract / bulk supply offer.`;
+    notesField.value = `Industrial milling batch simulation: ${mt} MT of ${profile.name} (${gradeText}). Estimated flour output: ${flourVal} MT. Requesting official toll milling contract / bulk supply offer.`;
   }
 }
 
@@ -460,17 +604,11 @@ function sendBatchToWhatsApp() {
   const slider = document.getElementById('conciergeSlider');
   const mt = slider ? slider.value : '100';
   const commodityRadio = document.querySelector('input[name="conciergeCommodity"]:checked');
+  const commKey = commodityRadio ? commodityRadio.value : 'white_maize';
+  const profile = CONCIERGE_COMMODITY_PROFILES[commKey] || CONCIERGE_COMMODITY_PROFILES.white_maize;
   const gradeRadio = document.querySelector('input[name="conciergeGrade"]:checked');
-
-  const commodityNames = {
-    white_maize: 'White Dent Maize',
-    yellow_maize: 'Yellow Maize',
-    hard_wheat: 'Hard Wheat',
-    composite: 'Composite Grain'
-  };
-
-  const commodityLabel = commodityRadio ? (commodityNames[commodityRadio.value] || commodityRadio.value) : 'White Dent Maize';
-  const gradeLabel = gradeRadio && gradeRadio.value === 'whole' ? 'Whole Extraction (88% Flour / 12% Byproduct)' : 'Grade 1 Superfine (72% Flour / 28% Feed Bran)';
+  const isWhole = gradeRadio && gradeRadio.value === 'whole';
+  const gradeText = isWhole ? profile.wholeLabel : profile.grade1Label;
 
   const flourVal = document.getElementById('flourYieldNum')?.textContent || '72.0';
   const bagsVal = document.getElementById('bagsYieldNum')?.textContent || '1,440';
@@ -478,9 +616,9 @@ function sendBatchToWhatsApp() {
   const hoursVal = document.getElementById('turnaroundNum')?.textContent || '6.7';
 
   const msg = `Hello Nimireaux Uganda Limited, I have simulated a commercial milling batch on your website:\n\n` +
-    `🌾 Raw Commodity: ${commodityLabel}\n` +
+    `🌾 Raw Commodity: ${profile.name}\n` +
     `⚖️ Intake Batch: ${mt} Metric Tons\n` +
-    `✨ Milling Profile: ${gradeLabel}\n` +
+    `✨ Milling Profile: ${gradeText}\n` +
     `📦 Net Flour Output: ${flourVal} MT (${bagsVal} x 50kg Bags)\n` +
     `🐄 Byproduct Animal Bran: ${branVal} MT\n` +
     `⏱️ Production Schedule: ~${hoursVal} Hours\n\n` +

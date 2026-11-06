@@ -632,21 +632,25 @@
               <!-- Commodity Picker -->
               <div class="cc-group">
                 <label class="cc-label">SELECT RAW COMMODITY</label>
-                <div class="cc-radios-row">
-                  <label class="cc-pill active">
-                    <input type="radio" name="conciergeCommodity" value="white_maize" checked onchange="calculateConciergeYield()" />
+                <div class="cc-radios-row" id="conciergeCommodityGroup">
+                  <label class="cc-pill active" onclick="selectConciergeCommodity('white_maize')">
+                    <input type="radio" name="conciergeCommodity" value="white_maize" checked onchange="selectConciergeCommodity('white_maize')" />
+                    <i class="fa-solid fa-circle-dot pill-icon"></i>
                     <span>White Dent Maize</span>
                   </label>
-                  <label class="cc-pill">
-                    <input type="radio" name="conciergeCommodity" value="yellow_maize" onchange="calculateConciergeYield()" />
+                  <label class="cc-pill" onclick="selectConciergeCommodity('yellow_maize')">
+                    <input type="radio" name="conciergeCommodity" value="yellow_maize" onchange="selectConciergeCommodity('yellow_maize')" />
+                    <i class="fa-regular fa-circle pill-icon"></i>
                     <span>Yellow Maize</span>
                   </label>
-                  <label class="cc-pill">
-                    <input type="radio" name="conciergeCommodity" value="hard_wheat" onchange="calculateConciergeYield()" />
+                  <label class="cc-pill" onclick="selectConciergeCommodity('hard_wheat')">
+                    <input type="radio" name="conciergeCommodity" value="hard_wheat" onchange="selectConciergeCommodity('hard_wheat')" />
+                    <i class="fa-regular fa-circle pill-icon"></i>
                     <span>Hard Wheat</span>
                   </label>
-                  <label class="cc-pill">
-                    <input type="radio" name="conciergeCommodity" value="composite" onchange="calculateConciergeYield()" />
+                  <label class="cc-pill" onclick="selectConciergeCommodity('composite')">
+                    <input type="radio" name="conciergeCommodity" value="composite" onchange="selectConciergeCommodity('composite')" />
+                    <i class="fa-regular fa-circle pill-icon"></i>
                     <span>Composite Grain</span>
                   </label>
                 </div>
@@ -671,14 +675,16 @@
               <!-- Extraction Grade Profile -->
               <div class="cc-group">
                 <label class="cc-label">EXTRACTION REFINEMENT PROFILE</label>
-                <div class="cc-radios-row">
-                  <label class="cc-pill active">
-                    <input type="radio" name="conciergeGrade" value="grade1" checked onchange="calculateConciergeYield()" />
-                    <span>Grade 1 Superfine (72% Flour &bull; 28% Feed Bran)</span>
+                <div class="cc-radios-row" id="conciergeGradeGroup">
+                  <label class="cc-pill active" onclick="selectConciergeGrade('grade1')">
+                    <input type="radio" name="conciergeGrade" value="grade1" checked onchange="selectConciergeGrade('grade1')" />
+                    <i class="fa-solid fa-circle-dot pill-icon"></i>
+                    <span id="labelGrade1">Grade 1 Superfine (72% Flour &bull; 28% Feed Bran)</span>
                   </label>
-                  <label class="cc-pill">
-                    <input type="radio" name="conciergeGrade" value="whole" onchange="calculateConciergeYield()" />
-                    <span>Whole Extraction (88% Flour &bull; 12% Byproduct)</span>
+                  <label class="cc-pill" onclick="selectConciergeGrade('whole')">
+                    <input type="radio" name="conciergeGrade" value="whole" onchange="selectConciergeGrade('whole')" />
+                    <i class="fa-regular fa-circle pill-icon"></i>
+                    <span id="labelGradeWhole">Whole Extraction (88% Flour &bull; 12% Byproduct)</span>
                   </label>
                 </div>
               </div>
@@ -690,7 +696,17 @@
             <div class="concierge-telemetry-portfolio">
               <div class="ctp-head">
                 <span class="ctp-title"><i class="fa-solid fa-chart-column"></i> PRODUCTION FORECAST TELEMETRY</span>
-                <span class="ctp-badge">ATELIER CAPACITY: 15 MT/HR</span>
+                <span class="ctp-badge" id="conciergeMillingRateBadge">ATELIER CAPACITY: 15.0 MT/HR</span>
+              </div>
+
+              <!-- Active Commodity Specification Banner -->
+              <div class="ctp-commodity-banner" id="conciergeCommodityBanner">
+                <div class="ccb-icon"><i class="fa-solid fa-seedling" id="conciergeCommodityIcon"></i></div>
+                <div class="ccb-info">
+                  <div class="ccb-name" id="conciergeCommodityName">White Dent Maize</div>
+                  <div class="ccb-spec" id="conciergeCommoditySpec">Refined endosperm &bull; UNBS US 2:2017 &bull; 13.0% max moisture</div>
+                </div>
+                <div class="ccb-pill-tag" id="conciergeCommodityTag">EXTRACTION: 72%</div>
               </div>
 
               <div class="ctp-meters-deck">
@@ -735,6 +751,12 @@
                   <span class="cm-sub">Continuous 24/7 industrial scheduling</span>
                 </div>
 
+              </div>
+
+              <!-- Real-Time Agricultural Milling Insight -->
+              <div class="ctp-insight-callout" id="conciergeInsightCallout">
+                <i class="fa-solid fa-circle-info"></i>
+                <span id="conciergeInsightText">Uganda &amp; Great Lakes benchmark grain. High endosperm purity delivers pristine white posho with maximum cooking swelling index and smooth texture.</span>
               </div>
 
               <div class="concierge-actions-deck">
