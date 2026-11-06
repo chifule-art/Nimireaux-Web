@@ -814,6 +814,579 @@ if (soundToggleBtn) {
 }
 
 /* ==========================================================================
+   EAST AFRICA GRAIN COMMODITY EXCHANGE & LIVE MARKET BOARD
+   ========================================================================== */
+let isMarketBoardOpen = false;
+let activeMarketHubKey = 'kampala';
+
+const GRAIN_MARKET_DATA = {
+  currency: 'UGX', // 'UGX' or 'USD'
+  fxRateUGXtoUSD: 3780,
+  lastUpdated: 'Today • 08:30 EAT (Opening Bell)',
+  hubs: {
+    kampala: {
+      name: 'Kampala Central Grain Terminal',
+      location: 'Uganda • Central Hub',
+      type: 'Buffer Reserves & Wholesale Distribution',
+      sentiment: 'Bullish (+1.4%)',
+      volumeTodayMT: '4,850 MT',
+      commodities: [
+        {
+          id: 'white_maize_flour',
+          name: 'Grade 1 Superfine Maize Flour',
+          standard: 'UNBS US 2:2017 Fortified',
+          form: '50kg Hermetic Bags & Bulk',
+          priceUGX: 1850000,
+          changePct: '+1.4%',
+          trend: 'up',
+          moisture: '12.8%',
+          aflatoxin: '< 5 ppb',
+          moq: '10 MT',
+          leadTime: 'Immediate (Ex-Store)'
+        },
+        {
+          id: 'yellow_maize_flour',
+          name: 'Fortified Golden Maize Flour',
+          standard: 'Carotenoid / UNBS Standard',
+          form: '50kg Bags',
+          priceUGX: 1780000,
+          changePct: '+0.9%',
+          trend: 'up',
+          moisture: '12.8%',
+          aflatoxin: '< 5 ppb',
+          moq: '10 MT',
+          leadTime: 'Immediate'
+        },
+        {
+          id: 'composite_porridge',
+          name: 'Fortified Multi-Grain Blend',
+          standard: 'WFP / WHO Nutrient Standard',
+          form: '25kg & 50kg Bags',
+          priceUGX: 2450000,
+          changePct: '+2.0%',
+          trend: 'up',
+          moisture: '11.5%',
+          aflatoxin: '< 4 ppb',
+          moq: '15 MT',
+          leadTime: '24–48 Hours'
+        },
+        {
+          id: 'animal_feed_bran',
+          name: 'Nutritious Animal Feed Bran',
+          standard: 'High Protein / UNBS Dairy Grade',
+          form: '50kg Poly Bags',
+          priceUGX: 620000,
+          changePct: '-0.5%',
+          trend: 'down',
+          moisture: '12.5%',
+          aflatoxin: '< 8 ppb',
+          moq: '20 MT',
+          leadTime: 'Immediate'
+        },
+        {
+          id: 'corn_grits',
+          name: 'Degermed Brewer’s Corn Grits',
+          standard: 'Fat Content < 1.0% Beverage Spec',
+          form: 'Bulk 1-Ton Totes & 50kg',
+          priceUGX: 2150000,
+          changePct: '0.0%',
+          trend: 'neutral',
+          moisture: '12.0%',
+          aflatoxin: '< 4 ppb',
+          moq: '30 MT',
+          leadTime: '48 Hours'
+        },
+        {
+          id: 'hard_wheat_atta',
+          name: 'Premium Baker’s Hard Wheat Atta',
+          standard: 'Wet Gluten 28–32%',
+          form: '50kg Poly Bags',
+          priceUGX: 2750000,
+          changePct: '+0.6%',
+          trend: 'up',
+          moisture: '12.0%',
+          aflatoxin: '< 4 ppb',
+          moq: '10 MT',
+          leadTime: '24 Hours'
+        }
+      ]
+    },
+    jinja: {
+      name: 'Jinja / Iganga Atelier Gate',
+      location: 'Eastern Uganda • Processing Epicenter',
+      type: 'Direct Factory Gate (EXW Mill)',
+      sentiment: 'Active (+1.8%)',
+      volumeTodayMT: '6,200 MT',
+      commodities: [
+        {
+          id: 'white_maize_flour',
+          name: 'Grade 1 Superfine Maize Flour',
+          standard: 'UNBS US 2:2017 Fortified',
+          form: 'Ex-Factory Palletized',
+          priceUGX: 1790000,
+          changePct: '+1.6%',
+          trend: 'up',
+          moisture: '12.8%',
+          aflatoxin: '< 5 ppb',
+          moq: '20 MT',
+          leadTime: 'Immediate (Mill Silos)'
+        },
+        {
+          id: 'yellow_maize_flour',
+          name: 'Fortified Golden Maize Flour',
+          standard: 'Carotenoid / UNBS Standard',
+          form: 'Ex-Factory Palletized',
+          priceUGX: 1720000,
+          changePct: '+1.2%',
+          trend: 'up',
+          moisture: '12.8%',
+          aflatoxin: '< 5 ppb',
+          moq: '20 MT',
+          leadTime: 'Immediate'
+        },
+        {
+          id: 'composite_porridge',
+          name: 'Fortified Multi-Grain Blend',
+          standard: 'WFP / WHO Nutrient Standard',
+          form: 'Palletized 50kg Bags',
+          priceUGX: 2380000,
+          changePct: '+2.1%',
+          trend: 'up',
+          moisture: '11.5%',
+          aflatoxin: '< 4 ppb',
+          moq: '15 MT',
+          leadTime: '24 Hours'
+        },
+        {
+          id: 'animal_feed_bran',
+          name: 'Nutritious Animal Feed Bran',
+          standard: 'Direct Roll Pellet/Meal Bran',
+          form: '50kg Bulk Bags',
+          priceUGX: 580000,
+          changePct: '-0.8%',
+          trend: 'down',
+          moisture: '12.5%',
+          aflatoxin: '< 8 ppb',
+          moq: '25 MT',
+          leadTime: 'Immediate'
+        },
+        {
+          id: 'corn_grits',
+          name: 'Degermed Brewer’s Corn Grits',
+          standard: 'Beverage Grade Optical Sorted',
+          form: 'Bulk 1-Ton Totes',
+          priceUGX: 2080000,
+          changePct: '+0.5%',
+          trend: 'up',
+          moisture: '12.0%',
+          aflatoxin: '< 4 ppb',
+          moq: '30 MT',
+          leadTime: '24 Hours'
+        },
+        {
+          id: 'hard_wheat_atta',
+          name: 'Premium Baker’s Hard Wheat Atta',
+          standard: 'Wet Gluten 28–32%',
+          form: '50kg Bags',
+          priceUGX: 2680000,
+          changePct: '+0.4%',
+          trend: 'up',
+          moisture: '12.0%',
+          aflatoxin: '< 4 ppb',
+          moq: '15 MT',
+          leadTime: 'Immediate'
+        }
+      ]
+    },
+    busia: {
+      name: 'Busia & Malaba Cross-Border Hub',
+      location: 'Uganda / Kenya OSBP Border',
+      type: 'Northern Corridor Export Clearing',
+      sentiment: 'High Liquidity (+2.2%)',
+      volumeTodayMT: '8,400 MT',
+      commodities: [
+        {
+          id: 'white_maize_flour',
+          name: 'Grade 1 Superfine Maize Flour',
+          standard: 'UNBS / KEBS Harmonized EAC',
+          form: 'Cross-Border Cleared Truckload',
+          priceUGX: 1980000,
+          changePct: '+2.2%',
+          trend: 'up',
+          moisture: '12.5%',
+          aflatoxin: '< 5 ppb',
+          moq: '30 MT (Semi-Trailer)',
+          leadTime: 'Pre-Cleared at OSBP'
+        },
+        {
+          id: 'yellow_maize_flour',
+          name: 'Fortified Golden Maize Flour',
+          standard: 'EAC COMESA Certified',
+          form: 'Semi-Trailer Rations',
+          priceUGX: 1910000,
+          changePct: '+1.5%',
+          trend: 'up',
+          moisture: '12.5%',
+          aflatoxin: '< 5 ppb',
+          moq: '30 MT',
+          leadTime: 'Pre-Cleared'
+        },
+        {
+          id: 'composite_porridge',
+          name: 'Fortified Multi-Grain Blend',
+          standard: 'Institutional School Rations',
+          form: 'Shrink-Wrapped Pallets',
+          priceUGX: 2580000,
+          changePct: '+1.9%',
+          trend: 'up',
+          moisture: '11.5%',
+          aflatoxin: '< 4 ppb',
+          moq: '30 MT',
+          leadTime: '24 Hours'
+        },
+        {
+          id: 'animal_feed_bran',
+          name: 'Nutritious Animal Feed Bran',
+          standard: 'Kenya Feed Millers Spec',
+          form: 'Export Bulk Stowed',
+          priceUGX: 690000,
+          changePct: '+0.5%',
+          trend: 'up',
+          moisture: '12.5%',
+          aflatoxin: '< 8 ppb',
+          moq: '30 MT',
+          leadTime: 'Immediate'
+        },
+        {
+          id: 'corn_grits',
+          name: 'Degermed Brewer’s Corn Grits',
+          standard: 'Nairobi Brewery Grade',
+          form: 'Bulk 1-Ton Totes',
+          priceUGX: 2280000,
+          changePct: '+0.8%',
+          trend: 'up',
+          moisture: '12.0%',
+          aflatoxin: '< 4 ppb',
+          moq: '60 MT (Convoy)',
+          leadTime: '48 Hours'
+        },
+        {
+          id: 'hard_wheat_atta',
+          name: 'Premium Baker’s Hard Wheat Atta',
+          standard: 'Baker’s Premium Atta',
+          form: '50kg Bags',
+          priceUGX: 2890000,
+          changePct: '+1.1%',
+          trend: 'up',
+          moisture: '12.0%',
+          aflatoxin: '< 4 ppb',
+          moq: '30 MT',
+          leadTime: '24 Hours'
+        }
+      ]
+    },
+    elegu: {
+      name: 'Elegu / Nimule Humanitarian Gate',
+      location: 'Uganda / South Sudan Border',
+      type: 'Juba Relief & Commercial Dispatch',
+      sentiment: 'Steady (+1.5%)',
+      volumeTodayMT: '3,900 MT',
+      commodities: [
+        {
+          id: 'white_maize_flour',
+          name: 'Grade 1 Superfine Maize Flour',
+          standard: 'WFP / UN Relief Specification',
+          form: 'Heavy-Duty Hermetic 50kg Bags',
+          priceUGX: 2050000,
+          changePct: '+1.7%',
+          trend: 'up',
+          moisture: '12.0%',
+          aflatoxin: '< 4 ppb',
+          moq: '30 MT (Relief Convoy)',
+          leadTime: 'Pre-Manifested'
+        },
+        {
+          id: 'composite_porridge',
+          name: 'Fortified Multi-Grain Blend',
+          standard: 'Emergency Nutrition Clinical Spec',
+          form: 'Palletized 25kg Heavy Duty',
+          priceUGX: 2650000,
+          changePct: '+2.4%',
+          trend: 'up',
+          moisture: '11.0%',
+          aflatoxin: '< 4 ppb',
+          moq: '30 MT',
+          leadTime: '24 Hours'
+        },
+        {
+          id: 'yellow_maize_flour',
+          name: 'Fortified Golden Maize Flour',
+          standard: 'Relief & Commercial Grade',
+          form: '50kg Hermetic Bags',
+          priceUGX: 1980000,
+          changePct: '+1.1%',
+          trend: 'up',
+          moisture: '12.0%',
+          aflatoxin: '< 5 ppb',
+          moq: '30 MT',
+          leadTime: 'Immediate'
+        },
+        {
+          id: 'animal_feed_bran',
+          name: 'Nutritious Animal Feed Bran',
+          standard: 'Commercial Pastoral Rations',
+          form: '50kg Poly Bags',
+          priceUGX: 720000,
+          changePct: '+0.2%',
+          trend: 'up',
+          moisture: '12.0%',
+          aflatoxin: '< 8 ppb',
+          moq: '30 MT',
+          leadTime: 'Immediate'
+        }
+      ]
+    }
+  }
+};
+
+function formatMarketPrice(ugxAmount, perBag = false) {
+  const isUSD = GRAIN_MARKET_DATA.currency === 'USD';
+  if (perBag) {
+    const bagUGX = ugxAmount / 20; // 50kg bag is 1/20th of a MT (1000kg)
+    if (isUSD) {
+      const bagUSD = bagUGX / GRAIN_MARKET_DATA.fxRateUGXtoUSD;
+      return `$${bagUSD.toFixed(2)}`;
+    } else {
+      return `UGX ${Math.round(bagUGX).toLocaleString()}`;
+    }
+  } else {
+    if (isUSD) {
+      const mtUSD = ugxAmount / GRAIN_MARKET_DATA.fxRateUGXtoUSD;
+      return `$${mtUSD.toFixed(2)}`;
+    } else {
+      return `UGX ${Math.round(ugxAmount).toLocaleString()}`;
+    }
+  }
+}
+
+function setMarketCurrency(curr) {
+  if (GRAIN_MARKET_DATA.currency === curr) return;
+  GRAIN_MARKET_DATA.currency = curr;
+  playAcousticChime('click');
+
+  // Update Ribbon buttons
+  const rUGX = document.getElementById('btnCurrUGX');
+  const rUSD = document.getElementById('btnCurrUSD');
+  if (rUGX && rUSD) {
+    rUGX.classList.toggle('active', curr === 'UGX');
+    rUSD.classList.toggle('active', curr === 'USD');
+  }
+
+  // Update Modal buttons
+  const mUGX = document.getElementById('mbModalCurrUGX');
+  const mUSD = document.getElementById('mbModalCurrUSD');
+  if (mUGX && mUSD) {
+    mUGX.classList.toggle('active', curr === 'UGX');
+    mUSD.classList.toggle('active', curr === 'USD');
+  }
+
+  renderTickerRibbon();
+  if (isMarketBoardOpen) {
+    renderMarketBoard();
+  }
+}
+
+function renderTickerRibbon() {
+  const track = document.getElementById('gtrMarqueeTrack');
+  if (!track) return;
+
+  const items = [
+    { hub: 'Kampala', name: 'Grade 1 Superfine Maize', ugx: 1850000, change: '+1.4%', trend: 'up' },
+    { hub: 'Jinja Gate', name: 'Grade 1 Posho (Ex-Mill)', ugx: 1790000, change: '+1.6%', trend: 'up' },
+    { hub: 'Busia Border', name: 'Superfine (Kenya Export)', ugx: 1980000, change: '+2.2%', trend: 'up' },
+    { hub: 'Kampala', name: 'Animal Feed Bran (Pellet)', ugx: 620000, change: '-0.5%', trend: 'down' },
+    { hub: 'Jinja Gate', name: 'Fortified Multi-Grain Blend', ugx: 2380000, change: '+2.1%', trend: 'up' },
+    { hub: 'Elegu Gate', name: 'WFP Fortified Rations', ugx: 2050000, change: '+1.7%', trend: 'up' },
+    { hub: 'Jinja Gate', name: 'Brewer’s Degermed Grits', ugx: 2080000, change: '+0.5%', trend: 'up' },
+    { hub: 'Kampala', name: 'Baker’s Hard Wheat Atta', ugx: 2750000, change: '+0.6%', trend: 'up' }
+  ];
+
+  const html = items.map(it => `
+    <div class="gtr-item" onclick="openMarketBoardModal()">
+      <span class="gtr-item-hub">[${it.hub}]</span>
+      <span class="gtr-item-name">${it.name}</span>
+      <span class="gtr-item-price">${formatMarketPrice(it.ugx)}</span>
+      <span class="gtr-item-trend ${it.trend}">${it.change}</span>
+    </div>
+  `).join('');
+
+  track.innerHTML = html + html;
+}
+
+function openMarketBoardModal(hubKey) {
+  const modal = document.getElementById('marketBoardDialog');
+  const overlay = document.getElementById('marketBoardOverlay');
+  if (!modal || !overlay) return;
+
+  if (hubKey && GRAIN_MARKET_DATA.hubs[hubKey]) {
+    activeMarketHubKey = hubKey;
+  }
+
+  isMarketBoardOpen = true;
+  modal.classList.add('active');
+  overlay.classList.add('active');
+  playAcousticChime('transition');
+  renderMarketBoard();
+}
+
+function closeMarketBoardModal() {
+  const modal = document.getElementById('marketBoardDialog');
+  const overlay = document.getElementById('marketBoardOverlay');
+  if (!modal || !overlay) return;
+
+  isMarketBoardOpen = false;
+  modal.classList.remove('active');
+  overlay.classList.remove('active');
+  playAcousticChime('click');
+}
+
+function switchMarketHub(hubKey) {
+  if (!GRAIN_MARKET_DATA.hubs[hubKey]) return;
+  activeMarketHubKey = hubKey;
+  playAcousticChime('click');
+
+  const tabs = document.querySelectorAll('.mb-hub-tab');
+  tabs.forEach(tab => {
+    tab.classList.toggle('active', tab.dataset.hub === hubKey);
+  });
+
+  renderMarketBoard();
+}
+
+function renderMarketBoard() {
+  const hub = GRAIN_MARKET_DATA.hubs[activeMarketHubKey] || GRAIN_MARKET_DATA.hubs.kampala;
+
+  // 1. Render Hub Telemetry Strip
+  const telemetryEl = document.getElementById('marketHubTelemetry');
+  if (telemetryEl) {
+    telemetryEl.innerHTML = `
+      <div class="mb-stat-cell">
+        <span class="mb-stat-kicker"><i class="fa-solid fa-location-dot"></i> ACTIVE TERMINAL HUB</span>
+        <span class="mb-stat-val accent">${hub.name}</span>
+      </div>
+      <div class="mb-stat-cell">
+        <span class="mb-stat-kicker"><i class="fa-solid fa-arrows-split-up-and-left"></i> HUB FUNCTION &amp; ROLE</span>
+        <span class="mb-stat-val">${hub.type}</span>
+      </div>
+      <div class="mb-stat-cell">
+        <span class="mb-stat-kicker"><i class="fa-solid fa-chart-line"></i> 24H LIQUIDITY &amp; SENTIMENT</span>
+        <span class="mb-stat-val ${hub.sentiment.includes('+') ? 'accent' : ''}">${hub.sentiment}</span>
+      </div>
+      <div class="mb-stat-cell">
+        <span class="mb-stat-kicker"><i class="fa-solid fa-scale-balanced"></i> TODAY'S CLEARED VOLUME</span>
+        <span class="mb-stat-val">${hub.volumeTodayMT}</span>
+      </div>
+    `;
+  }
+
+  // 2. Render Commodity Rows Table
+  const tbody = document.getElementById('marketTableBody');
+  if (tbody) {
+    tbody.innerHTML = hub.commodities.map(c => {
+      const priceMT = formatMarketPrice(c.priceUGX);
+      const priceBag = formatMarketPrice(c.priceUGX, true);
+      const trendIcon = c.trend === 'up' ? '<i class="fa-solid fa-arrow-trend-up"></i>' : (c.trend === 'down' ? '<i class="fa-solid fa-arrow-trend-down"></i>' : '<i class="fa-solid fa-minus"></i>');
+
+      return `
+        <tr>
+          <td>
+            <div class="comm-cell">
+              <span class="comm-name">${c.name}</span>
+              <span class="comm-standard"><i class="fa-solid fa-certificate"></i> ${c.standard}</span>
+            </div>
+          </td>
+          <td>
+            <span style="color: var(--p-text-silver); font-size: 0.76rem;">${c.form}</span>
+          </td>
+          <td>
+            <span class="price-mt-val">${priceMT} / MT</span>
+          </td>
+          <td>
+            <span class="price-bag-val">${priceBag}</span>
+          </td>
+          <td>
+            <span class="trend-badge ${c.trend}">${trendIcon} ${c.changePct}</span>
+          </td>
+          <td>
+            <span class="purity-tag"><i class="fa-solid fa-shield-check"></i> ${c.moisture} &bull; ${c.aflatoxin}</span>
+          </td>
+          <td>
+            <span class="moq-tag">${c.moq}</span>
+          </td>
+          <td style="text-align: right;">
+            <div class="table-actions-cell">
+              <button type="button" class="btn-table-wa" onclick="orderCommoditySpot('${activeMarketHubKey}', '${c.id}')" title="Request Instant Spot Lock via WhatsApp">
+                <i class="fa-brands fa-whatsapp"></i>
+                <span>LOCK IN</span>
+              </button>
+              <button type="button" class="btn-table-salon" onclick="applyMarketToSalon('${activeMarketHubKey}', '${c.id}')" title="Transfer to Institutional Salon RFP">
+                <i class="fa-solid fa-file-signature"></i>
+                <span>TENDER</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+}
+
+function orderCommoditySpot(hubKey, commodityId) {
+  playAcousticChime('click');
+  const hub = GRAIN_MARKET_DATA.hubs[hubKey] || GRAIN_MARKET_DATA.hubs.kampala;
+  const item = hub.commodities.find(c => c.id === commodityId) || hub.commodities[0];
+  const priceFormatted = `${formatMarketPrice(item.priceUGX)} / MT`;
+  const bagFormatted = formatMarketPrice(item.priceUGX, true);
+
+  const msg = `Hello Nimireaux Commercial Trading Desk, I am requesting an official spot rate contract from your Market Board:\n\n` +
+    `🌾 *SPOT COMMODITY INQUIRY*\n` +
+    `• Commodity: ${item.name}\n` +
+    `• Terminal Hub: ${hub.name}\n` +
+    `• Indicative Spot Rate: ${priceFormatted} (${bagFormatted} / 50kg Bag)\n` +
+    `• Certified Standard: ${item.standard} (Moisture: ${item.moisture}, Aflatoxin: ${item.aflatoxin})\n` +
+    `• Minimum Order Quantity (MOQ): ${item.moq}\n` +
+    `• Packaging: ${item.form}\n\n` +
+    `Please confirm warehouse intake slot, dispatch timeline, and official proforma invoice.`;
+
+  const waUrl = `https://wa.me/256744135549?text=${encodeURIComponent(msg)}`;
+  window.open(waUrl, '_blank', 'noopener,noreferrer');
+}
+
+function applyMarketToSalon(hubKey, commodityId) {
+  playAcousticChime('click');
+  closeMarketBoardModal();
+  goToAct(6);
+
+  const hub = GRAIN_MARKET_DATA.hubs[hubKey || activeMarketHubKey] || GRAIN_MARKET_DATA.hubs.kampala;
+  const item = (commodityId && hub.commodities.find(c => c.id === commodityId)) || hub.commodities[0];
+  const priceFormatted = `${formatMarketPrice(item.priceUGX)} / MT`;
+
+  const volField = document.getElementById('pVolume');
+  const notesField = document.getElementById('pNotes');
+
+  if (volField) volField.value = `${item.moq} Spot Order (${item.name})`;
+  if (notesField) {
+    notesField.value = `Official Spot Market Board Tender inquiry: ${item.name} at ${hub.name}. Quoted indicative rate: ${priceFormatted}. Requesting institutional contract pricing, batch COA, and scheduled dispatch terms.`;
+  }
+}
+
+function orderSelectedMarketOnWhatsApp() {
+  const hub = GRAIN_MARKET_DATA.hubs[activeMarketHubKey] || GRAIN_MARKET_DATA.hubs.kampala;
+  const item = hub.commodities[0];
+  orderCommoditySpot(activeMarketHubKey, item.id);
+}
+
+/* ==========================================================================
    MAISON AI CONCIERGE & SOVEREIGN INTELLIGENCE PROTOCOL
    ========================================================================== */
 
@@ -998,6 +1571,7 @@ function toggleAiDrawer(forceOpen) {
 // Close drawer or modals on Escape key
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
+    if (isMarketBoardOpen) closeMarketBoardModal();
     if (isLogisticsModalOpen) closeLogisticsModal();
     if (isCoaModalOpen) closeCoaModal();
     if (isAiDrawerOpen) toggleAiDrawer(false);
@@ -1411,6 +1985,7 @@ function initDraggableAiTrigger() {
 
 // Initial Boot
 calculateConciergeYield();
+renderTickerRibbon();
 updateCapsuleDock();
 initDraggableAiTrigger();
 goToAct(0);

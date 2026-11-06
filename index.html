@@ -126,6 +126,41 @@
   </header>
 
   <!-- =========================================================================
+       HAUTE COUTURE EAST AFRICA GRAIN COMMODITY TICKER TAPE
+       ========================================================================= -->
+  <div class="grain-ticker-ribbon" id="grainTickerRibbon">
+    <div class="gtr-inner">
+      
+      <!-- Live Indicator & Title -->
+      <div class="gtr-badge">
+        <span class="gtr-live-dot"></span>
+        <span class="gtr-title">EA GRAIN INDEX</span>
+      </div>
+
+      <!-- Currency Toggle Switch -->
+      <div class="gtr-currency-toggle" role="group" aria-label="Currency Selector">
+        <button type="button" class="gtr-curr-btn active" id="btnCurrUGX" onclick="setMarketCurrency('UGX')">UGX</button>
+        <button type="button" class="gtr-curr-btn" id="btnCurrUSD" onclick="setMarketCurrency('USD')">USD</button>
+      </div>
+
+      <!-- Marquee Scrolling Track -->
+      <div class="gtr-track-wrapper">
+        <div class="gtr-marquee" id="gtrMarqueeTrack">
+          <!-- Dynamically populated by renderTickerRibbon() -->
+        </div>
+      </div>
+
+      <!-- Right Action CTA: View Full Market Board -->
+      <button class="gtr-board-btn" onclick="openMarketBoardModal()" title="View East Africa Grain Exchange Board">
+        <i class="fa-solid fa-chart-line"></i>
+        <span>MARKET BOARD</span>
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- =========================================================================
        MAIN PRESENTATION STAGE (7 CURATED EDITORIAL ACTS)
        ========================================================================= -->
   <main class="prestige-viewport" id="prestigeViewport">
@@ -270,6 +305,10 @@
               <button type="button" class="btn-royal-outline" onclick="openLogisticsModal()">
                 <i class="fa-solid fa-route"></i>
                 <span>EAST AFRICA TRADE CORRIDORS</span>
+              </button>
+              <button type="button" class="btn-royal-outline" onclick="openMarketBoardModal()">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>SPOT GRAIN EXCHANGE BOARD</span>
               </button>
             </div>
           </div>
@@ -1243,6 +1282,111 @@
   </div>
 
   <!-- =========================================================================
+       HAUTE COUTURE EAST AFRICA GRAIN EXCHANGE BOARD MODAL
+       ========================================================================= -->
+  <div class="market-board-overlay" id="marketBoardOverlay" onclick="closeMarketBoardModal()"></div>
+
+  <div class="market-board-dialog" id="marketBoardDialog" role="dialog" aria-modal="true" aria-labelledby="marketBoardTitle">
+    <div class="mb-shell">
+
+      <!-- Modal Top Bar -->
+      <div class="mb-header">
+        <div class="mb-header-brand">
+          <div class="mb-crest-badge">
+            <img src="assets/logo.png" alt="Nimireaux Crest" />
+          </div>
+          <div class="mb-titles">
+            <div class="mb-kicker">
+              <span class="mb-live-pulse"></span>
+              <span>EAST AFRICA GRAIN COMMODITY EXCHANGE &bull; INDICATIVE SPOT RATES</span>
+            </div>
+            <h2 class="mb-title" id="marketBoardTitle">Maison Grain Market Board</h2>
+            <p class="mb-subtitle">Certified Grade-A Wholesale, Institutional &amp; Export Spot Rates across Key Regional Terminals</p>
+          </div>
+        </div>
+
+        <div class="mb-header-actions">
+          <!-- Currency Switcher Inside Modal -->
+          <div class="mb-curr-pill">
+            <span class="mb-curr-label">CURRENCY:</span>
+            <button type="button" class="mb-curr-btn active" id="mbModalCurrUGX" onclick="setMarketCurrency('UGX')">UGX</button>
+            <button type="button" class="mb-curr-btn" id="mbModalCurrUSD" onclick="setMarketCurrency('USD')">USD</button>
+          </div>
+          <!-- Close Button -->
+          <button class="mb-close-btn" onclick="closeMarketBoardModal()" aria-label="Close Market Board">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Market Hub Tabs Ribbon -->
+      <div class="mb-tabs-ribbon" id="marketHubTabs">
+        <button type="button" class="mb-hub-tab active" data-hub="kampala" onclick="switchMarketHub('kampala')">
+          <span class="hub-flag">🇺🇬</span>
+          <span class="hub-label">Kampala Central Reserve</span>
+        </button>
+        <button type="button" class="mb-hub-tab" data-hub="jinja" onclick="switchMarketHub('jinja')">
+          <span class="hub-flag">🏭</span>
+          <span class="hub-label">Jinja / Iganga Atelier Gate</span>
+        </button>
+        <button type="button" class="mb-hub-tab" data-hub="busia" onclick="switchMarketHub('busia')">
+          <span class="hub-flag">🇰🇪</span>
+          <span class="hub-label">Busia &amp; Malaba OSBP (Kenya)</span>
+        </button>
+        <button type="button" class="mb-hub-tab" data-hub="elegu" onclick="switchMarketHub('elegu')">
+          <span class="hub-flag">🇸🇸</span>
+          <span class="hub-label">Elegu / Nimule Gate (Juba)</span>
+        </button>
+      </div>
+
+      <!-- Hub Telemetry Overview Strip -->
+      <div class="mb-hub-telemetry" id="marketHubTelemetry">
+        <!-- Dynamically rendered by renderMarketBoard() -->
+      </div>
+
+      <!-- Commodity Price Matrix Table Container -->
+      <div class="mb-table-wrapper">
+        <table class="mb-price-table">
+          <thead>
+            <tr>
+              <th>COMMODITY &amp; STANDARD</th>
+              <th>PACKAGING / SPEC</th>
+              <th>SPOT RATE / MT</th>
+              <th>50KG BAG RATE</th>
+              <th>24H TREND</th>
+              <th>MOISTURE &amp; AFLATOXIN</th>
+              <th>MOQ</th>
+              <th style="text-align: right;">CONTRACT ACTION</th>
+            </tr>
+          </thead>
+          <tbody id="marketTableBody">
+            <!-- Dynamically populated based on active hub and currency -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Trade Protocol & Disclaimer Footer -->
+      <div class="mb-footer">
+        <div class="mb-footer-intel">
+          <i class="fa-solid fa-shield-halved"></i>
+          <span>Indicative spot rates are updated daily at market opening bell. Guaranteed UNBS US 2:2017 &le;12.8% moisture and certified HPLC Aflatoxin &lt;5 ppb. Volume tier rebates apply for institutional orders &gt;100 MT.</span>
+        </div>
+        <div class="mb-footer-actions">
+          <button type="button" class="btn-royal" onclick="applyMarketToSalon()">
+            <i class="fa-solid fa-building-columns"></i>
+            <span>OPEN TENDER INQUIRY (SALON)</span>
+          </button>
+          <button type="button" class="btn-wa-concierge" onclick="orderSelectedMarketOnWhatsApp()">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>DESK WHATSAPP SPOT LOCK-IN</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =========================================================================
        MAISON AI CONCIERGE DRAWER & INTELLIGENCE SUITE
        ========================================================================= -->
   <!-- Backdrop Blur Overlay -->
@@ -1276,6 +1420,7 @@
     <div class="ai-chips-shelf">
       <span class="ai-chips-label"><i class="fa-solid fa-sparkles"></i> FREQUENT INQUIRIES:</span>
       <div class="ai-chips-list">
+        <button class="ai-chip" onclick="openMarketBoardModal()">📈 Grain Market Board</button>
         <button class="ai-chip" onclick="askAiPreset('What are your primary flour products and packaging sizes?')">🌾 Flour Grades &amp; Packaging</button>
         <button class="ai-chip" onclick="askAiPreset('How does your commercial toll milling service work?')">⚙️ Toll Milling Process</button>
         <button class="ai-chip" onclick="askAiPreset('What are your nutritional fortification standards?')">🔬 Vitamin &amp; Mineral Fortification</button>
