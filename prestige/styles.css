@@ -153,13 +153,14 @@ html, body {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 20px 48px;
+  padding: 14px 48px;
   z-index: 100;
-  background: linear-gradient(to bottom, rgba(5, 11, 7, 0.9) 0%, transparent 100%);
+  background: linear-gradient(to bottom, rgba(5, 11, 7, 0.95) 0%, rgba(5, 11, 7, 0.85) 75%, transparent 100%);
+  transition: all 0.3s ease;
 }
 
 [data-theme="light"] .prestige-nav {
-  background: linear-gradient(to bottom, rgba(248, 246, 240, 0.95) 0%, transparent 100%);
+  background: linear-gradient(to bottom, rgba(248, 246, 240, 0.98) 0%, rgba(248, 246, 240, 0.88) 75%, transparent 100%);
 }
 
 .nav-shell {
@@ -428,7 +429,7 @@ html, body {
   align-items: center;
   justify-content: center;
   z-index: 10;
-  padding: 90px 80px 80px 80px;
+  padding: 118px 80px 76px 80px;
 }
 
 .editorial-act.active {
@@ -3658,10 +3659,10 @@ html, body {
    ========================================================================== */
 .grain-ticker-ribbon {
   position: fixed;
-  top: 76px;
+  top: 70px;
   left: 0;
   width: 100%;
-  height: 38px;
+  height: 36px;
   z-index: 95;
   background: rgba(4, 9, 6, 0.92);
   backdrop-filter: blur(16px);
