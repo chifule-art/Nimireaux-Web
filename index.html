@@ -261,6 +261,17 @@
                 </div>
               </div>
             </div>
+
+            <div class="act-actions-row">
+              <button class="btn-royal" onclick="goToAct(2)">
+                <span>EXPLORE MILLING ATELIERS</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+              <button type="button" class="btn-royal-outline" onclick="openLogisticsModal()">
+                <i class="fa-solid fa-route"></i>
+                <span>EAST AFRICA TRADE CORRIDORS</span>
+              </button>
+            </div>
           </div>
 
           <div class="act-visual-side">
@@ -726,10 +737,16 @@
 
               </div>
 
-              <button class="btn-royal w-100" onclick="applyConciergeToInquiry()">
-                <span>TRANSFER ESTIMATE TO OFFICIAL SALON</span>
-                <i class="fa-solid fa-arrow-right"></i>
-              </button>
+              <div class="concierge-actions-deck">
+                <button class="btn-royal w-100" onclick="applyConciergeToInquiry()">
+                  <span>TRANSFER ESTIMATE TO OFFICIAL SALON</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </button>
+                <button type="button" class="btn-wa-concierge w-100" onclick="sendBatchToWhatsApp()">
+                  <i class="fa-brands fa-whatsapp"></i>
+                  <span>SEND BATCH SPEC TO WHATSAPP COMMERCIAL DESK</span>
+                </button>
+              </div>
             </div>
           </div>
 
@@ -1081,6 +1098,129 @@
   </div>
 
   <!-- =========================================================================
+       HAUTE COUTURE EAST AFRICA REGIONAL TRADE & LOGISTICS MODAL
+       ========================================================================= -->
+  <div class="logistics-modal-overlay" id="logisticsModalOverlay" onclick="closeLogisticsModal()"></div>
+
+  <div class="logistics-modal-dialog" id="logisticsModalDialog" role="dialog" aria-modal="true" aria-labelledby="logisticsModalTitle">
+    <div class="logistics-modal-shell">
+
+      <!-- Modal Top Bar -->
+      <div class="logistics-modal-header">
+        <div class="logistics-header-brand">
+          <div class="logistics-crest-badge">
+            <img src="assets/logo.png" alt="Nimireaux Crest" />
+          </div>
+          <div>
+            <div class="logistics-protocol-tag">
+              <span class="logistics-gold-dot"></span>
+              <span>REGIONAL DISTRIBUTION ARTERY &bull; EAST AFRICA FREIGHT</span>
+            </div>
+            <h3 class="logistics-modal-title" id="logisticsModalTitle">East Africa Regional Trade &amp; Logistics Corridors</h3>
+            <p class="logistics-modal-subtitle">Nimireaux Uganda Limited &bull; Bulk Fleet &amp; Cross-Border Supply Chain Architecture</p>
+          </div>
+        </div>
+        <button class="logistics-close-btn" onclick="closeLogisticsModal()" aria-label="Close Corridors">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Country Selector Tabs -->
+      <div class="logistics-tabs-ribbon">
+        <button class="corridor-tab active" data-corridor="0" onclick="switchCorridor(0)">
+          <span>🇺🇬 UGANDA DOMESTIC</span>
+        </button>
+        <button class="corridor-tab" data-corridor="1" onclick="switchCorridor(1)">
+          <span>🇰🇪 KENYA CORRIDOR</span>
+        </button>
+        <button class="corridor-tab" data-corridor="2" onclick="switchCorridor(2)">
+          <span>🇸🇸 SOUTH SUDAN</span>
+        </button>
+        <button class="corridor-tab" data-corridor="3" onclick="switchCorridor(3)">
+          <span>🇷🇼 RWANDA ARTERY</span>
+        </button>
+        <button class="corridor-tab" data-corridor="4" onclick="switchCorridor(4)">
+          <span>🇨🇩 DR CONGO CORRIDOR</span>
+        </button>
+      </div>
+
+      <!-- Corridor Dynamic Information Stage -->
+      <div class="logistics-modal-body">
+        
+        <div class="corridor-hero-card">
+          <div class="chc-header">
+            <div>
+              <span class="chc-monogram" id="corridorMonogram">CORRIDOR 01 &bull; NATIONAL GRAIN GRID</span>
+              <h4 class="chc-title" id="corridorTitle">Uganda Domestic Strategic Sourcing &amp; Distribution Grid</h4>
+            </div>
+            <div class="chc-status-pill">
+              <span class="corridor-pulse-bead"></span>
+              <span id="corridorStatus">ACTIVE DAILY DISPATCH &bull; KAMPALA FLEET HQ</span>
+            </div>
+          </div>
+
+          <!-- 3-Pillar Telemetry Grid -->
+          <div class="corridor-telemetry-grid">
+            <div class="ctg-cell">
+              <span class="ctg-label"><i class="fa-solid fa-location-dot"></i> PRIMARY HUBS &amp; DEPOTS</span>
+              <strong class="ctg-val" id="corridorHubs">Kampala &bull; Jinja &bull; Masindi &bull; Gulu &bull; Mbarara &bull; Mbale</strong>
+            </div>
+            <div class="ctg-cell">
+              <span class="ctg-label"><i class="fa-solid fa-clock"></i> TRANSIT GUARANTEE</span>
+              <strong class="ctg-val" id="corridorTransit">Same-Day to 24 Hours Delivery</strong>
+            </div>
+            <div class="ctg-cell">
+              <span class="ctg-label"><i class="fa-solid fa-truck-moving"></i> CONVOY CAPACITY</span>
+              <strong class="ctg-val" id="corridorCapacity">10 MT Rigid to 32 MT Semi-Trailers</strong>
+            </div>
+          </div>
+
+          <!-- Route Architecture & Customs Protocol -->
+          <div class="corridor-details-box">
+            <div class="cdb-col">
+              <h5><i class="fa-solid fa-route"></i> ROUTE ARCHITECTURE &amp; ARTERIES</h5>
+              <p id="corridorRouteDesc">Central routing radiates from our Kampala milling ateliers, connecting directly with grain aggregation terminals in the Masindi &amp; Bunyoro maize corridors, northern supply lines in Gulu, and eastern industrial markets in Jinja and Mbale.</p>
+            </div>
+            <div class="cdb-col">
+              <h5><i class="fa-solid fa-shield-halved"></i> QUALITY &amp; TRANSIT PROTOCOL</h5>
+              <p id="corridorProtocolDesc">Tamper-evident, hermetic UV-barrier liners prevent moisture absorption in transit. Every outbound truck carries certified lot analysis testing verifying &le;12.5% moisture and 0.0 ppb aflatoxin compliance.</p>
+            </div>
+          </div>
+
+          <!-- Visual Waypoint Flow Steps -->
+          <div class="corridor-flow-wrapper">
+            <div class="cfw-label"><i class="fa-solid fa-network-wired"></i> TRANSIT WAYPOINT PIPELINE:</div>
+            <div class="cfw-steps" id="corridorWaypoints">
+              <div class="c-step"><span class="cs-dot"></span><span>Kampala Central Mill</span></div>
+              <div class="c-step-line"></div>
+              <div class="c-step"><span class="cs-dot"></span><span>Certified Weighbridge &amp; Seal</span></div>
+              <div class="c-step-line"></div>
+              <div class="c-step"><span class="cs-dot"></span><span>Highway Transit Fleet</span></div>
+              <div class="c-step-line"></div>
+              <div class="c-step final"><span class="cs-dot"></span><span>Direct Client Warehouse</span></div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Modal Action Footer -->
+      <div class="logistics-modal-footer">
+        <a href="https://wa.me/256744135549?text=Hello%20Nimireaux%20Uganda%2C%20I%20am%20inquiring%20about%20cross-border%20grain%20freight%20and%20regional%20supply%20contracts." target="_blank" class="btn-wa-concierge">
+          <i class="fa-brands fa-whatsapp"></i>
+          <span>INQUIRE ABOUT REGIONAL FREIGHT VIA WHATSAPP</span>
+        </a>
+        <button type="button" class="btn-royal" onclick="closeLogisticsModal(); goToAct(6);">
+          <span>REQUEST OFFICIAL QUOTATION (SALON)</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =========================================================================
        MAISON AI CONCIERGE DRAWER & INTELLIGENCE SUITE
        ========================================================================= -->
   <!-- Backdrop Blur Overlay -->
@@ -1118,6 +1258,7 @@
         <button class="ai-chip" onclick="askAiPreset('How does your commercial toll milling service work?')">⚙️ Toll Milling Process</button>
         <button class="ai-chip" onclick="askAiPreset('What are your nutritional fortification standards?')">🔬 Vitamin &amp; Mineral Fortification</button>
         <button class="ai-chip" onclick="askAiPreset('What are the minimum order quantities (MOQ) and delivery coverage?')">📦 MOQ &amp; East Africa Logistics</button>
+        <button class="ai-chip" onclick="askAiPreset('Show me your East Africa regional trade and cross-border logistics corridors')">🚚 Trade Corridors Map</button>
         <button class="ai-chip" onclick="askAiPreset('How do I download the official corporate dossier and flour specifications PDF?')">📄 Corporate Dossier (PDF)</button>
         <button class="ai-chip" onclick="askAiPreset('How do I contact the executive directors directly?')">📞 Executive Contacts</button>
       </div>

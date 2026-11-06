@@ -455,6 +455,41 @@ function applyConciergeToInquiry() {
   }
 }
 
+function sendBatchToWhatsApp() {
+  playAcousticChime('click');
+  const slider = document.getElementById('conciergeSlider');
+  const mt = slider ? slider.value : '100';
+  const commodityRadio = document.querySelector('input[name="conciergeCommodity"]:checked');
+  const gradeRadio = document.querySelector('input[name="conciergeGrade"]:checked');
+
+  const commodityNames = {
+    white_maize: 'White Dent Maize',
+    yellow_maize: 'Yellow Maize',
+    hard_wheat: 'Hard Wheat',
+    composite: 'Composite Grain'
+  };
+
+  const commodityLabel = commodityRadio ? (commodityNames[commodityRadio.value] || commodityRadio.value) : 'White Dent Maize';
+  const gradeLabel = gradeRadio && gradeRadio.value === 'whole' ? 'Whole Extraction (88% Flour / 12% Byproduct)' : 'Grade 1 Superfine (72% Flour / 28% Feed Bran)';
+
+  const flourVal = document.getElementById('flourYieldNum')?.textContent || '72.0';
+  const bagsVal = document.getElementById('bagsYieldNum')?.textContent || '1,440';
+  const branVal = document.getElementById('branYieldNum')?.textContent || '28.0';
+  const hoursVal = document.getElementById('turnaroundNum')?.textContent || '6.7';
+
+  const msg = `Hello Nimireaux Uganda Limited, I have simulated a commercial milling batch on your website:\n\n` +
+    `🌾 Raw Commodity: ${commodityLabel}\n` +
+    `⚖️ Intake Batch: ${mt} Metric Tons\n` +
+    `✨ Milling Profile: ${gradeLabel}\n` +
+    `📦 Net Flour Output: ${flourVal} MT (${bagsVal} x 50kg Bags)\n` +
+    `🐄 Byproduct Animal Bran: ${branVal} MT\n` +
+    `⏱️ Production Schedule: ~${hoursVal} Hours\n\n` +
+    `Please provide an official proforma quotation / toll contract pricing for this batch.`;
+
+  const waUrl = `https://wa.me/256744135549?text=${encodeURIComponent(msg)}`;
+  window.open(waUrl, '_blank');
+}
+
 /* ==========================================================================
    ACT VII: 3D HOLOGRAPHIC TILT PRESIDENTIAL CARD
    ========================================================================== */
@@ -646,6 +681,7 @@ if (soundToggleBtn) {
 
 let isAiDrawerOpen = false;
 let isCoaModalOpen = false;
+let isLogisticsModalOpen = false;
 
 function openCoaModal() {
   const modal = document.getElementById('coaModalDialog');
@@ -667,6 +703,132 @@ function closeCoaModal() {
   modal.classList.remove('open');
   overlay.classList.remove('open');
   playAcousticChime('click');
+}
+
+/* ==========================================================================
+   EAST AFRICA REGIONAL TRADE & LOGISTICS CORRIDORS ENGINE
+   ========================================================================== */
+const logisticsCorridorsData = [
+  {
+    monogram: 'CORRIDOR 01 • NATIONAL GRAIN GRID',
+    title: 'Uganda Domestic Strategic Sourcing & Distribution Grid',
+    status: 'ACTIVE DAILY DISPATCH • KAMPALA FLEET HQ',
+    hubs: 'Kampala • Jinja • Masindi • Gulu • Mbarara • Mbale',
+    transit: 'Same-Day to 24 Hours Delivery',
+    capacity: '10 MT Rigid to 32 MT Semi-Trailers',
+    route: 'Central routing radiates from our Kampala milling ateliers, connecting directly with grain aggregation terminals in the Masindi & Bunyoro maize corridors, northern supply lines in Gulu, and eastern industrial markets in Jinja and Mbale.',
+    protocol: 'Tamper-evident, hermetic UV-barrier liners prevent moisture absorption in transit. Every outbound truck carries certified lot analysis testing verifying ≤12.5% moisture and 0.0 ppb aflatoxin compliance.',
+    waypoints: ['Kampala Central Mill', 'Certified Weighbridge & Seal', 'Regional Highway Fleet', 'Direct Client Depot']
+  },
+  {
+    monogram: 'CORRIDOR 02 • EASTERN COMMERCIAL ARTERY',
+    title: 'Uganda - Kenya Cross-Border Trade Corridor',
+    status: 'ACTIVE DAILY CONVOYS • CUSTOMS PRE-CLEARED',
+    hubs: 'Malaba & Busia Gateways → Kisumu • Eldoret • Nairobi',
+    transit: '24 to 48 Hours to Kisumu / Nairobi',
+    capacity: '30 - 32 Metric Ton Sealed Semi-Trailers',
+    route: 'Direct transit along the Northern Corridor from Kampala through Tororo to the Malaba and Busia one-stop border posts (OSBP), supplying Kenya’s major millers, animal feed manufacturers, and food relief distribution centers in Kisumu, Eldoret, and Nairobi.',
+    protocol: 'EAC Single Customs Territory (SCT) pre-clearance with digital COMESA certificates of origin, phytosanitary certificates, and bilateral UNBS/KEBS conformity documentation.',
+    waypoints: ['Kampala Atelier', 'Tororo Weighbridge', 'Malaba / Busia OSBP', 'Kenyan Distribution Depot']
+  },
+  {
+    monogram: 'CORRIDOR 03 • HUMANITARIAN & COMMERCIAL CORRIDOR',
+    title: 'Uganda - South Sudan Northern Trade Artery',
+    status: 'ACTIVE WEEKLY CONVOYS • RELIEF FAST-TRACK',
+    hubs: 'Elegu / Nimule Gateway → Juba • Torit • Greater Equatoria',
+    transit: '36 to 60 Hours to Juba Terminals',
+    capacity: '28 - 32 Metric Ton Heavy Fleet Dispatches',
+    route: 'Originating from northern aggregation buffer depots in Gulu and central Kampala facilities, moving along the paved Gulu-Nimule corridor into Juba for commercial wholesalers and humanitarian emergency food rations.',
+    protocol: 'Fortified super-grade posho packaging in heavy-duty woven polypropylene bags with moisture-barrier inner liners for rugged long-distance transport. Complete humanitarian tender traceability.',
+    waypoints: ['Northern Grain Hub (Gulu)', 'Elegu / Nimule Border', 'Customs Fast-Track', 'Juba Central Depots']
+  },
+  {
+    monogram: 'CORRIDOR 04 • SOUTHERN HIGHLANDS ARTERY',
+    title: 'Uganda - Rwanda Southern Trade Corridor',
+    status: 'ACTIVE REGULAR DISPATCH • CERTIFIED CONFORMITY',
+    hubs: 'Katuna / Gatuna Gateway → Kigali Logistics Park • Musanze',
+    transit: '24 to 36 Hours to Kigali',
+    capacity: '25 - 30 Metric Ton Sealed Fleet',
+    route: 'Southbound distribution through Masaka and Mbarara, crossing the Katuna / Gatuna One Stop Border Post directly into Kigali for commercial bakeries, wholesale distribution, and specialized institutions.',
+    protocol: 'Rwanda Standards Board (RSB) and UNBS mutual recognition conformity. Strict aflatoxin screening with zero-tolerance certification accompanying each manifest.',
+    waypoints: ['Mbarara Transit Station', 'Katuna / Gatuna OSBP', 'Kigali Bonded Terminal', 'End Consumer Logistics']
+  },
+  {
+    monogram: 'CORRIDOR 05 • GREAT LAKES WESTERN ARTERY',
+    title: 'Uganda - Democratic Republic of Congo (DRC) Corridor',
+    status: 'ACTIVE SCHEDULED DISPATCH • SECURED CONVOYS',
+    hubs: 'Mpondwe & Bunagana Gateways → Goma • Beni • Butembo',
+    transit: '48 to 72 Hours to Eastern DRC Hubs',
+    capacity: '20 - 30 Metric Ton Heavy Transport Fleet',
+    route: 'Western routing through Kasese and Fort Portal to the Mpondwe border gateway serving North Kivu (Beni, Butembo), and south through Kisoro to Bunagana serving Goma.',
+    protocol: 'Export customs compliance, French-labelled product documentation upon request, sealed cargo tracking, and direct delivery to cross-border trading partners.',
+    waypoints: ['Western Transit Depot', 'Mpondwe / Bunagana Border', 'Cross-Border Clearance', 'Goma / Beni Depots']
+  }
+];
+
+function openLogisticsModal() {
+  const modal = document.getElementById('logisticsModalDialog');
+  const overlay = document.getElementById('logisticsModalOverlay');
+  if (!modal || !overlay) return;
+
+  isLogisticsModalOpen = true;
+  modal.classList.add('open');
+  overlay.classList.add('open');
+  playAcousticChime('transition');
+  switchCorridor(0);
+}
+
+function closeLogisticsModal() {
+  const modal = document.getElementById('logisticsModalDialog');
+  const overlay = document.getElementById('logisticsModalOverlay');
+  if (!modal || !overlay) return;
+
+  isLogisticsModalOpen = false;
+  modal.classList.remove('open');
+  overlay.classList.remove('open');
+  playAcousticChime('click');
+}
+
+function switchCorridor(index) {
+  playAcousticChime('click');
+  const tabs = document.querySelectorAll('.corridor-tab');
+  tabs.forEach((t, i) => {
+    if (i === index) t.classList.add('active');
+    else t.classList.remove('active');
+  });
+
+  const c = logisticsCorridorsData[index];
+  if (!c) return;
+
+  const mEl = document.getElementById('corridorMonogram');
+  const tEl = document.getElementById('corridorTitle');
+  const sEl = document.getElementById('corridorStatus');
+  const hEl = document.getElementById('corridorHubs');
+  const trEl = document.getElementById('corridorTransit');
+  const capEl = document.getElementById('corridorCapacity');
+  const rEl = document.getElementById('corridorRouteDesc');
+  const pEl = document.getElementById('corridorProtocolDesc');
+  const wEl = document.getElementById('corridorWaypoints');
+
+  if (mEl) mEl.textContent = c.monogram;
+  if (tEl) tEl.textContent = c.title;
+  if (sEl) sEl.textContent = c.status;
+  if (hEl) hEl.textContent = c.hubs;
+  if (trEl) trEl.textContent = c.transit;
+  if (capEl) capEl.textContent = c.capacity;
+  if (rEl) rEl.textContent = c.route;
+  if (pEl) pEl.textContent = c.protocol;
+
+  if (wEl && c.waypoints) {
+    wEl.innerHTML = c.waypoints.map((step, idx) => {
+      const isFinal = idx === c.waypoints.length - 1;
+      const stepHtml = `<div class="c-step ${isFinal ? 'final' : ''}"><span class="cs-dot"></span><span>${step}</span></div>`;
+      if (!isFinal) {
+        return stepHtml + `<div class="c-step-line"></div>`;
+      }
+      return stepHtml;
+    }).join('');
+  }
 }
 
 function toggleAiDrawer(forceOpen) {
@@ -695,9 +857,10 @@ function toggleAiDrawer(forceOpen) {
   }
 }
 
-// Close drawer or COA modal on Escape key
+// Close drawer or modals on Escape key
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
+    if (isLogisticsModalOpen) closeLogisticsModal();
     if (isCoaModalOpen) closeCoaModal();
     if (isAiDrawerOpen) toggleAiDrawer(false);
   }

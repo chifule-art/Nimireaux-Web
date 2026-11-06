@@ -3032,3 +3032,468 @@ html, body {
   gap: 16px;
   flex-wrap: wrap;
 }
+
+/* ==========================================================================
+   ACT VI: YIELD CONCIERGE ACTIONS & WHATSAPP DIRECT SENDER
+   ========================================================================== */
+.concierge-actions-deck {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.btn-wa-concierge {
+  background: linear-gradient(135deg, rgba(20, 56, 35, 0.95), rgba(10, 23, 15, 0.98));
+  border: 1.5px solid #25d366;
+  color: #ffffff;
+  font-family: var(--p-font-roman);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  padding: 14px 24px;
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 18px rgba(37, 211, 102, 0.25);
+  backdrop-filter: blur(10px);
+}
+
+.btn-wa-concierge i {
+  color: #25d366;
+  font-size: 1.15rem;
+  animation: aiSparkleRotate 3.5s infinite ease-in-out;
+}
+
+.btn-wa-concierge:hover {
+  background: #25d366;
+  color: #050b07;
+  border-color: #25d366;
+  box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
+  transform: translateY(-2px);
+}
+
+.btn-wa-concierge:hover i {
+  color: #050b07;
+}
+
+/* ==========================================================================
+   EAST AFRICA REGIONAL TRADE & LOGISTICS CORRIDORS MODAL
+   ========================================================================== */
+.logistics-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 11, 7, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 350;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.logistics-modal-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.logistics-modal-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.95);
+  width: 960px;
+  max-width: 95vw;
+  max-height: 92vh;
+  background: var(--p-bg-noir);
+  border: 1px solid var(--p-border-glass);
+  border-radius: 20px;
+  z-index: 360;
+  box-shadow: 0 35px 90px rgba(0, 0, 0, 0.85), 0 0 50px rgba(201, 154, 62, 0.25);
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.35s var(--p-ease-couture);
+  overflow: hidden;
+}
+
+.logistics-modal-dialog.open {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.logistics-modal-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: 92vh;
+}
+
+.logistics-modal-header {
+  padding: 22px 28px;
+  background: var(--p-bg-surface);
+  border-bottom: 1px solid var(--p-border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.logistics-header-brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logistics-crest-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1.5px solid var(--p-gold-pure);
+  padding: 2px;
+  background: #ffffff;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(20, 56, 35, 0.25);
+}
+
+.logistics-crest-badge img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.logistics-protocol-tag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--p-font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.14em;
+  color: var(--p-gold-pure);
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.logistics-gold-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--p-gold-glow);
+  box-shadow: 0 0 8px var(--p-gold-glow);
+}
+
+.logistics-modal-title {
+  font-family: var(--p-font-roman);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--p-text-white);
+  margin: 0;
+  letter-spacing: 0.04em;
+}
+
+.logistics-modal-subtitle {
+  font-size: 0.76rem;
+  color: var(--p-text-muted);
+  margin: 2px 0 0 0;
+}
+
+.logistics-close-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--p-bg-glass);
+  border: 1px solid var(--p-border-subtle);
+  color: var(--p-text-silver);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.logistics-close-btn:hover {
+  background: var(--p-gold-pale);
+  border-color: var(--p-gold-pure);
+  color: var(--p-gold-pure);
+  transform: rotate(90deg);
+}
+
+/* Country Tabs Ribbon */
+.logistics-tabs-ribbon {
+  padding: 12px 28px;
+  background: rgba(10, 23, 15, 0.65);
+  border-bottom: 1px solid var(--p-border-glass);
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.corridor-tab {
+  background: var(--p-bg-surface);
+  border: 1px solid var(--p-border-glass);
+  color: var(--p-text-silver);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-family: var(--p-font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+}
+
+.corridor-tab:hover {
+  border-color: var(--p-gold-pure);
+  color: var(--p-gold-glow);
+  background: var(--p-gold-pale);
+  transform: translateY(-1px);
+}
+
+.corridor-tab.active {
+  background: linear-gradient(135deg, rgba(201, 154, 62, 0.25), rgba(20, 56, 35, 0.7));
+  border-color: var(--p-gold-pure);
+  color: var(--p-gold-glow);
+  box-shadow: 0 0 16px rgba(201, 154, 62, 0.3);
+}
+
+/* Modal Body */
+.logistics-modal-body {
+  padding: 24px 28px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.corridor-hero-card {
+  background: var(--p-bg-surface);
+  border: 1px solid var(--p-border-glass);
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+}
+
+.chc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--p-border-subtle);
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.chc-monogram {
+  font-family: var(--p-font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  color: var(--p-gold-pure);
+  font-weight: 700;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.chc-title {
+  font-family: var(--p-font-roman);
+  font-size: 1.25rem;
+  color: var(--p-text-white);
+  font-weight: 700;
+  margin: 0;
+}
+
+.chc-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(20, 56, 35, 0.7);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  color: #22c55e;
+  font-family: var(--p-font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+
+.corridor-pulse-bead {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 10px #22c55e;
+  animation: aiDotBlink 2s infinite ease-in-out;
+}
+
+/* 3-Pillar Telemetry Grid */
+.corridor-telemetry-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.ctg-cell {
+  background: var(--p-bg-glass);
+  border: 1px solid var(--p-border-glass);
+  padding: 14px 16px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ctg-label {
+  font-family: var(--p-font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.1em;
+  color: var(--p-gold-pure);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ctg-val {
+  font-size: 0.86rem;
+  color: var(--p-text-ivory);
+  font-family: var(--p-font-sans);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+/* Route & Customs Protocol Boxes */
+.corridor-details-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.cdb-col {
+  background: rgba(10, 23, 15, 0.6);
+  border: 1px solid var(--p-border-subtle);
+  padding: 16px 20px;
+  border-radius: 10px;
+}
+
+.cdb-col h5 {
+  font-family: var(--p-font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--p-gold-glow);
+  margin: 0 0 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cdb-col p {
+  font-size: 0.82rem;
+  color: var(--p-text-silver);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* Visual Waypoint Pipeline */
+.corridor-flow-wrapper {
+  background: rgba(16, 35, 23, 0.35);
+  border: 1px dashed var(--p-border-glass);
+  padding: 16px 20px;
+  border-radius: 10px;
+}
+
+.cfw-label {
+  font-family: var(--p-font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.12em;
+  color: var(--p-gold-pure);
+  font-weight: 700;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cfw-steps {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.c-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--p-bg-surface);
+  border: 1px solid var(--p-border-glass);
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--p-text-white);
+}
+
+.c-step.final {
+  border-color: var(--p-gold-pure);
+  background: var(--p-gold-pale);
+  color: var(--p-gold-glow);
+}
+
+.cs-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--p-gold-pure);
+  box-shadow: 0 0 6px var(--p-gold-pure);
+}
+
+.c-step.final .cs-dot {
+  background: #22c55e;
+  box-shadow: 0 0 8px #22c55e;
+}
+
+.c-step-line {
+  width: 24px;
+  height: 2px;
+  background: var(--p-border-glass);
+  flex-shrink: 0;
+}
+
+/* Modal Footer */
+.logistics-modal-footer {
+  padding: 18px 28px;
+  background: var(--p-bg-surface);
+  border-top: 1px solid var(--p-border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .corridor-telemetry-grid, .corridor-details-box {
+    grid-template-columns: 1fr;
+  }
+  .logistics-modal-footer {
+    flex-direction: column;
+  }
+  .logistics-modal-footer a, .logistics-modal-footer button {
+    width: 100%;
+    justify-content: center;
+  }
+}
