@@ -116,14 +116,46 @@
 
         <!-- Private Inquiry Button -->
         <button class="btn-royal" onclick="goToAct(6)">
-          <span class="btn-royal-text">COMMERCIAL SALON</span>
+          <span class="btn-royal-text">SALON</span>
           <span class="btn-royal-sheen"></span>
+        </button>
+
+        <!-- Mobile Acts Drawer Toggle -->
+        <button class="amenity-btn nav-mobile-toggle" id="mobileMenuToggle" title="Open Navigation Menu" aria-label="Toggle Navigation Menu" onclick="toggleMobileMenu()">
+          <i class="fa-solid fa-bars" id="mobileMenuIcon"></i>
         </button>
 
       </div>
 
     </div>
   </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-hidden="true">
+    <div class="mnd-backdrop" onclick="toggleMobileMenu(false)"></div>
+    <div class="mnd-content">
+      <div class="mnd-header">
+        <div class="mnd-brand">
+          <span class="mnd-title">NIMIREAUX</span>
+          <span class="mnd-sub">EDITORIAL ACTS</span>
+        </div>
+        <button class="mnd-close" onclick="toggleMobileMenu(false)" aria-label="Close Navigation"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="mnd-acts-list">
+        <button class="mnd-act-btn active" data-act="0" onclick="goToActMobile(0)"><span class="mnd-num">01</span><span>Prologue &amp; Oath</span></button>
+        <button class="mnd-act-btn" data-act="1" onclick="goToActMobile(1)"><span class="mnd-num">02</span><span>Terroir &amp; Sourcing</span></button>
+        <button class="mnd-act-btn" data-act="2" onclick="goToActMobile(2)"><span class="mnd-num">03</span><span>Precision Ateliers</span></button>
+        <button class="mnd-act-btn" data-act="3" onclick="goToActMobile(3)"><span class="mnd-num">04</span><span>Purity &amp; Lab Assay</span></button>
+        <button class="mnd-act-btn" data-act="4" onclick="goToActMobile(4)"><span class="mnd-num">05</span><span>Flour &amp; Grain Reserve</span></button>
+        <button class="mnd-act-btn" data-act="5" onclick="goToActMobile(5)"><span class="mnd-num">06</span><span>Yield Concierge</span></button>
+        <button class="mnd-act-btn" data-act="6" onclick="goToActMobile(6)"><span class="mnd-num">07</span><span>Commercial Salon</span></button>
+      </div>
+      <div class="mnd-footer">
+        <a href="tel:+256744135549" class="mnd-contact-pill"><i class="fa-solid fa-phone"></i> +256 744 135 549</a>
+        <a href="https://wa.me/256783688363" class="mnd-contact-pill wa" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp Desk</a>
+      </div>
+    </div>
+  </div>
 
   <!-- =========================================================================
        HAUTE COUTURE EAST AFRICA GRAIN COMMODITY TICKER TAPE

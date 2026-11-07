@@ -21,9 +21,38 @@ const actNames = [
 /* ==========================================================================
    ACT NAVIGATION ENGINE
    ========================================================================== */
+let isMobileNavOpen = false;
+
+function toggleMobileMenu(forceState) {
+  const drawer = document.getElementById('mobileNavDrawer');
+  const icon = document.getElementById('mobileMenuIcon');
+  if (!drawer) return;
+
+  if (typeof forceState === 'boolean') {
+    isMobileNavOpen = forceState;
+  } else {
+    isMobileNavOpen = !isMobileNavOpen;
+  }
+
+  if (isMobileNavOpen) {
+    drawer.classList.add('active');
+    document.body.classList.add('mobile-nav-active');
+    if (icon) icon.className = 'fa-solid fa-xmark';
+  } else {
+    drawer.classList.remove('active');
+    document.body.classList.remove('mobile-nav-active');
+    if (icon) icon.className = 'fa-solid fa-bars';
+  }
+}
+
+function goToActMobile(index) {
+  toggleMobileMenu(false);
+  goToAct(index);
+}
+
 function goToAct(index) {
   if (index < 0 || index >= totalActs) return;
-  if (index === currentAct && document.querySelector('.editorial-act.active')) return;
+  if (index === currentAct && document.querySelector('.editorial-act.active') && window.innerWidth > 1024) return;
 
   isActTransitioning = true;
   playAcousticChime('transition');
@@ -35,6 +64,9 @@ function goToAct(index) {
   const targetAct = document.getElementById(`act${index}`);
   if (targetAct) {
     targetAct.classList.add('active');
+    if (window.innerWidth <= 1024) {
+      targetAct.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 
   // Switch Photographic Scenic Stage
@@ -56,6 +88,17 @@ function goToAct(index) {
       t.classList.add('active');
     } else {
       t.classList.remove('active');
+    }
+  });
+
+  // Switch Mobile Nav Buttons
+  const mndBtns = document.querySelectorAll('.mnd-act-btn');
+  mndBtns.forEach(btn => {
+    const bIdx = parseInt(btn.getAttribute('data-act'));
+    if (bIdx === index) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
     }
   });
 
@@ -2313,10 +2356,64 @@ function initDraggableAiTrigger() {
   });
 }
 
+/* ==========================================================================
+   MOBILE INTERSECTION OBSERVER FOR NATURAL SCROLL TRACKING
+   ========================================================================== */
+function initMobileScrollObserver() {
+  if (!('IntersectionObserver' in window)) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    if (window.innerWidth > 1024 || isActTransitioning) return;
+
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const actIndex = parseInt(entry.target.getAttribute('data-act-index'));
+        if (!isNaN(actIndex) && actIndex !== currentAct) {
+          currentAct = actIndex;
+          
+          // Sync background scenic photo
+          const scenes = document.querySelectorAll('.scenic-slide');
+          scenes.forEach(s => {
+            const sIdx = parseInt(s.getAttribute('data-scene'));
+            if (sIdx === actIndex) s.classList.add('active');
+            else s.classList.remove('active');
+          });
+
+          // Sync tabs & mobile nav
+          const tabs = document.querySelectorAll('.act-tab');
+          tabs.forEach(t => {
+            const tIdx = parseInt(t.getAttribute('data-act'));
+            if (tIdx === actIndex) t.classList.add('active');
+            else t.classList.remove('active');
+          });
+
+          const mndBtns = document.querySelectorAll('.mnd-act-btn');
+          mndBtns.forEach(btn => {
+            const bIdx = parseInt(btn.getAttribute('data-act'));
+            if (bIdx === actIndex) btn.classList.add('active');
+            else btn.classList.remove('active');
+          });
+
+          updateCapsuleDock();
+        }
+      }
+    });
+  }, {
+    root: null,
+    rootMargin: '-20% 0px -40% 0px',
+    threshold: 0.1
+  });
+
+  document.querySelectorAll('.editorial-act').forEach(act => {
+    observer.observe(act);
+  });
+}
+
 // Initial Boot
 calculateConciergeYield();
 renderTickerRibbon();
 updateCapsuleDock();
 initDraggableAiTrigger();
+initMobileScrollObserver();
 goToAct(0);
 
