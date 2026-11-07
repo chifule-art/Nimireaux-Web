@@ -2417,6 +2417,8 @@ html, body {
   transform: translateX(100%);
   transition: transform 0.42s var(--p-ease-couture);
   box-shadow: -20px 0 60px rgba(0, 0, 0, 0.75), 0 0 40px rgba(201, 154, 62, 0.12);
+  overscroll-behavior: contain;
+  touch-action: pan-y;
 }
 
 .ai-concierge-drawer.open {
@@ -2581,20 +2583,27 @@ html, body {
 .ai-messages-stage {
   flex: 1;
   overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
   padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 18px;
   scrollbar-width: thin;
-  scrollbar-color: var(--p-border-glass) transparent;
+  scrollbar-color: var(--p-gold-pure) rgba(0, 0, 0, 0.25);
 }
 
 .ai-messages-stage::-webkit-scrollbar {
   width: 6px;
 }
 
+.ai-messages-stage::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.25);
+}
+
 .ai-messages-stage::-webkit-scrollbar-thumb {
-  background: var(--p-border-glass);
+  background: var(--p-gold-pure);
   border-radius: 6px;
 }
 
@@ -2870,6 +2879,9 @@ html, body {
 @media (max-width: 1024px) {
   html, body {
     overflow-y: auto;
+  }
+  body.ai-drawer-active {
+    overflow: hidden !important;
   }
   .prestige-viewport {
     height: auto;

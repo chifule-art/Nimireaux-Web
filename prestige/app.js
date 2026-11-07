@@ -118,6 +118,23 @@ let scrollLock = false;
 
 window.addEventListener('wheel', (e) => {
   if (window.innerWidth <= 1024) return; // Allow normal scroll on mobile/tablet
+
+  // If the wheel event is inside the AI drawer, message stage, or any open modal dialog:
+  // ALLOW native container scrolling and DO NOT navigate acts!
+  const isInsideScrollable = e.target.closest(
+    '#aiConciergeDrawer, .ai-messages-stage, #marketBoardDialog, .mb-table-wrapper, #logisticsModalDialog, #coaModalDialog, .corridor-body'
+  );
+
+  if (isInsideScrollable) {
+    return; // Allow native scroll inside the drawer/modal
+  }
+
+  // If any modal or the AI drawer is open, block full-page background act navigation
+  if (isAiDrawerOpen || isMarketBoardOpen || isLogisticsModalOpen || isCoaModalOpen) {
+    e.preventDefault();
+    return;
+  }
+
   e.preventDefault();
 
   if (scrollLock) return;
@@ -139,6 +156,13 @@ window.addEventListener('wheel', (e) => {
 }, { passive: false });
 
 window.addEventListener('keydown', (e) => {
+  const isInput = e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable;
+  const isInsideOverlay = !!e.target.closest('#aiConciergeDrawer, #marketBoardDialog, #logisticsModalDialog, #coaModalDialog');
+
+  if (isInput || isInsideOverlay || isAiDrawerOpen || isMarketBoardOpen || isLogisticsModalOpen || isCoaModalOpen) {
+    return; // Allow typing & arrow key navigation inside drawer/modals
+  }
+
   if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === 'PageDown') {
     nextAct();
   } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp') {
@@ -148,12 +172,21 @@ window.addEventListener('keydown', (e) => {
 
 /* Touch Swipe Navigation */
 let touchStartY = 0;
+let touchStartedInScrollable = false;
+
 window.addEventListener('touchstart', (e) => {
+  if (!e.touches || e.touches.length === 0) return;
   touchStartY = e.touches[0].clientY;
+  touchStartedInScrollable = !!e.target.closest(
+    '#aiConciergeDrawer, .ai-messages-stage, #marketBoardDialog, .mb-table-wrapper, #logisticsModalDialog, #coaModalDialog, .corridor-body'
+  );
 }, { passive: true });
 
 window.addEventListener('touchend', (e) => {
   if (window.innerWidth <= 1024) return;
+  if (touchStartedInScrollable || isAiDrawerOpen || isMarketBoardOpen || isLogisticsModalOpen || isCoaModalOpen) {
+    return;
+  }
   const touchEndY = e.changedTouches[0].clientY;
   const diff = touchStartY - touchEndY;
   if (Math.abs(diff) > 50) {
@@ -1556,6 +1589,7 @@ function toggleAiDrawer(forceOpen) {
   if (isAiDrawerOpen) {
     drawer.classList.add('open');
     overlay.classList.add('open');
+    document.body.classList.add('ai-drawer-active');
     playAcousticChime('transition');
     setTimeout(() => {
       const input = document.getElementById('aiUserInput');
@@ -1564,8 +1598,24 @@ function toggleAiDrawer(forceOpen) {
   } else {
     drawer.classList.remove('open');
     overlay.classList.remove('open');
+    document.body.classList.remove('ai-drawer-active');
     playAcousticChime('click');
   }
+}
+
+// Ensure wheel events inside the AI drawer never bubble or trigger full-page act navigation
+const aiDrawerEl = document.getElementById('aiConciergeDrawer');
+if (aiDrawerEl) {
+  aiDrawerEl.addEventListener('wheel', (e) => {
+    e.stopPropagation();
+  }, { passive: true });
+}
+
+const aiStageEl = document.getElementById('aiMessagesStage');
+if (aiStageEl) {
+  aiStageEl.addEventListener('wheel', (e) => {
+    e.stopPropagation();
+  }, { passive: true });
 }
 
 // Close drawer or modals on Escape key
