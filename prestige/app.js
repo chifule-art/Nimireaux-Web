@@ -1423,11 +1423,192 @@ function orderSelectedMarketOnWhatsApp() {
    MAISON AI CONCIERGE & SOVEREIGN INTELLIGENCE PROTOCOL
    ========================================================================== */
 
+/* ==========================================================================
+   DIGITAL QUALITY LAB & AFLATOXIN ASSAY INSPECTOR DATABASE
+   ========================================================================== */
 let isAiDrawerOpen = false;
 let isCoaModalOpen = false;
 let isLogisticsModalOpen = false;
+let currentLabBatchId = 'NMR-2026-UG88';
 
-function openCoaModal() {
+const LAB_BATCH_DATABASE = {
+  'NMR-2026-UG88': {
+    batchNumber: 'NMR-2026-UG88',
+    commodity: 'Superfine Fortified Maize Meal (Grade 1 Royal)',
+    standard: 'UNBS US 2:2017 / EAS 768 Fortified Standard',
+    millingFacility: 'Kampala Central Milling Atelier — Mill Line A',
+    siloOrigin: 'Masindi & Bunyoro Agricultural Sourcing Nexus',
+    manufactureDate: '01 Nov 2026',
+    expiryDate: '01 May 2027',
+    samplingDates: 'Sampled: 02 Nov 2026 • Exp: 01 May 2027',
+    aflatoxinTotal: '0.0 ppb',
+    aflatoxinSub: 'Undetectable (< 0.5 ppb)',
+    aflatoxinMargin: '-100% Safety Margin',
+    aflatoxinFillPct: 4,
+    moisture: '12.4%',
+    moistureFillPct: 92,
+    moistureStatus: 'Dry Storage Stable',
+    granulometry: '98.6%',
+    vitA: '2.2 mg/kg',
+    iron: '48.0 mg/kg',
+    zinc: '42.5 mg/kg',
+    verifyHash: 'SHA256: 8f9b4e72a10c0e5a8f42b3d1... [VERIFIED]',
+    parameters: [
+      { name: 'Moisture Content', result: '12.4% ± 0.3%', limit: 'Max 13.5%', method: 'ISO 712 / NIR Spectrometry', isGood: true },
+      { name: 'Total Aflatoxins (B1+B2+G1+G2)', result: '0.0 ppb (Undetectable)', limit: 'Max 10.0 ppb', method: 'HPLC Immunoaffinity / Fluorometry', isGood: true },
+      { name: 'Aflatoxin B1', result: '< 0.5 ppb', limit: 'Max 5.0 ppb', method: 'Enzyme-Linked Immunoassay (ELISA)', isGood: true },
+      { name: 'Crude Protein (N × 6.25)', result: '9.20% (Dry Basis)', limit: 'Min 8.0%', method: 'Kjeldahl Combustion Method', isGood: true },
+      { name: 'Crude Fat', result: '1.35%', limit: 'Max 2.0%', method: 'Soxhlet Solvent Extraction', isGood: true },
+      { name: 'Total Ash', result: '0.48%', limit: 'Max 0.70%', method: '550 °C Muffle Furnace', isGood: true },
+      { name: 'Vitamin A (Retinyl Palmitate)', result: '2.2 ± 0.3 mg/kg', limit: 'Min 1.5 mg/kg', method: 'HPLC Spectrophotometry', isGold: true },
+      { name: 'Iron (NaFeEDTA)', result: '48.0 ± 5.0 mg/kg', limit: 'Min 40.0 mg/kg', method: 'Atomic Absorption Spectrophotometry', isGold: true },
+      { name: 'Zinc (Zinc Oxide)', result: '42.5 ± 4.0 mg/kg', limit: 'Min 35.0 mg/kg', method: 'Flame Photometry (AOAC 999.11)', isGold: true },
+      { name: 'Granulometry (< 120 μm)', result: '98.6% Passes Silk Screen', limit: 'Min 95.0%', method: 'Rotap Mechanical Sieve Analysis', isGood: true },
+      { name: 'Optical Foreign Matter', result: '0.00% (Zero Impurity)', limit: 'Max 0.20%', method: 'Bühler Sortex Optical Inspection', isGood: true }
+    ]
+  },
+  'NMR-2026-M04': {
+    batchNumber: 'NMR-2026-M04',
+    commodity: 'Grade 1 Superfine White Posho Flour',
+    standard: 'UNBS US 2:2017 / Triple Fortified',
+    millingFacility: 'Kampala Central Milling Atelier — Mill Line A',
+    siloOrigin: 'Masindi Outgrower Basin (Silo Intake #04)',
+    manufactureDate: '02 Nov 2026',
+    expiryDate: '02 May 2027',
+    samplingDates: 'Sampled: 03 Nov 2026 • Exp: 02 May 2027',
+    aflatoxinTotal: '1.8 ppb',
+    aflatoxinSub: 'Certified Safe (< 2.0 ppb)',
+    aflatoxinMargin: '-82% Safety Margin',
+    aflatoxinFillPct: 18,
+    moisture: '12.5%',
+    moistureFillPct: 93,
+    moistureStatus: 'Low Moisture Stable',
+    granulometry: '98.8%',
+    vitA: '2.4 mg/kg',
+    iron: '48.5 mg/kg',
+    zinc: '42.0 mg/kg',
+    verifyHash: 'SHA256: 4e7a2b9011ff83d6a9c148e2... [VERIFIED]',
+    parameters: [
+      { name: 'Moisture Content', result: '12.5% ± 0.3%', limit: 'Max 13.5%', method: 'ISO 712 / NIR Spectrometry', isGood: true },
+      { name: 'Total Aflatoxins (B1+B2+G1+G2)', result: '1.8 ppb', limit: 'Max 10.0 ppb', method: 'HPLC Immunoaffinity / Fluorometry', isGood: true },
+      { name: 'Aflatoxin B1', result: '< 0.5 ppb', limit: 'Max 5.0 ppb', method: 'Enzyme-Linked Immunoassay (ELISA)', isGood: true },
+      { name: 'Crude Protein (N × 6.25)', result: '9.35% (Dry Basis)', limit: 'Min 8.0%', method: 'Kjeldahl Combustion Method', isGood: true },
+      { name: 'Crude Fat', result: '1.28%', limit: 'Max 2.0%', method: 'Soxhlet Solvent Extraction', isGood: true },
+      { name: 'Total Ash', result: '0.46%', limit: 'Max 0.70%', method: '550 °C Muffle Furnace', isGood: true },
+      { name: 'Vitamin A (Retinyl Palmitate)', result: '2.4 ± 0.2 mg/kg', limit: 'Min 1.5 mg/kg', method: 'HPLC Spectrophotometry', isGold: true },
+      { name: 'Iron (NaFeEDTA)', result: '48.5 ± 3.0 mg/kg', limit: 'Min 40.0 mg/kg', method: 'Atomic Absorption Spectrophotometry', isGold: true },
+      { name: 'Zinc (Zinc Oxide)', result: '42.0 ± 2.5 mg/kg', limit: 'Min 35.0 mg/kg', method: 'Flame Photometry (AOAC 999.11)', isGold: true },
+      { name: 'Granulometry (< 120 μm)', result: '98.8% Passes Silk Screen', limit: 'Min 95.0%', method: 'Rotap Mechanical Sieve Analysis', isGood: true },
+      { name: 'Optical Foreign Matter', result: '0.00% (Zero Impurity)', limit: 'Max 0.20%', method: 'Bühler Sortex Optical Inspection', isGood: true }
+    ]
+  },
+  'NMR-2026-Y18': {
+    batchNumber: 'NMR-2026-Y18',
+    commodity: 'Fortified Golden Yellow Maize Flour',
+    standard: 'UNBS US 2:2017 / Carotenoid Enriched',
+    millingFacility: 'Jinja Processing Epicenter — Mill Line B',
+    siloOrigin: 'Eastern Uganda Outgrower Basin (Silo Intake #09)',
+    manufactureDate: '04 Nov 2026',
+    expiryDate: '04 May 2027',
+    samplingDates: 'Sampled: 05 Nov 2026 • Exp: 04 May 2027',
+    aflatoxinTotal: '2.4 ppb',
+    aflatoxinSub: 'Certified Safe (< 3.0 ppb)',
+    aflatoxinMargin: '-76% Safety Margin',
+    aflatoxinFillPct: 24,
+    moisture: '12.6%',
+    moistureFillPct: 93,
+    moistureStatus: 'Controlled Moisture',
+    granulometry: '97.6%',
+    vitA: '2.6 mg/kg',
+    iron: '46.0 mg/kg',
+    zinc: '40.5 mg/kg',
+    verifyHash: 'SHA256: 7b2190cd14aa350e981fc072... [VERIFIED]',
+    parameters: [
+      { name: 'Moisture Content', result: '12.6% ± 0.3%', limit: 'Max 13.5%', method: 'ISO 712 / NIR Spectrometry', isGood: true },
+      { name: 'Total Aflatoxins (B1+B2+G1+G2)', result: '2.4 ppb', limit: 'Max 10.0 ppb', method: 'HPLC Immunoaffinity / Fluorometry', isGood: true },
+      { name: 'Aflatoxin B1', result: '< 0.6 ppb', limit: 'Max 5.0 ppb', method: 'Enzyme-Linked Immunoassay (ELISA)', isGood: true },
+      { name: 'Crude Protein (N × 6.25)', result: '9.80% (Dry Basis)', limit: 'Min 8.0%', method: 'Kjeldahl Combustion Method', isGood: true },
+      { name: 'Crude Fat', result: '1.85%', limit: 'Max 2.0%', method: 'Soxhlet Solvent Extraction', isGood: true },
+      { name: 'Total Ash', result: '0.52%', limit: 'Max 0.70%', method: '550 °C Muffle Furnace', isGood: true },
+      { name: 'Vitamin A (Retinyl Palmitate)', result: '2.6 ± 0.3 mg/kg', limit: 'Min 1.5 mg/kg', method: 'HPLC Spectrophotometry', isGold: true },
+      { name: 'Iron (NaFeEDTA)', result: '46.0 ± 3.0 mg/kg', limit: 'Min 40.0 mg/kg', method: 'Atomic Absorption Spectrophotometry', isGold: true },
+      { name: 'Zinc (Zinc Oxide)', result: '40.5 ± 2.5 mg/kg', limit: 'Min 35.0 mg/kg', method: 'Flame Photometry (AOAC 999.11)', isGold: true },
+      { name: 'Granulometry (< 140 μm)', result: '97.6% Passes Silk Screen', limit: 'Min 95.0%', method: 'Rotap Mechanical Sieve Analysis', isGood: true },
+      { name: 'Optical Foreign Matter', result: '0.00% (Zero Impurity)', limit: 'Max 0.20%', method: 'Bühler Sortex Optical Inspection', isGood: true }
+    ]
+  },
+  'NMR-2026-W08': {
+    batchNumber: 'NMR-2026-W08',
+    commodity: 'Premium Baker’s Hard Wheat Atta',
+    standard: 'EAS 51 / High-Gluten Industrial Bakery Standard',
+    millingFacility: 'Kampala Roller Mill Atelier — Roller Stage 5',
+    siloOrigin: 'Eastern Highlands Cultivars (Silo Intake #02)',
+    manufactureDate: '28 Oct 2026',
+    expiryDate: '28 Apr 2027',
+    samplingDates: 'Sampled: 29 Oct 2026 • Exp: 28 Apr 2027',
+    aflatoxinTotal: '0.8 ppb',
+    aflatoxinSub: 'Certified Safe (< 1.0 ppb)',
+    aflatoxinMargin: '-92% Safety Margin',
+    aflatoxinFillPct: 8,
+    moisture: '11.9%',
+    moistureFillPct: 88,
+    moistureStatus: 'Low Moisture Atta',
+    granulometry: '99.2%',
+    vitA: '2.0 mg/kg',
+    iron: '52.0 mg/kg',
+    zinc: '38.0 mg/kg',
+    verifyHash: 'SHA256: 3c5188f407b1e289aa936d54... [VERIFIED]',
+    parameters: [
+      { name: 'Moisture Content', result: '11.9% ± 0.3%', limit: 'Max 12.5%', method: 'ISO 712 / NIR Spectrometry', isGood: true },
+      { name: 'Total Aflatoxins (B1+B2+G1+G2)', result: '0.8 ppb', limit: 'Max 10.0 ppb', method: 'HPLC Immunoaffinity / Fluorometry', isGood: true },
+      { name: 'Aflatoxin B1', result: '< 0.2 ppb', limit: 'Max 5.0 ppb', method: 'Enzyme-Linked Immunoassay (ELISA)', isGood: true },
+      { name: 'Wet Gluten Index', result: '30.5% (High Elasticity)', limit: 'Min 28.0%', method: 'Glutomatic AOAC 38-12', isGold: true },
+      { name: 'Crude Protein (N × 5.7)', result: '12.60% (Dry Basis)', limit: 'Min 11.5%', method: 'Kjeldahl Combustion Method', isGood: true },
+      { name: 'Total Ash', result: '0.58%', limit: 'Max 0.65%', method: '550 °C Muffle Furnace', isGood: true },
+      { name: 'Iron (NaFeEDTA)', result: '52.0 ± 4.0 mg/kg', limit: 'Min 40.0 mg/kg', method: 'Atomic Absorption Spectrophotometry', isGold: true },
+      { name: 'Zinc (Zinc Oxide)', result: '38.0 ± 2.0 mg/kg', limit: 'Min 35.0 mg/kg', method: 'Flame Photometry (AOAC 999.11)', isGold: true },
+      { name: 'Granulometry (< 120 μm)', result: '99.2% Passes Silk Screen', limit: 'Min 95.0%', method: 'Rotap Mechanical Sieve Analysis', isGood: true },
+      { name: 'Optical Foreign Matter', result: '0.00% (Zero Impurity)', limit: 'Max 0.15%', method: 'Bühler Sortex Optical Inspection', isGood: true }
+    ]
+  },
+  'NMR-2026-C12': {
+    batchNumber: 'NMR-2026-C12',
+    commodity: 'Fortified Multi-Grain Blend (Millet, Sorghum, Soya & Maize)',
+    standard: 'WFP / WHO Supplementary Food Specification',
+    millingFacility: 'Kampala Precision Blend Atelier — Line C',
+    siloOrigin: 'Acholi & Bunyoro Basin Multi-Cereal Reserves',
+    manufactureDate: '05 Nov 2026',
+    expiryDate: '05 Nov 2027',
+    samplingDates: 'Sampled: 05 Nov 2026 • Exp: 05 Nov 2027',
+    aflatoxinTotal: '1.2 ppb',
+    aflatoxinSub: 'Certified Safe (< 2.0 ppb)',
+    aflatoxinMargin: '-88% Safety Margin',
+    aflatoxinFillPct: 12,
+    moisture: '11.2%',
+    moistureFillPct: 84,
+    moistureStatus: 'Hermetic Pack Stable',
+    granulometry: '96.5%',
+    vitA: '3.0 mg/kg',
+    iron: '58.0 mg/kg',
+    zinc: '46.0 mg/kg',
+    verifyHash: 'SHA256: 91b002cf771d99ea5c822e11... [VERIFIED]',
+    parameters: [
+      { name: 'Moisture Content', result: '11.2% ± 0.3%', limit: 'Max 12.0%', method: 'ISO 712 / NIR Spectrometry', isGood: true },
+      { name: 'Total Aflatoxins (B1+B2+G1+G2)', result: '1.2 ppb', limit: 'Max 10.0 ppb', method: 'HPLC Immunoaffinity / Fluorometry', isGood: true },
+      { name: 'Aflatoxin B1', result: '< 0.3 ppb', limit: 'Max 5.0 ppb', method: 'Enzyme-Linked Immunoassay (ELISA)', isGood: true },
+      { name: 'Crude Protein (N × 6.25)', result: '14.20% (Dry Basis)', limit: 'Min 12.0%', method: 'Kjeldahl Combustion Method', isGood: true },
+      { name: 'Crude Fat', result: '3.10%', limit: 'Max 4.0%', method: 'Soxhlet Solvent Extraction', isGood: true },
+      { name: 'Total Ash', result: '0.95%', limit: 'Max 1.20%', method: '550 °C Muffle Furnace', isGood: true },
+      { name: 'Vitamin A (Retinyl Palmitate)', result: '3.0 ± 0.3 mg/kg', limit: 'Min 2.0 mg/kg', method: 'HPLC Spectrophotometry', isGold: true },
+      { name: 'Iron (NaFeEDTA)', result: '58.0 ± 4.0 mg/kg', limit: 'Min 45.0 mg/kg', method: 'Atomic Absorption Spectrophotometry', isGold: true },
+      { name: 'Zinc (Zinc Oxide)', result: '46.0 ± 3.0 mg/kg', limit: 'Min 40.0 mg/kg', method: 'Flame Photometry (AOAC 999.11)', isGold: true },
+      { name: 'Granulometry (< 150 μm)', result: '96.5% Passes Screen', limit: 'Min 95.0%', method: 'Rotap Mechanical Sieve Analysis', isGood: true },
+      { name: 'Optical Foreign Matter', result: '0.00% (Zero Impurity)', limit: 'Max 0.20%', method: 'Bühler Sortex Optical Inspection', isGood: true }
+    ]
+  }
+};
+
+function openCoaModal(batchId) {
   const modal = document.getElementById('coaModalDialog');
   const overlay = document.getElementById('coaModalOverlay');
   if (!modal || !overlay) return;
@@ -1436,6 +1617,9 @@ function openCoaModal() {
   modal.classList.add('open');
   overlay.classList.add('open');
   playAcousticChime('transition');
+
+  const targetId = (batchId && LAB_BATCH_DATABASE[batchId]) ? batchId : currentLabBatchId;
+  inspectLabBatch(targetId);
 }
 
 function closeCoaModal() {
@@ -1447,6 +1631,102 @@ function closeCoaModal() {
   modal.classList.remove('open');
   overlay.classList.remove('open');
   playAcousticChime('click');
+}
+
+function inspectLabBatch(batchId) {
+  const batch = LAB_BATCH_DATABASE[batchId] || LAB_BATCH_DATABASE['NMR-2026-UG88'];
+  currentLabBatchId = batch.batchNumber;
+  playAcousticChime('click');
+
+  // Update chip active classes
+  const chips = document.querySelectorAll('.cls-chip');
+  chips.forEach(c => {
+    c.classList.toggle('active', c.dataset.batch === currentLabBatchId);
+  });
+
+  // Update Ribbon
+  const badgeEl = document.getElementById('coaActiveBatchBadge');
+  if (badgeEl) badgeEl.innerHTML = `<i class="fa-solid fa-check-double"></i> LOT #${batch.batchNumber}`;
+
+  // Update KPI Grid
+  const aflVal = document.getElementById('coaAflatoxinVal');
+  const aflSub = document.getElementById('coaAflatoxinSub');
+  const aflFill = document.getElementById('coaAflatoxinFill');
+  const aflMargin = document.getElementById('coaAflatoxinMargin');
+
+  const moistVal = document.getElementById('coaMoistureVal');
+  const moistFill = document.getElementById('coaMoistureFill');
+  const moistStatus = document.getElementById('coaMoistureStatus');
+
+  const granVal = document.getElementById('coaGranuloVal');
+  const vitAVal = document.getElementById('coaVitAVal');
+  const ironVal = document.getElementById('coaIronVal');
+  const zincVal = document.getElementById('coaZincVal');
+
+  if (aflVal) aflVal.textContent = batch.aflatoxinTotal;
+  if (aflSub) aflSub.textContent = batch.aflatoxinSub;
+  if (aflFill) aflFill.style.width = `${batch.aflatoxinFillPct}%`;
+  if (aflMargin) aflMargin.textContent = batch.aflatoxinMargin;
+
+  if (moistVal) moistVal.textContent = batch.moisture;
+  if (moistFill) moistFill.style.width = `${batch.moistureFillPct}%`;
+  if (moistStatus) moistStatus.textContent = batch.moistureStatus;
+
+  if (granVal) granVal.textContent = batch.granulometry;
+  if (vitAVal) vitAVal.textContent = batch.vitA;
+  if (ironVal) ironVal.textContent = batch.iron;
+  if (zincVal) zincVal.textContent = batch.zinc;
+
+  // Update Metadata Strip
+  const nameEl = document.getElementById('coaCommodityName');
+  const facEl = document.getElementById('coaMillingFacility');
+  const siloEl = document.getElementById('coaSiloOrigin');
+  const datesEl = document.getElementById('coaSamplingDates');
+  const hashEl = document.getElementById('coaVerifyHash');
+
+  if (nameEl) nameEl.textContent = batch.commodity;
+  if (facEl) facEl.textContent = batch.millingFacility;
+  if (siloEl) siloEl.textContent = batch.siloOrigin;
+  if (datesEl) datesEl.textContent = batch.samplingDates;
+  if (hashEl) hashEl.textContent = batch.verifyHash;
+
+  // Update Parameters Table
+  const tbody = document.getElementById('coaTableBody');
+  if (tbody) {
+    tbody.innerHTML = batch.parameters.map(p => {
+      let valClass = p.isGood ? 'coa-val-good' : (p.isGold ? 'coa-val-gold' : '');
+      return `
+        <tr>
+          <td><strong>${p.name}</strong></td>
+          <td><span class="${valClass}">${p.result}</span></td>
+          <td>${p.limit}</td>
+          <td>${p.method}</td>
+        </tr>
+      `;
+    }).join('');
+  }
+}
+
+function printOfficialCoa() {
+  playAcousticChime('click');
+  window.print();
+}
+
+function inquireBatchWhatsApp() {
+  playAcousticChime('click');
+  const batch = LAB_BATCH_DATABASE[currentLabBatchId] || LAB_BATCH_DATABASE['NMR-2026-UG88'];
+  const msg = `Hello Nimireaux Quality Assurance Desk, I have inspected certified Batch #${batch.batchNumber} on your website Digital Lab Inspector:\n\n` +
+    `🔬 *CERTIFIED BATCH INQUIRY*\n` +
+    `• Product: ${batch.commodity}\n` +
+    `• Lot Number: #${batch.batchNumber}\n` +
+    `• HPLC Aflatoxin Total: ${batch.aflatoxinTotal} (${batch.aflatoxinMargin})\n` +
+    `• Certified Moisture: ${batch.moisture}\n` +
+    `• Fortification Standard: ${batch.standard}\n` +
+    `• Production Atelier: ${batch.millingFacility}\n\n` +
+    `Please confirm bulk tonnage availability, current ex-mill wholesale pricing, and scheduled dispatch slot for this verified lot.`;
+
+  const waUrl = `https://wa.me/256744135549?text=${encodeURIComponent(msg)}`;
+  window.open(waUrl, '_blank', 'noopener,noreferrer');
 }
 
 /* ==========================================================================

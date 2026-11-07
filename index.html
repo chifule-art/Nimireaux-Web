@@ -477,9 +477,9 @@
                 <span>DISCOVER THE PRIVATE RESERVE</span>
                 <i class="fa-solid fa-arrow-right"></i>
               </button>
-              <button type="button" class="btn-royal-outline" onclick="openCoaModal()">
-                <i class="fa-solid fa-file-shield"></i>
-                <span>SPECIFICATIONS &amp; COA</span>
+              <button type="button" class="btn-royal-outline" onclick="openCoaModal('NMR-2026-UG88')">
+                <i class="fa-solid fa-microscope"></i>
+                <span>DIGITAL LAB &amp; AFLATOXIN INSPECTOR</span>
               </button>
             </div>
           </div>
@@ -522,10 +522,10 @@
                   </div>
                 </div>
               </div>
-              <div class="lsc-batch-row">
+              <div class="lsc-batch-row" onclick="openCoaModal('NMR-2026-UG88')" style="cursor: pointer;" title="Inspect this batch in Digital Quality Lab">
                 <div class="lbr-cell">
                   <span>CURRENT BATCH</span>
-                  <strong>#NMR-2026-UG88</strong>
+                  <strong>#NMR-2026-UG88 <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.72rem; color: var(--p-gold-pure); margin-left: 4px;"></i></strong>
                 </div>
                 <div class="lbr-cell">
                   <span>DISPOSITION</span>
@@ -1020,7 +1020,7 @@
   </div>
 
   <!-- =========================================================================
-       HAUTE COUTURE CERTIFICATE OF ANALYSIS & CORPORATE DOSSIER MODAL
+       HAUTE COUTURE DIGITAL QUALITY LAB & AFLATOXIN ASSAY INSPECTOR MODAL
        ========================================================================= -->
   <div class="coa-modal-overlay" id="coaModalOverlay" onclick="closeCoaModal()"></div>
   
@@ -1036,10 +1036,10 @@
           <div>
             <div class="coa-protocol-tag">
               <span class="coa-gold-dot"></span>
-              <span>OFFICIAL TECHNICAL DOSSIER &bull; SPEC SHEET &amp; COA</span>
+              <span>UNBS US 2:2017 &bull; HPLC AFLATOXIN &amp; QUALITY INSPECTOR</span>
             </div>
-            <h3 class="coa-modal-title" id="coaModalTitle">Certificate of Analysis &amp; Product Specification</h3>
-            <p class="coa-modal-subtitle">Nimireaux Uganda Limited &bull; Quality Assurance Laboratories, Kampala</p>
+            <h3 class="coa-modal-title" id="coaModalTitle">Digital Quality Lab &amp; Certificate of Analysis</h3>
+            <p class="coa-modal-subtitle">Nimireaux Uganda Limited &bull; Quality Assurance &amp; Food Biochemistry Laboratory, Kampala</p>
           </div>
         </div>
         <button class="coa-close-btn" onclick="closeCoaModal()" aria-label="Close Preview">
@@ -1047,112 +1047,230 @@
         </button>
       </div>
 
+      <!-- Lot Selector Strip -->
+      <div class="coa-lot-selector-strip">
+        <div class="cls-label">
+          <i class="fa-solid fa-microscope"></i>
+          <span>INSPECT CERTIFIED PRODUCTION LOT:</span>
+        </div>
+        <div class="cls-chips-deck" id="coaLotChips">
+          <button type="button" class="cls-chip active" data-batch="NMR-2026-UG88" onclick="inspectLabBatch('NMR-2026-UG88')">
+            <span class="cls-chip-dot"></span>
+            <span>#NMR-2026-UG88 (Royal Posho)</span>
+          </button>
+          <button type="button" class="cls-chip" data-batch="NMR-2026-M04" onclick="inspectLabBatch('NMR-2026-M04')">
+            <span class="cls-chip-dot"></span>
+            <span>#NMR-2026-M04 (Superfine White)</span>
+          </button>
+          <button type="button" class="cls-chip" data-batch="NMR-2026-Y18" onclick="inspectLabBatch('NMR-2026-Y18')">
+            <span class="cls-chip-dot"></span>
+            <span>#NMR-2026-Y18 (Golden Yellow)</span>
+          </button>
+          <button type="button" class="cls-chip" data-batch="NMR-2026-W08" onclick="inspectLabBatch('NMR-2026-W08')">
+            <span class="cls-chip-dot"></span>
+            <span>#NMR-2026-W08 (Hard Wheat)</span>
+          </button>
+          <button type="button" class="cls-chip" data-batch="NMR-2026-C12" onclick="inspectLabBatch('NMR-2026-C12')">
+            <span class="cls-chip-dot"></span>
+            <span>#NMR-2026-C12 (WFP Relief Blend)</span>
+          </button>
+        </div>
+      </div>
+
       <!-- Verified Standards & Badges Ribbon -->
       <div class="coa-badges-ribbon">
         <span class="coa-ribbon-item"><i class="fa-solid fa-stamp"></i> UNBS Q-MARK CERTIFIED</span>
         <span class="coa-ribbon-item"><i class="fa-solid fa-shield-halved"></i> EAS 768 FORTIFIED</span>
         <span class="coa-ribbon-item"><i class="fa-solid fa-dna"></i> 100% NON-GMO CULTIVARS</span>
-        <span class="coa-ribbon-item"><i class="fa-solid fa-check-double"></i> BATCH #NMR-2026-UG88</span>
+        <span class="coa-ribbon-item" id="coaActiveBatchBadge"><i class="fa-solid fa-check-double"></i> LOT #NMR-2026-UG88</span>
       </div>
 
-      <!-- Laboratory Analytics Spec Table -->
+      <!-- Laboratory Analytics Spec Table & Dashboard -->
       <div class="coa-modal-body">
+        
+        <!-- Quality Assurance Key Assay KPI Grid -->
+        <div class="coa-kpi-grid">
+          
+          <!-- KPI 1: HPLC Total Aflatoxin -->
+          <div class="coa-kpi-card premier">
+            <div class="ckc-head">
+              <span class="ckc-label">HPLC TOTAL AFLATOXIN (B1+B2+G1+G2)</span>
+              <span class="ckc-badge-pass" id="coaAflatoxinBadge"><i class="fa-solid fa-shield-check"></i> PASSED</span>
+            </div>
+            <div class="ckc-value-row">
+              <span class="ckc-val text-green" id="coaAflatoxinVal">0.0 ppb</span>
+              <span class="ckc-sub" id="coaAflatoxinSub">Undetectable (&lt; 0.5 ppb)</span>
+            </div>
+            <div class="ckc-limit-bar">
+              <div class="ckc-fill-safe" id="coaAflatoxinFill" style="width: 5%;"></div>
+            </div>
+            <div class="ckc-footer">
+              <span>UNBS Statutory Limit: Max 10.0 ppb</span>
+              <span class="text-green" id="coaAflatoxinMargin">-100% Safety Margin</span>
+            </div>
+          </div>
+
+          <!-- KPI 2: Certified Moisture Content -->
+          <div class="coa-kpi-card">
+            <div class="ckc-head">
+              <span class="ckc-label">CERTIFIED MOISTURE CONTENT</span>
+              <span class="ckc-badge-pass"><i class="fa-solid fa-check"></i> COMPLIANT</span>
+            </div>
+            <div class="ckc-value-row">
+              <span class="ckc-val" id="coaMoistureVal">12.4%</span>
+              <span class="ckc-sub">ISO 712 / NIR Spectrometry</span>
+            </div>
+            <div class="ckc-limit-bar">
+              <div class="ckc-fill-gold" id="coaMoistureFill" style="width: 92%;"></div>
+            </div>
+            <div class="ckc-footer">
+              <span>UNBS Limit: Max 13.5%</span>
+              <span class="text-gold" id="coaMoistureStatus">Dry Storage Stable</span>
+            </div>
+          </div>
+
+          <!-- KPI 3: Granulometry Micrometry -->
+          <div class="coa-kpi-card">
+            <div class="ckc-head">
+              <span class="ckc-label">PARTICLE MICROMETRY</span>
+              <span class="ckc-badge-pass"><i class="fa-solid fa-check"></i> SILK GRADE</span>
+            </div>
+            <div class="ckc-value-row">
+              <span class="ckc-val" id="coaGranuloVal">98.6%</span>
+              <span class="ckc-sub">&lt; 120 &mu;m Sieve Analysis</span>
+            </div>
+            <div class="ckc-limit-bar">
+              <div class="ckc-fill-gold" style="width: 98.6%;"></div>
+            </div>
+            <div class="ckc-footer">
+              <span>Standard: &gt; 95.0%</span>
+              <span class="text-gold">Silk Mesh Refined</span>
+            </div>
+          </div>
+
+          <!-- KPI 4: Micronutrient Fortification -->
+          <div class="coa-kpi-card">
+            <div class="ckc-head">
+              <span class="ckc-label">FORTIFICATION PREMIX (EAS 768)</span>
+              <span class="ckc-badge-pass"><i class="fa-solid fa-award"></i> TRIPLE FORTIFIED</span>
+            </div>
+            <div class="ckc-value-row">
+              <span class="ckc-val text-gold" id="coaFortVal">Vit A + Fe + Zn</span>
+              <span class="ckc-sub">WHO Recommended Formulation</span>
+            </div>
+            <div class="ckc-fort-row">
+              <span>Vit A: <strong id="coaVitAVal">2.2 mg/kg</strong></span>
+              <span>Iron: <strong id="coaIronVal">48 mg/kg</strong></span>
+              <span>Zinc: <strong id="coaZincVal">42 mg/kg</strong></span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Certificate Metadata Strip -->
+        <div class="coa-meta-strip">
+          <div class="cms-item">
+            <span class="cms-kicker">INSPECTED COMMODITY</span>
+            <strong class="cms-val" id="coaCommodityName">Superfine Fortified Maize Meal (Grade 1 Royal)</strong>
+          </div>
+          <div class="cms-item">
+            <span class="cms-kicker">MILLING FACILITY</span>
+            <strong class="cms-val" id="coaMillingFacility">Kampala Central Milling Atelier &bull; Mill Line A</strong>
+          </div>
+          <div class="cms-item">
+            <span class="cms-kicker">SILO INTAKE LOT</span>
+            <strong class="cms-val" id="coaSiloOrigin">Masindi &amp; Bunyoro Sourcing Nexus</strong>
+          </div>
+          <div class="cms-item">
+            <span class="cms-kicker">SAMPLING &amp; EXPIRY</span>
+            <strong class="cms-val" id="coaSamplingDates">Sampled: 02 Nov 2026 &bull; Exp: 01 May 2027</strong>
+          </div>
+        </div>
+
+        <!-- Analytical Parameters Table -->
         <div class="coa-table-wrapper">
           <table class="coa-spec-table">
             <thead>
               <tr>
                 <th>ANALYTICAL PARAMETER</th>
-                <th>CERTIFIED SPECIFICATION</th>
+                <th>CERTIFIED LOT RESULT</th>
                 <th>STATUTORY LIMIT (UNBS)</th>
                 <th>TEST METHODOLOGY</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td><strong>Moisture Content</strong></td>
-                <td><span class="coa-val-good">12.4% &plusmn; 0.3%</span></td>
-                <td>Max 13.5%</td>
-                <td>ISO 712 / NIR Spectrometry</td>
-              </tr>
-              <tr>
-                <td><strong>Total Aflatoxins (B1+B2+G1+G2)</strong></td>
-                <td><span class="coa-val-good">0.0 ppb (Undetectable)</span></td>
-                <td>Max 10.0 ppb</td>
-                <td>HPLC Immunoaffinity / Fluorometry</td>
-              </tr>
-              <tr>
-                <td><strong>Aflatoxin B1</strong></td>
-                <td><span class="coa-val-good">&lt; 0.5 ppb</span></td>
-                <td>Max 5.0 ppb</td>
-                <td>Enzyme-Linked Immunoassay (ELISA)</td>
-              </tr>
-              <tr>
-                <td><strong>Crude Protein (N &times; 6.25)</strong></td>
-                <td><span class="coa-val-good">9.20% (Dry Basis)</span></td>
-                <td>Min 8.0%</td>
-                <td>Kjeldahl Combustion Method</td>
-              </tr>
-              <tr>
-                <td><strong>Crude Fat</strong></td>
-                <td><span class="coa-val-good">1.35%</span></td>
-                <td>Max 2.0%</td>
-                <td>Soxhlet Solvent Extraction</td>
-              </tr>
-              <tr>
-                <td><strong>Total Ash</strong></td>
-                <td><span class="coa-val-good">0.48%</span></td>
-                <td>Max 0.70%</td>
-                <td>550 &deg;C Muffle Furnace</td>
-              </tr>
-              <tr>
-                <td><strong>Vitamin A (Retinyl Palmitate)</strong></td>
-                <td><span class="coa-val-gold">2.2 &plusmn; 0.3 mg/kg</span></td>
-                <td>Min 1.5 mg/kg</td>
-                <td>High-Performance Liquid Chromatography</td>
-              </tr>
-              <tr>
-                <td><strong>Iron (Sodium Feredetate / NaFeEDTA)</strong></td>
-                <td><span class="coa-val-gold">48.0 &plusmn; 5.0 mg/kg</span></td>
-                <td>Min 40.0 mg/kg</td>
-                <td>Atomic Absorption Spectrophotometry</td>
-              </tr>
-              <tr>
-                <td><strong>Zinc (Zinc Oxide)</strong></td>
-                <td><span class="coa-val-gold">42.5 &plusmn; 4.0 mg/kg</span></td>
-                <td>Min 35.0 mg/kg</td>
-                <td>Flame Photometry (AOAC 999.11)</td>
-              </tr>
-              <tr>
-                <td><strong>Granulometry (&lt; 250 &micro;m)</strong></td>
-                <td><span class="coa-val-good">98.6% Passes Screen</span></td>
-                <td>Min 95.0%</td>
-                <td>Rotap Mechanical Sieve Analysis</td>
-              </tr>
+            <tbody id="coaTableBody">
+              <!-- Dynamically populated by inspectLabBatch() -->
             </tbody>
           </table>
         </div>
 
-        <div class="coa-packaging-summary">
-          <div class="cps-box">
-            <span class="cps-title"><i class="fa-solid fa-box-archive"></i> Food-Grade Packaging:</span>
-            <span>5 kg, 10 kg, 25 kg, and 50 kg multi-ply woven polypropylene bags with food-grade UV-barrier liners. Private toll labelling available for institutional partners.</span>
+        <!-- Security Seal & Signatures Row -->
+        <div class="coa-security-row">
+          <div class="csr-qr-card">
+            <div class="csr-qr-box">
+              <svg class="csr-qr-svg" viewBox="0 0 100 100" width="76" height="76">
+                <rect width="100" height="100" fill="#050b07" rx="4"/>
+                <rect x="8" y="8" width="26" height="26" fill="#c99a3e" rx="3"/>
+                <rect x="13" y="13" width="16" height="16" fill="#050b07" rx="1"/>
+                <rect x="17" y="17" width="8" height="8" fill="#c99a3e"/>
+                <rect x="66" y="8" width="26" height="26" fill="#c99a3e" rx="3"/>
+                <rect x="71" y="13" width="16" height="16" fill="#050b07" rx="1"/>
+                <rect x="75" y="17" width="8" height="8" fill="#c99a3e"/>
+                <rect x="8" y="66" width="26" height="26" fill="#c99a3e" rx="3"/>
+                <rect x="13" y="71" width="16" height="16" fill="#050b07" rx="1"/>
+                <rect x="17" y="75" width="8" height="8" fill="#c99a3e"/>
+                <circle cx="50" cy="50" r="10" fill="#22c55e"/>
+                <rect x="42" y="14" width="6" height="18" fill="#c99a3e"/>
+                <rect x="42" y="68" width="18" height="6" fill="#c99a3e"/>
+                <rect x="68" y="44" width="18" height="6" fill="#c99a3e"/>
+                <rect x="14" y="44" width="16" height="6" fill="#c99a3e"/>
+                <rect x="66" y="66" width="12" height="12" fill="#c99a3e"/>
+                <rect x="82" y="82" width="10" height="10" fill="#22c55e"/>
+              </svg>
+            </div>
+            <div class="csr-qr-info">
+              <span class="csr-qr-title"><i class="fa-solid fa-qrcode"></i> CERTIFIED QUALITY VERIFICATION HASH</span>
+              <span class="csr-qr-hash" id="coaVerifyHash">SHA256: 8f9b4e72a10c...3d1a [VERIFIED]</span>
+              <span class="csr-qr-sub">Scan to verify against UNBS Central Accreditation Registry</span>
+            </div>
           </div>
-          <div class="cps-box">
-            <span class="cps-title"><i class="fa-solid fa-certificate"></i> Official Issuer:</span>
-            <span>Nimireaux Uganda Limited &bull; Quality Assurance Directorate &bull; Kampala, Uganda &bull; sales@nimireaux.com</span>
+
+          <div class="csr-sig-card">
+            <div class="csr-stamp-seal">
+              <i class="fa-solid fa-stamp"></i>
+              <span>UNBS Q-MARK LAB ACCREDITED</span>
+            </div>
+            <div class="csr-signature">
+              <span class="csr-sig-name">Dr. Sarah Nabirye</span>
+              <span class="csr-sig-title">Chief Quality Chemist &bull; MSc Food Biochemistry</span>
+              <span class="csr-sig-dept">Directorate of Quality Assurance, Nimireaux Uganda Limited</span>
+            </div>
           </div>
         </div>
+
       </div>
 
-      <!-- Action Footer with Download Trigger -->
+      <!-- Action Footer with Print, WhatsApp, and Download Triggers -->
       <div class="coa-modal-footer">
-        <a href="assets/Nimireaux_Corporate_Dossier_Specifications.pdf" download="Nimireaux_Corporate_Dossier_Specifications.pdf" class="btn-royal-large">
-          <i class="fa-solid fa-file-pdf"></i>
-          <span>DOWNLOAD COMPLETE OFFICIAL DOSSIER (PDF - 1.4 MB)</span>
-        </a>
-        <button type="button" class="btn-royal-outline" onclick="closeCoaModal()">
-          <span>RETURN TO PRESENTATION</span>
-        </button>
+        <div class="coa-footer-left">
+          <button type="button" class="btn-royal" onclick="printOfficialCoa()">
+            <i class="fa-solid fa-print"></i>
+            <span>PRINT OFFICIAL COA CERTIFICATE</span>
+          </button>
+          <button type="button" class="btn-wa-concierge" onclick="inquireBatchWhatsApp()">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>INQUIRE ABOUT THIS LOT VIA WHATSAPP</span>
+          </button>
+        </div>
+        <div class="coa-footer-right">
+          <a href="assets/Nimireaux_Corporate_Dossier_Specifications.pdf" download="Nimireaux_Corporate_Dossier_Specifications.pdf" class="btn-royal-outline">
+            <i class="fa-solid fa-file-pdf"></i>
+            <span>TECHNICAL DOSSIER (PDF)</span>
+          </a>
+          <button type="button" class="btn-royal-outline" onclick="closeCoaModal()">
+            <span>CLOSE</span>
+          </button>
+        </div>
       </div>
 
     </div>
@@ -1420,6 +1538,7 @@
     <div class="ai-chips-shelf">
       <span class="ai-chips-label"><i class="fa-solid fa-sparkles"></i> FREQUENT INQUIRIES:</span>
       <div class="ai-chips-list">
+        <button class="ai-chip" onclick="openCoaModal()">🔬 Aflatoxin Lab Inspector</button>
         <button class="ai-chip" onclick="openMarketBoardModal()">📈 Grain Market Board</button>
         <button class="ai-chip" onclick="askAiPreset('What are your primary flour products and packaging sizes?')">🌾 Flour Grades &amp; Packaging</button>
         <button class="ai-chip" onclick="askAiPreset('How does your commercial toll milling service work?')">⚙️ Toll Milling Process</button>
