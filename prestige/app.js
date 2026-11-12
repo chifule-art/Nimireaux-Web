@@ -737,16 +737,8 @@ function resetCardTilt() {
   }
 }
 
-/* ==========================================================================
-   HAUTE RFQ EMAIL DISPATCH (Web3Forms / Formspree + Mailto Fallback)
-   Paste your free Web3Forms access key (https://web3forms.com) OR your
-   Formspree endpoint (https://formspree.io) below to receive silent background emails.
-   ========================================================================== */
-const RFQ_EMAIL_CONFIG = {
-  web3formsAccessKey: 'YOUR_WEB3FORMS_ACCESS_KEY', // e.g. 'a1b2c3d4-...'
-  formspreeEndpoint: '',                           // e.g. 'https://formspree.io/f/xxxxxxx'
-  fallbackEmail: 'sales@nimireaux.com'
-};
+/* Haute RFQ Submit (Web3Forms Email + Instant WhatsApp Dispatch) */
+const WEB3FORMS_ACCESS_KEY = 'YOUR_WEB3FORMS_ACCESS_KEY';
 
 async function handlePrestigeSubmit(e) {
   e.preventDefault();
@@ -754,98 +746,82 @@ async function handlePrestigeSubmit(e) {
 
   const btn = document.getElementById('prestigeSubmitBtn');
   const toast = document.getElementById('prestigeToast');
+  const toastMsg = document.getElementById('prestigeToastMsg');
+  const toastWaLink = document.getElementById('prestigeToastWaLink');
   const form = document.getElementById('prestigeRfqForm');
 
   const name = (document.getElementById('pName')?.value || '').trim();
   const org = (document.getElementById('pOrg')?.value || '').trim();
   const email = (document.getElementById('pEmail')?.value || '').trim();
   const phone = (document.getElementById('pPhone')?.value || '').trim();
-  const serviceSelect = document.getElementById('pService');
-  const serviceLabel = serviceSelect ? serviceSelect.options[serviceSelect.selectedIndex].text : '';
+  const serviceEl = document.getElementById('pService');
+  const service = serviceEl ? serviceEl.options[serviceEl.selectedIndex].text : '';
   const volume = (document.getElementById('pVolume')?.value || 'Not specified').trim();
   const notes = (document.getElementById('pNotes')?.value || 'None').trim();
+
+  const waMessage = [
+    '*NIMIREAUX UGANDA — EXECUTIVE RFQ BRIEF*',
+    `• Representative: ${name}`,
+    `• Organization: ${org}`,
+    `• Email: ${email}`,
+    `• Phone: ${phone}`,
+    `• Requirement: ${service}`,
+    `• Volume: ${volume}`,
+    `• Notes: ${notes}`
+  ].join('\n');
+
+  const waUrl = `https://wa.me/256744135549?text=${encodeURIComponent(waMessage)}`;
 
   if (btn) {
     btn.innerHTML = '<span>DISPATCHING EXECUTIVE BRIEF...</span> <i class="fa-solid fa-spinner fa-spin"></i>';
     btn.disabled = true;
   }
 
-  const hasWeb3Key = RFQ_EMAIL_CONFIG.web3formsAccessKey && RFQ_EMAIL_CONFIG.web3formsAccessKey !== 'YOUR_WEB3FORMS_ACCESS_KEY';
-  const hasFormspree = Boolean(RFQ_EMAIL_CONFIG.formspreeEndpoint);
-
-  const markSuccess = () => {
-    if (btn) {
-      btn.innerHTML = '<span>EXECUTIVE INQUIRY DISPATCHED</span> <i class="fa-solid fa-check-circle"></i>';
-      btn.style.background = '#155d32';
-    }
-    if (toast) toast.style.display = 'flex';
-    if (form) form.reset();
-  };
-
-  try {
-    if (hasWeb3Key) {
-      const response = await fetch('https://api.web3forms.com/submit', {
+  let emailSent = false;
+  if (WEB3FORMS_ACCESS_KEY && WEB3FORMS_ACCESS_KEY !== 'YOUR_WEB3FORMS_ACCESS_KEY') {
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
-          access_key: RFQ_EMAIL_CONFIG.web3formsAccessKey,
-          subject: `Nimireaux RFQ: ${org || name} — ${serviceLabel}`,
-          from_name: `${name} (${org})`,
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `New Executive RFQ: ${org || name} (${volume})`,
+          from_name: 'Nimireaux Commercial Salon',
           replyto: email,
-          Representative: name,
-          Organization: org,
-          Email: email,
-          Phone: phone,
-          Requirement: serviceLabel,
-          Estimated_Volume: volume,
-          Logistics_Notes: notes
-        })
-      });
-      const result = await response.json();
-      if (!response.ok || !result.success) throw new Error(result.message || 'Web3Forms submission failed');
-      markSuccess();
-      return;
-    }
-
-    if (hasFormspree) {
-      const response = await fetch(RFQ_EMAIL_CONFIG.formspreeEndpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          representative: name,
+          name,
           organization: org,
           email,
           phone,
-          requirement: serviceLabel,
+          service,
           volume,
-          notes
+          message: notes
         })
       });
-      if (!response.ok) throw new Error('Formspree submission failed');
-      markSuccess();
-      return;
-    }
-
-    // Safe fallback until an access key or endpoint is added: open pre-filled email client
-    const subject = encodeURIComponent(`Nimireaux Executive RFQ: ${org || name} (${volume})`);
-    const body = encodeURIComponent(
-      `Principal Representative: ${name}\n` +
-      `Organization: ${org}\n` +
-      `Email: ${email}\n` +
-      `Phone / WhatsApp: ${phone}\n` +
-      `Requirement: ${serviceLabel}\n` +
-      `Estimated Batch Volume: ${volume}\n\n` +
-      `Logistics & Packaging Notes:\n${notes}`
-    );
-    window.location.href = `mailto:${RFQ_EMAIL_CONFIG.fallbackEmail}?subject=${subject}&body=${body}`;
-    markSuccess();
-  } catch (err) {
-    console.error('RFQ dispatch error:', err);
-    if (btn) {
-      btn.innerHTML = '<span>RETRY OR USE WHATSAPP DESK</span> <i class="fa-solid fa-triangle-exclamation"></i>';
-      btn.disabled = false;
+      const data = await res.json();
+      emailSent = !!data.success;
+    } catch (err) {
+      console.warn('Web3Forms dispatch error, falling back to WhatsApp:', err);
     }
   }
+
+  // Open WhatsApp with pre-filled RFQ brief
+  window.open(waUrl, '_blank', 'noopener');
+
+  if (btn) {
+    btn.innerHTML = '<span>EXECUTIVE INQUIRY DISPATCHED</span> <i class="fa-solid fa-check-circle"></i>';
+    btn.style.background = '#155d32';
+  }
+  if (toastWaLink) {
+    toastWaLink.href = waUrl;
+    toastWaLink.style.display = 'inline-flex';
+  }
+  if (toastMsg) {
+    toastMsg.textContent = emailSent
+      ? 'Your brief has been emailed to our commercial desk and prepared on WhatsApp (+256 744 135 549).'
+      : 'Your brief has been prepared for instant WhatsApp dispatch (+256 744 135 549).';
+  }
+  if (toast) toast.style.display = 'flex';
+  if (form) form.reset();
 }
 
 /* ==========================================================================
