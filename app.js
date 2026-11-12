@@ -2171,7 +2171,7 @@ function generateAiIntelligenceResponse(query) {
           <li><strong>General Information:</strong> <a href="mailto:info@nimireaux.com" class="p-link">info@nimireaux.com</a></li>
           <li><strong>Institutional Sales &amp; RFQs:</strong> <a href="mailto:sales@nimireaux.com" class="p-link">sales@nimireaux.com</a></li>
           <li><strong>Accounts &amp; Billing:</strong> <a href="mailto:accounts@nimireaux.com" class="p-link">accounts@nimireaux.com</a></li>
-          <li><strong>Location:</strong> Kampala, Uganda &bull; Sourcing from Masindi, Acholi, and Eastern Highlands.</li>
+          <li><strong>Location:</strong> PLOT 1957, Kitukutwe, Kira Division, Uganda &bull; Sourcing from Masindi, Acholi, and Eastern Highlands.</li>
         </ul>
       `,
       actions: [
